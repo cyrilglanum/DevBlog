@@ -12,7 +12,16 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $request = Request::createFromGlobals();
 
-$framework = new Framework\Simplex();
+$routes = require __DIR__ . '/../src/routes.php';
+
+$context = new RequestContext();
+
+$urlMatcher = new UrlMatcher($routes, $context);
+
+$controllerResolver = new ControllerResolver();
+$argumentsResolver = new ArgumentResolver();
+
+$framework = new Framework\Simplex($urlMatcher,$controllerResolver,$argumentsResolver);
 
 $response = $framework->handle($request);
 

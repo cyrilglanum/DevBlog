@@ -13,22 +13,27 @@ use Symfony\Component\Routing\RequestContext;
 
 class Simplex
 {
+    protected UrlMatcher $urlMatcher;
+    protected ControllerResolver $controllerResolver;
+    protected ArgumentResolver $argumentResolver;
+
+    public function __construct(UrlMatcher $urlMatcher, ControllerResolver $controllerResolver, ArgumentResolver $argumentResolver)
+    {
+        $this->urlMatcher = $urlMatcher;
+        $this->controllerResolver = $controllerResolver;
+        $this->argumentResolver = $argumentResolver;
+    }
+
+
     public function handle(Request $request)
     {
-        $response = new Response();
-        $routes = require __DIR__ . '/../src/routes.php';
-        $context = new RequestContext();
-        $context->fromRequest($request);
 
-        $urlMatcher = new UrlMatcher($routes, $context);
-        $controllerResolver = new ControllerResolver();
-        $argumentsResolver = new ArgumentResolver();
-
+$this->urlMatcher->getContext()->fromRequest($request);
         try {
-            $request->attributes->add($urlMatcher->match($request->getPathInfo()));
+            $request->attributes->add($this->urlMatcher->match($request->getPathInfo()));
 
-            $controller = $controllerResolver->getController($request);
-            $arguments = $argumentsResolver->getArguments($request, $controller);
+            $controller = $this->controllerResolver->getController($request);
+            $arguments = $this->argumentResolver->getArguments($request, $controller);
 
             $response = call_user_func_array($controller, $arguments);
         } catch (ResourceNotFoundException $e) {
