@@ -2,29 +2,27 @@
 
 namespace App\Controller;
 
+use App\Models\Post;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GreetingController extends BaseController
+class IndexController extends BaseController
 {
-
     public function hello(Request $request)
     {
-
         ob_start();
         $db = parent::connect();
+        //récupération des posts
+        $tableau = new Post();
+        $getPosts = $tableau->getPost();
         $name = $request->attributes->get('name');
-
         include __DIR__ . '/../pages/hello.php';
         return new Response(ob_get_clean());
     }
 
-    public function bye()
+    public function redirect(Request $request)
     {
-        parent::connect();
-        ob_start();
-        include __DIR__ . '/../pages/bye.php';
-        return new Response(ob_get_clean());
+         dd('hi');
+
     }
 }
-

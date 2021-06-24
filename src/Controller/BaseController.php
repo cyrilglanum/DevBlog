@@ -9,7 +9,7 @@ use PHPUnit\Util\Exception;
 
 class BaseController
 {
-    public function connect()
+    protected function connect()
     {
         try {
             $db = new PDO('mysql:host=localhost;dbname=expressfood;charset=utf8', 'root', '');

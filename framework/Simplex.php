@@ -9,7 +9,6 @@ use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Symfony\Component\Routing\RequestContext;
 
 class Simplex
 {
@@ -27,8 +26,7 @@ class Simplex
 
     public function handle(Request $request)
     {
-
-$this->urlMatcher->getContext()->fromRequest($request);
+        $this->urlMatcher->getContext()->fromRequest($request);
         try {
             $request->attributes->add($this->urlMatcher->match($request->getPathInfo()));
 
