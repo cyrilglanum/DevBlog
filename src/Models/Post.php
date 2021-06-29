@@ -11,7 +11,6 @@ class Post extends BaseController
     function getPosts()
     {
         $db = parent::connect();
-        $post = array();
         $req = $db->query('SELECT * FROM posts');
 
         return $req;

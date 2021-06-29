@@ -2,34 +2,29 @@
 ?>
 
 <h2>Login</h2>
+<form method="POST" action="./connexion">
 
-<?php
-  // si il y a validation du formulaire
-  if(isset($_POST['formconnexion'])){
-      $mailconnect= htmlspecialchars($_POST['mailconnect']);
-      $mdpconnect = sha1($_POST['mdpconnect']);
-// si les champs ne sont pas vides
-      if(!empty($mailconnect) AND (!empty($mdpconnect))){
-          $requser = $bdd ->prepare ("SELECT * FROM client WHERE mailutilisateur = ? AND mdp =?");
-          $requser ->execute(array($mailconnect, $mdpconnect));
-          $userexist = $requser->rowCount();
-// si l utilisateur existe alors on rentre dans son profil
-          if ($userexist==1)
-          {
+    <div class="input-group">
 
-            $userinfo= $requser->fetch();
-            $_SESSION['mailutilisateur']= $userinfo['mailutilisateur'];
-            $_SESSION['connect']  = true;
-            header("Location:inscriptionrestaurant.php");
-          }
-          else
-          {
-            $_SESSION['connect']  = false;
-            $erreur = "mauvais mot de passe ou identifiant";
-          }
-      }
-      else{
-          $erreur ="tout les champs doivent etre complétés";
-      }
-  }
-   ?>
+        <input class="input--style-3" type="email" placeholder="Email" name="email" value="test@test.fr ">
+
+    </div>
+
+    <div class="input-group">
+
+        <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" onerror="class ='danger'">
+
+    </div>
+
+    <div class="p-t-10">
+
+        <button class="btn btn--pill btn--green" type="submit" name="formconnexion">Se connecter</button>
+
+        <a href="./home">
+            <button type="button" class="btn btn-light">Menu</button>
+        </a>
+
+    </div>
+
+
+</form>

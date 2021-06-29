@@ -19,6 +19,12 @@ $routes->add('deconnexion', new Route('/deconnexion',[
 $routes->add('inscription', new Route('/inscription',[
     '_controller' => 'App\Controller\ConnexionController::inscription'
 ]));
+$routes->add('inscription/add-user', new Route('/inscription/add-user',[
+    '_controller' => 'App\Controller\ConnexionController::AddUserToBdd'
+]));
+$routes->add('inscription/add-user', new Route('/inscription/add-user',[
+    '_controller' => 'App\Controller\ConnexionController::AddUserToBdd'
+]));
 
 //Post
 $routes->add('index', new Route('/', [

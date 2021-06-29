@@ -1,3 +1,9 @@
+<?php
+session_start();
+if($_SESSION['connect'] == true){
+    print_r($_SESSION['email']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
