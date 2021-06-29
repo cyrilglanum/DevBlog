@@ -9,18 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 class PostController extends BaseController
 {
 
-//    public function posts(Request $request)
-//    {
-//        ob_start();
-//        $db = parent::connect();
-//        //récupération des posts
-//        $tableau = new Post();
-//        $getPosts = $tableau->getPost();
-//        $name = $request->attributes->get('name');
-//        include __DIR__ . '/../pages/hello.php';
-//        return new Response(ob_get_clean());
-//    }
-
     public function postById(Request $request)
     {
         ob_start();
@@ -30,6 +18,15 @@ class PostController extends BaseController
         //récupération des information du post en question.
         $post = $post->getPostById($id);
         include __DIR__ . '/../pages/post.php';
+        return new Response(ob_get_clean());
+    }
+
+     public function addPost(Request $request)
+    {
+        ob_start();
+        $db = parent::connect();
+//        $post = new Post();
+        include __DIR__ . '/../pages/add-post.php';
         return new Response(ob_get_clean());
     }
 

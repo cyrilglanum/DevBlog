@@ -8,11 +8,11 @@ use App\Controller\BaseController;
 
 class Post extends BaseController
 {
-    function getPost()
+    function getPosts()
     {
         $db = parent::connect();
         $post = array();
-        $req = $db->query('SELECT * FROM clients');
+        $req = $db->query('SELECT * FROM posts');
 
         return $req;
     }
@@ -20,7 +20,7 @@ class Post extends BaseController
     function getPostById($id)
     {
         $db = parent::connect();
-        $req = $db->query("SELECT * FROM clients WHERE id = '$id'");
+        $req = $db->query("SELECT * FROM posts WHERE id = '$id'");
         $res = $req->fetch();
 
         return $res;

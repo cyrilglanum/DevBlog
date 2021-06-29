@@ -1,82 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Le blog du dev</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico"/>
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../../src/assets/css/styles.css" rel="stylesheet"/>
-    <link href="../src/assets/css/styles.css" rel="stylesheet"/>
-    <?php if($name){
-        ?><link href="../../../src/assets/css/styles.css" rel="stylesheet"/><?php
-    }
-     ?>
-    <!--    <link href="{{ asset('public/css/styles.css') }}" rel="stylesheet"/>-->
-</head>
-<body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <!--                TODO LOGO-->
-        <!--                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Sujets</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">Ajout d'un post</a></li>
-                <li class="nav-item"><a class="nav-link" href="#team">Connexion</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php
+require __DIR__ .'./partials/header.php';
+?>
+
 <!-- Masthead-->
 <header class="masthead" id="home">
     <div class="container">
-        <div class="masthead-subheading">Bienvenue sur DevBlog, le blog du développeur!</div>
-        <div class="masthead-heading text-uppercase">DevBlog, l'information au quotidien qu’il vous faut !</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">En savoir plus</a>
+        <div class="masthead-subheading">Bienvenue sur DevBlog!</div>
+        <div class="masthead-heading text-uppercase">DevBlog, l'informatique au quotidien !</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Mes sujets</a>
     </div>
 </header>
 <!-- Services-->
-Hello
-<?php
-echo htmlspecialchars($name, ENT_QUOTES);
 
-//Récupération de tout les posts
-while($data = $getPosts->fetch()){
-        print '<br>' . $data['id'] . "\t";
-        print '<br>' . $data['last_name'] . "\t";
-        print '<br>' . $data['first_name'] . "\n";
-        print '<br><a href="../post/' .  $data['id'] .'">Voir le post</a>'. "\n";
-
-//        $post['id'] = $data['id'];
-//        $post['last_name']= $data['last_name'];
-//        $post['first_name'] = $data['first_name'];
-
-    }
-
-//foreach ($getPosts as $post) {
-//    print '<br>' . $row['id'] . "\t";
-//    print '<br>' . $row['last_name'] . "\t";
-//    print '<br>' . $row['first_name'] . "\n";
-//}
-?>
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">
@@ -84,33 +19,24 @@ while($data = $getPosts->fetch()){
             <h3 class="section-subheading text-muted">Dans ce blog nous vous proposons des articles sur</h3>
         </div>
         <div class="row text-center">
-            <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                <h4 class="my-3">Veille info</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                <h4 class="my-3">Responsive Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                <h4 class="my-3">Web Security</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
+
+                <?php
+                //echo htmlspecialchars($name, ENT_QUOTES);
+
+                //Récupération de tout les posts
+                while($data = $getPosts->fetch()) {
+                    print '<div class="col-md-4">
+                                <span class="fa-stack fa-4x">                            
+                                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                    <i class="' . $data['icon'] . ' fa-stack-1x fa-inverse"></i>
+                                   </span>';
+                    print '<br><h4 class="my-3">' . $data['title'] . '</h4>'."\t";
+                    print '<br>' . $data['content'] . "\n";
+                    print '<br><a href="./post/' . $data['id'] . '">Voir le post</a>' . "\n";
+                    print '<br></div>' . "\n";
+                }
+                ?>
+
         </div>
     </div>
 </section>
@@ -129,7 +55,7 @@ while($data = $getPosts->fetch()){
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="../assets/img/portfolio/1.jpg" alt="..."/>
+                        <img class="img-fluid" src="../../src/assets/img/portfolio/1.jpg" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Threads</div>
@@ -144,7 +70,7 @@ while($data = $getPosts->fetch()){
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="../assets/img/portfolio/2.jpg" alt="..."/>
+                        <img class="img-fluid" src="../../src/assets/img/portfolio/2.jpg" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Explore</div>
@@ -159,7 +85,7 @@ while($data = $getPosts->fetch()){
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="../assets/img/portfolio/3.jpg" alt="..."/>
+                        <img class="img-fluid" src="../../src/assets/img/portfolio/3.jpg" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Finish</div>
@@ -174,7 +100,7 @@ while($data = $getPosts->fetch()){
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="../assets/img/portfolio/4.jpg" alt="..."/>
+                        <img class="img-fluid" src="../../src/assets/img/portfolio/4.jpg" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Lines</div>
@@ -189,7 +115,7 @@ while($data = $getPosts->fetch()){
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="../assets/img/portfolio/5.jpg" alt="..."/>
+                        <img class="img-fluid" src="../../src/assets/img/portfolio/5.jpg" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Southwest</div>
@@ -204,7 +130,7 @@ while($data = $getPosts->fetch()){
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="../assets/img/portfolio/6.jpg" alt="..."/>
+                        <img class="img-fluid" src="../../src/assets/img/portfolio/6.jpg" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Window</div>
@@ -225,7 +151,7 @@ while($data = $getPosts->fetch()){
         <ul class="timeline">
             <li>
                 <div class="timeline-image"><img class="rounded-circle img-fluid"
-                                                 src="../assets/img/about/1.jpg"
+                                                 src="../../src/assets/img/about/1.jpg"
                                                  alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
@@ -239,7 +165,7 @@ while($data = $getPosts->fetch()){
             </li>
             <li class="timeline-inverted">
                 <div class="timeline-image"><img class="rounded-circle img-fluid"
-                                                 src="../assets/img/about/2.jpg"
+                                                 src="../../src/assets/img/about/2.jpg"
                                                  alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
@@ -253,7 +179,7 @@ while($data = $getPosts->fetch()){
             </li>
             <li>
                 <div class="timeline-image"><img class="rounded-circle img-fluid"
-                                                 src="../assets/img/about/3.jpg"
+                                                 src="../../src/assets/img/about/3.jpg"
                                                  alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
@@ -267,7 +193,7 @@ while($data = $getPosts->fetch()){
             </li>
             <li class="timeline-inverted">
                 <div class="timeline-image"><img class="rounded-circle img-fluid"
-                                                 src="../assets/img/about/4.jpg"
+                                                 src="../../src/assets/img/about/4.jpg"
                                                  alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
@@ -303,7 +229,7 @@ while($data = $getPosts->fetch()){
         <div class="row">
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="../assets/img/team/1.jpg" alt="..."/>
+                    <img class="mx-auto rounded-circle" src="../../src/assets/img/team/1.jpg" alt="..."/>
                     <h4>Parveen Anand</h4>
                     <p class="text-muted">Lead Designer</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -313,7 +239,7 @@ while($data = $getPosts->fetch()){
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="../assets/img/team/2.jpg" alt="..."/>
+                    <img class="mx-auto rounded-circle" src="../../src/assets/img/team/2.jpg" alt="..."/>
                     <h4>Diana Petersen</h4>
                     <p class="text-muted">Lead Marketer</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -323,7 +249,7 @@ while($data = $getPosts->fetch()){
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="../assets/img/team/3.jpg" alt="..."/>
+                    <img class="mx-auto rounded-circle" src="../../src/assets/img/team/3.jpg" alt="..."/>
                     <h4>Larry Parker</h4>
                     <p class="text-muted">Lead Developer</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -345,22 +271,22 @@ while($data = $getPosts->fetch()){
         <div class="row align-items-center">
             <div class="col-md-3 col-sm-6 my-3">
                 <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                  src="../assets/img/logos/microsoft.svg"
+                                  src="../../src/assets/img/logos/microsoft.svg"
                                   alt="..."/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
                 <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                  src="../assets/img/logos/google.svg"
+                                  src="../../src/assets/img/logos/google.svg"
                                   alt="..."/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
                 <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                  src="../assets/img/logos/facebook.svg"
+                                  src="../../src/assets/img/logos/facebook.svg"
                                   alt="..."/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
                 <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                  src="../assets/img/logos/ibm.svg" alt="..."/></a>
+                                  src="../../src/assets/img/logos/ibm.svg" alt="..."/></a>
             </div>
         </div>
     </div>
@@ -437,7 +363,7 @@ while($data = $getPosts->fetch()){
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../assets/img/close-icon.svg"
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
             <div class="container">
@@ -447,7 +373,7 @@ while($data = $getPosts->fetch()){
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/1.jpg"
+                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/1.jpg"
                                  alt="..."/>
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -478,7 +404,7 @@ while($data = $getPosts->fetch()){
 <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../assets/img/close-icon.svg"
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
             <div class="container">
@@ -488,7 +414,7 @@ while($data = $getPosts->fetch()){
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/2.jpg"
+                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/2.jpg"
                                  alt="..."/>
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -519,7 +445,7 @@ while($data = $getPosts->fetch()){
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../assets/img/close-icon.svg"
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
             <div class="container">
@@ -529,7 +455,7 @@ while($data = $getPosts->fetch()){
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/3.jpg"
+                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/3.jpg"
                                  alt="..."/>
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -560,7 +486,7 @@ while($data = $getPosts->fetch()){
 <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../assets/img/close-icon.svg"
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
             <div class="container">
@@ -570,7 +496,7 @@ while($data = $getPosts->fetch()){
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/4.jpg"
+                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/4.jpg"
                                  alt="..."/>
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -601,7 +527,7 @@ while($data = $getPosts->fetch()){
 <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../assets/img/close-icon.svg"
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
             <div class="container">
@@ -611,7 +537,7 @@ while($data = $getPosts->fetch()){
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/5.jpg"
+                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/5.jpg"
                                  alt="..."/>
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -642,7 +568,7 @@ while($data = $getPosts->fetch()){
 <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../assets/img/close-icon.svg"
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
                                                                   alt="Close modal"/>
             </div>
             <div class="container">
@@ -652,7 +578,7 @@ while($data = $getPosts->fetch()){
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/6.jpg"
+                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/6.jpg"
                                  alt="..."/>
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -682,6 +608,6 @@ while($data = $getPosts->fetch()){
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="../assets/js/scripts.js"></script>
+<script src="../../src/assets/js/scripts.js"></script>
 </body>
 </html>

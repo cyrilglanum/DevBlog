@@ -8,15 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IndexController extends BaseController
 {
-    public function hello(Request $request)
+    public function home(Request $request)
     {
         ob_start();
-        $db = parent::connect();
         //récupération des posts
-        $tableau = new Post();
-        $getPosts = $tableau->getPost();
+        $posts = new Post();
+        $getPosts = $posts->getPosts();
         $name = $request->attributes->get('name');
-        include __DIR__ . '/../pages/hello.php';
+        include __DIR__ . '/../pages/home.php';
         return new Response(ob_get_clean());
     }
 
