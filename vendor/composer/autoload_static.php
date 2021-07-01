@@ -40,6 +40,7 @@ class ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
+            'Symfony\\Component\\Asset\\' => 24,
         ),
         'P' => 
         array (
@@ -121,6 +122,10 @@ class ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881
         'Symfony\\Component\\ErrorHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/error-handler',
+        ),
+        'Symfony\\Component\\Asset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/asset',
         ),
         'Psr\\Log\\' => 
         array (

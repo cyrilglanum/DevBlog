@@ -51,7 +51,10 @@ class User extends BaseController
             $userinfo->execute();
             $user = $userinfo->fetchAll();
 
-            return $user;
+            if($user != null){
+                return $user[0];
+            }
+
         }
         return '';
     }

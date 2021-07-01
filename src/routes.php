@@ -22,11 +22,13 @@ $routes->add('inscription', new Route('/inscription',[
 $routes->add('inscription/add-user', new Route('/inscription/add-user',[
     '_controller' => 'App\Controller\ConnexionController::AddUserToBdd'
 ]));
-$routes->add('inscription/add-user', new Route('/inscription/add-user',[
-    '_controller' => 'App\Controller\ConnexionController::AddUserToBdd'
+
+//USER
+$routes->add('profil', new Route('/profil',[
+    '_controller' => 'App\Controller\UserController::profil'
 ]));
 
-//Post
+//BlogPost
 $routes->add('index', new Route('/', [
     '_controller' => 'App\Controller\IndexController::hello'
 ]));

@@ -1,7 +1,7 @@
 <?php
 if (isset($user)) {
     if ($user != null) {
-        echo 'connecté sous : ' . $user[0]['email'];
+        echo 'connecté sous : ' . $user['email'];
     }
 }
 
@@ -54,16 +54,14 @@ if (isset($user)) {
                 <!--                <li class="nav-item"><a class="nav-link" href="#portfolio">Blog</a></li>-->
                 <li class="nav-item"><a class="nav-link" href="./add-post">Ajout d'un post</a></li>
                 <?php if ($user != null) { ?>
-                    <!--                    <li class="nav-item"><a class="nav-link" href="./deconnexion">Deconnexion</a></li>-->
-                    <!--                    <li class="nav-item"><a class="nav-link" href="./profil">Mon compte</a></li>-->
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Mon compte
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <img src="assets" alt="..." class="img-thumbnail">
-<!--                            <img src="https://devblog/src/assets/img/profil/1" alt="..." class="img-thumbnail">-->
+                            <a href="./profil"><img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/P5/P5Blog/src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
+<!--                            <img src="https://devblog/src/assets/img/profil/1.jpg" alt="..." class="img-thumbnail">-->
                             <a class="dropdown-item" href="./blogSpace">Mon espace Blog</a>
                             <a class="dropdown-item" href="./profil">Profil</a>
                             <a class="dropdown-item" href="./deconnexion">Deconnexion</a>

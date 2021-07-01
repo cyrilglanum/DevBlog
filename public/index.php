@@ -10,13 +10,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $request = Request::createFromGlobals();
 $routes = require __DIR__ . '/../src/routes.php';
-
 $context = new RequestContext();
 
-//dd($context->getPathInfo(),$routes);
-//if(in_array($pathInfo, $routes)){
-//    dd('dans routes');
-//};
 $urlMatcher = new UrlMatcher($routes, $context);
 
 $controllerResolver = new ControllerResolver();
