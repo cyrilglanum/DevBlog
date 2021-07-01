@@ -18,25 +18,34 @@ class ConnexionController extends BaseController
 
     public function connexion(Request $request)
     {
-        $db = parent::connect();
-        $email = $request->request->get('email');
-        $password = $request->request->get('password');
-        if(!empty($email) AND (!empty($password))) {
-            $requser = $db->prepare("SELECT * FROM users WHERE email = ? AND password =?");
-            $requser->execute(array($email, sha1($password)));
-            $userexist = $requser->rowCount();
-            if ($userexist != 0) {
-                $userinfo = $requser->fetch();
-                $_SESSION['email'] = $userinfo['email'];
-                $_SESSION['connect'] = true;
+            ob_start();
+            $db = parent::connect();
+            $email = $request->request->get('email');
+            $password = $request->request->get('password');
+            if (!empty($email) and (!empty($password))) {
+                $requser = $db->prepare("SELECT * FROM users WHERE email = ? AND password =?");
+                $requser->execute(array($email, sha1($password)));
+                $userExist = $requser->rowCount();
+                if ($userExist != 0) {
+                    $userinfo = $requser->fetch();
+                    $userinfo['token_session'] = $request->cookies->get('PHPSESSID');
+                    date_default_timezone_set('Europe/Paris');
+                    $date = new \DateTime();
+                    $date->modify('+1 hour');
+                    $userinfo['token_expire'] = $date->getTimestamp();
 
-//            header("Location:index.php?mailutilisateur=".$_SESSION['mailutilisateur']);
-                header("Location: ./home",['userinfo' => $userinfo]);
-            } else {
-                header("Location: ./login");
+                    $insertToken = $db->prepare("UPDATE users SET token_session =?,token_expire =? WHERE email LIKE ?");
+                    $insertToken->execute(array($userinfo['token_session'], $userinfo['token_expire'], $userinfo['email']));
+//                $user = new User();
+//                $user = $user->getUserByCookie($request);
+                    include __DIR__ . '/../pages/Auth/connexion.php';
+                    return new Response(ob_get_clean());
+                } else {
+                    header("Location: ./login");
+                }
             }
-        }
     }
+
 
      public function inscription(Request $request)
     {
@@ -54,6 +63,8 @@ class ConnexionController extends BaseController
         if($email && strlen($password)>=4 && $password === $passwordConfirmation ){
             $user = new User();
             $user->email = $email;
+            $user->actif = 1;
+            $user->role_id = 1;
             $user->password = sha1($password);
             $reqmail = $db->prepare("SELECT * FROM users WHERE email = ?");
                         $reqmail->execute(array($email));
@@ -73,6 +84,10 @@ class ConnexionController extends BaseController
     public function deconnexion(Request $request)
     {
         ob_start();
+        $db = parent::connect();
+        $cookie = $request->cookies->get('PHPSESSID');
+        $requser = $db->prepare("UPDATE users SET token_session = '' WHERE token_session LIKE '$cookie'");
+        $requser->execute();
         include __DIR__ . '/../pages/Auth/deconnexion.php';
         return new Response(ob_get_clean());
     }

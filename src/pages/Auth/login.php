@@ -6,13 +6,13 @@
 
     <div class="input-group">
 
-        <input class="input--style-3" type="email" placeholder="Email" name="email" value="test@test.fr ">
+        <input class="input--style-3" type="email" placeholder="Email" name="email" value="test@test.fr" required>
 
     </div>
 
     <div class="input-group">
 
-        <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" onerror="class ='danger'">
+        <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" onerror="class ='danger'" required>
 
     </div>
 

@@ -5,30 +5,32 @@ namespace App\Models;
 
 
 use App\Controller\BaseController;
+use PDO;
+use Symfony\Component\HttpFoundation\Request;
 
 class User extends BaseController
 {
 
-     public function __construct($value = array())
+    public function __construct($value = array())
     {
-        if(!empty($value))
+        if (!empty($value))
             $this->hydrate($value);
     }
 
-     public function hydrate($data)
+    public function hydrate($data)
     {
         foreach ($data as $attribut => $value) {
-            $method = 'set'.str_replace(' ', '', ucwords(str_replace('_', ' ', $attribut)));
+            $method = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $attribut)));
             if (is_callable(array($this, $method))) {
                 $this->$method($value);
             }
         }
     }
 
-     public function getUsers()
+    public function getUsers()
     {
         $db = parent::connect();
-        $users =  $db->query('SELECT * FROM user');
+        $users = $db->query('SELECT * FROM user');
 
         return $users;
     }
@@ -36,11 +38,23 @@ class User extends BaseController
     public function getUserById($id)
     {
         $db = parent::connect();
-        $users =  $db->query("SELECT * FROM user WHERE id = '$id'");
+        $user = $db->query("SELECT * FROM user WHERE id = '$id'");
 
-        return $users;
+        return $user;
     }
 
+    public function getUserByCookie(Request $request)
+    {
+        $db = parent::connect();
+        if ($cookie = $request->cookies->get('PHPSESSID')) {
+            $userinfo = $db->prepare("SELECT * from users WHERE token_session LIKE '$cookie'");
+            $userinfo->execute();
+            $user = $userinfo->fetchAll();
+
+            return $user;
+        }
+        return '';
+    }
 
 
 }
