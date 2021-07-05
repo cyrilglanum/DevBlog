@@ -34,33 +34,32 @@ require $dir . 'src/pages/partials/header.php';
                      aria-labelledby="v-pills-home-tab">
                     <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp" value="<?php $user['email']?>">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="email"
+                                   aria-describedby="emailHelp" value="<?php echo $_SESSION['email']?>">
+                            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas ces données.</small>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="exampleInputPassword1">Mot de passe actuel</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Nouveau mot de passe</label>
+                            <input type="password" class="form-control" id="password">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    <?php
-                    //                    dump($user);
 
-                    print 'Nom : ' . $user['email'];
-
-                    ?>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    lorem ipsu
+                    <img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/P5/P5Blog/src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     ...
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    ...
+                    <img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/P5/P5Blog/src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
+
                 </div>
             </div>
         </div>

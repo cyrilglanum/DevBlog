@@ -1,7 +1,8 @@
 <?php
-if (isset($user)) {
-    if ($user != null) {
-        echo 'connecté sous : ' . $user['email'];
+session_start();
+if (isset($_SESSION['email'])) {
+    if ($_SESSION['email'] != null) {
+        echo 'connecté sous : ' . $_SESSION['email'];;
     }
 }
 
@@ -53,7 +54,7 @@ if (isset($user)) {
                 <!--                <li class="nav-item"><a class="nav-link" href="#services">Sujets</a></li>-->
                 <!--                <li class="nav-item"><a class="nav-link" href="#portfolio">Blog</a></li>-->
                 <li class="nav-item"><a class="nav-link" href="./add-post">Ajout d'un post</a></li>
-                <?php if ($user != null) { ?>
+                <?php if (isset($_SESSION['email'])) { ?>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

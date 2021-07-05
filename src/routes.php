@@ -53,6 +53,10 @@ $routes->add('about', new Route('/about',[
     '_controller' => 'App\Controller\PageController::about'
 ]));
 
+$routes->add('test', new Route('/test',[
+    '_controller' => 'App\Controller\PageController::test'
+]));
+
 
 
 
