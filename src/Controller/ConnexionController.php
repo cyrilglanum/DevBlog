@@ -23,6 +23,7 @@ class ConnexionController extends BaseController
             $email = $request->request->get('email');
             $password = $request->request->get('password');
             if (!empty($email) and (!empty($password))) {
+                //Mettre les requetes dans un repo (userRepository) $requser = userRepository->findByEmailAndPassword($email, sha1($password);
                 $requser = $db->prepare("SELECT * FROM users WHERE email = ? AND password =?");
                 $requser->execute(array($email, sha1($password)));
                 $userExist = $requser->rowCount();
@@ -41,9 +42,16 @@ class ConnexionController extends BaseController
                     include __DIR__ . '/../pages/Auth/connexion.php';
                     return new Response(ob_get_clean());
                 } else {
-                    header("Location: ./login");
+                    header("Location: ./loginError");
                 }
             }
+    }
+
+      public function loginError(Request $request)
+    {
+        ob_start();
+        include __DIR__ . '/../pages/Auth/loginError.php';
+        return new Response(ob_get_clean());
     }
 
 
@@ -91,5 +99,6 @@ class ConnexionController extends BaseController
         include __DIR__ . '/../pages/Auth/deconnexion.php';
         return new Response(ob_get_clean());
     }
+
 
 }

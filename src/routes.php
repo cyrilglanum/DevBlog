@@ -10,6 +10,9 @@ $routes = new RouteCollection();
 $routes->add('login', new Route('/login',[
     '_controller' => 'App\Controller\ConnexionController::login'
 ]));
+$routes->add('loginError', new Route('/loginError',[
+    '_controller' => 'App\Controller\ConnexionController::loginError'
+]));
 $routes->add('connexion', new Route('/connexion',[
     '_controller' => 'App\Controller\ConnexionController::connexion'
 ]));
