@@ -22,34 +22,21 @@ class ConnexionController extends BaseRepository
     {
         session_start();
         ob_start();
-        $db = parent::connect();
+        $repo = new UserRepository(parent::connect());
         $email = $request->request->get('email');
         $password = $request->request->get('password');
         if (!empty($email) and (!empty($password))) {
-            //Mettre les requetes dans un repo (userRepository) $requser = userRepository->findByEmailAndPassword($email, sha1($password);
-            $requser = $db->prepare("SELECT * FROM users WHERE email = ? AND password =?");
-            $requser->execute(array($email, sha1($password)));
-            $userExist = $requser->rowCount();
+            $userExist = $repo->searchIfMailExists($email);
             if ($userExist != 0) {
-                date_default_timezone_set('Europe/Paris');
-                $date = new \DateTime();
-                $userinfo = $requser->fetch();
-                $_SESSION['email'] = $email;
-                if ($request->cookies->get('PHPSESSID')) {
-                    $userinfo['token_session'] = $request->cookies->get('PHPSESSID');
+                $userinfo = $repo->searchUserByMail($email);
+                if ($userinfo[0]->password == sha1($password)) {
+                    $_SESSION['email'] = $email;
+                    $repo->updateCookies($email);
+                    include __DIR__ . '/../pages/Auth/connexion.php';
+                    return new Response(ob_get_clean());
                 } else {
-                    $userinfo['token_session'] = $date->getTimestamp() . $email;
+                    header("Location: ./loginError");
                 }
-                $date->modify('+1 hour');
-                $userinfo['token_expire'] = $date->getTimestamp();
-                $insertToken = $db->prepare("UPDATE users SET token_session =?,token_expire =? WHERE email LIKE ?");
-                $insertToken->execute(array($userinfo['token_session'], $userinfo['token_expire'], $userinfo['email']));
-//                $user = new User();
-//                $user = $user->getUserByCookie($request);
-                include __DIR__ . '/../pages/Auth/connexion.php';
-                return new Response(ob_get_clean());
-            } else {
-                header("Location: ./loginError");
             }
         }
     }
@@ -71,7 +58,6 @@ class ConnexionController extends BaseRepository
 
     public function AddUserToBdd(Request $request)
     {
-        $db = parent::connect();
         $repo = new UserRepository(parent::connect());
         $email = $request->request->get('email');
         $password = $request->request->get('password');
@@ -79,9 +65,7 @@ class ConnexionController extends BaseRepository
         if ($email && strlen($password) >= 4 && $password === $passwordConfirmation) {
             $user = new User();
             $user->email = $email;
-            $reqmail = $db->prepare("SELECT * FROM users WHERE email = ?");
-            $reqmail->execute(array($email));
-            $mailexist = $reqmail->rowCount();
+            $mailexist = $repo->searchIfMailExists($email);
             if ($mailexist == 0) {
                 // insere l utilisateur dans la table
                 $user = new User([
@@ -91,19 +75,19 @@ class ConnexionController extends BaseRepository
                     'token_expire' => 0,
                 ]);
                 $repo->saveUser($user);
+            } else {
+                header("Location: ../inscription");
+                die();
             }
         }
-
         header("Location: ../login");
     }
 
-    public function deconnexion(Request $request)
+    public function deconnexion($email,Request $request)
     {
         ob_start();
-        $db = parent::connect();
-        $cookie = $request->cookies->get('PHPSESSID');
-        $requser = $db->prepare("UPDATE users SET token_session = '' WHERE token_session LIKE '$cookie'");
-        $requser->execute();
+        $repo = new UserRepository(parent::connect());
+        $repo->deleteTokenSession($email);
         include __DIR__ . '/../pages/Auth/deconnexion.php';
         return new Response(ob_get_clean());
     }

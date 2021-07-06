@@ -16,7 +16,7 @@ $routes->add('loginError', new Route('/loginError',[
 $routes->add('connexion', new Route('/connexion',[
     '_controller' => 'App\Controller\ConnexionController::connexion'
 ]));
-$routes->add('deconnexion', new Route('/deconnexion',[
+$routes->add('deconnexion', new Route('/deconnexion/{email}',[
     '_controller' => 'App\Controller\ConnexionController::deconnexion'
 ]));
 $routes->add('inscription', new Route('/inscription',[

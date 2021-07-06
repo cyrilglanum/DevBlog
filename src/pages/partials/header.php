@@ -65,7 +65,7 @@ if (isset($_SESSION['email'])) {
 <!--                            <img src="https://devblog/src/assets/img/profil/1.jpg" alt="..." class="img-thumbnail">-->
                             <a class="dropdown-item" href="./blogSpace">Mon espace Blog</a>
                             <a class="dropdown-item" href="./profil">Profil</a>
-                            <a class="dropdown-item" href="./deconnexion">Deconnexion</a>
+                            <a class="dropdown-item" href="./deconnexion/<?php echo($_SESSION['email'])?>">Deconnexion</a>
                         </div>
                     </div>
                     <?php

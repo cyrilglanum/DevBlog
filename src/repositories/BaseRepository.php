@@ -48,7 +48,6 @@ class BaseRepository
         $date = new \DateTime();
         $date->modify('+2 hour');
         $date = $date->format('Y-m-d H:i:s');
-
         $insertmbr = $this->db->prepare("INSERT INTO users (email, password,token_session,token_expire,actif,role_id,created_at) VALUES(?,?,?,?,?,?,?)");
         $insertmbr->execute(array($user->email, $user->password, $user->token_session, $user->token_expire, $user->actif, $user->role_id,$date));
 

@@ -34,7 +34,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function remove($table, $id)
     {
-        return parent::remove($table , $id);
+        return parent::remove($table, $id);
 
     }
     #endregion
@@ -52,12 +52,54 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function find($id)
     {
-        $db = $this->db;
-        $req = $db->prepare("SELECT * FROM users WHERE id LIKE '$id' ");
+        $req = $this->db->prepare("SELECT * FROM users WHERE id LIKE '$id' ");
         $req->execute();
         $user = $req->fetch();
         return $user;
     }
+
+    public function searchIfMailExists($email)
+    {
+        $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $reqmail->execute(array($email));
+        $mailexist = $reqmail->rowCount();
+        return $mailexist;
+    }
+
+    public function connectUser($email)
+    {
+        $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $reqmail->execute(array($email));
+        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+        return $user;
+    }
+
+    public function searchUserByMail($email)
+    {
+        $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $reqmail->execute(array($email));
+        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+        return $user;
+    }
+
+    public function updateCookies($email)
+    {
+        date_default_timezone_set('Europe/Paris');
+        $date = new \DateTime();
+        $userinfo['token_session'] = $date->getTimestamp() . $email;
+        $date->modify('+1 hour');
+        $userinfo['token_expire'] = $date->getTimestamp();
+        $insertToken = $this->db->prepare("UPDATE users SET token_session =?,token_expire =? WHERE email LIKE ?");
+        $insertToken->execute(array($userinfo['token_session'], $userinfo['token_expire'], $email));
+    }
+    public function deleteTokenSession($email)
+    {
+        $requser = $this->db->prepare("UPDATE users SET token_session = '' WHERE email = '$email'");
+        $requser->execute();
+    }
+
+
+
 #endregion
 
 }
