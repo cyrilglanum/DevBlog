@@ -6,7 +6,7 @@ session_start();
   <head>
     <script type="text/javascript">
       function RedirectionJavascript(){
-        window.history.back();
+        window.location.href = "../home";
       }
    </script>
   </head>
