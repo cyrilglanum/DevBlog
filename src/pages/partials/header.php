@@ -71,6 +71,7 @@ if (isset($_SESSION['email'])) {
                     <?php
                 } else { ?>
                     <li class="nav-item"><a class="nav-link" href="./login">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./inscription">Inscription</a></li>
                 <?php } ?>
 
 

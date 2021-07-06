@@ -3,10 +3,11 @@
 
 namespace App\repositories;
 
+use App\interfaces\UserRepositoryInterface;
 use App\models\User;
 use PDO;
 
-class UserRepository extends BaseRepository
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     protected $db;
 
@@ -15,12 +16,37 @@ class UserRepository extends BaseRepository
         $this->db = $db;
     }
 
+    #region méthodes construct
+    public function selectByTable($columns, $table)
+    {
+        return parent::findByTable($columns, $table);
+    }
+
+    public function selectByTableById($columns, $table, $id)
+    {
+        return parent::findById($columns, $table, $id);
+    }
+
+    public function saveUser(User $user)
+    {
+        return parent::saveUser($user);
+    }
+
+    public function remove($table, $id)
+    {
+        return parent::remove($table , $id);
+
+    }
+    #endregion
+
+    #region méthodes
     public function findAll()
     {
         $db = $this->db;
-        $req = $db->prepare('SELECT * FROM users');
+        $req = $db->prepare("SELECT * FROM users");
         $req->execute();
         $users = $req->fetchAll();
+
         return $users;
     }
 
@@ -32,16 +58,6 @@ class UserRepository extends BaseRepository
         $user = $req->fetch();
         return $user;
     }
+#endregion
 
-    public function save(User $user)
-    {
-        $this->db->save($user, 'users');
-
-    }
-
-    public function remove(User $user)
-    {
-        $this->db->remove($user, 'users');
-
-    }
 }

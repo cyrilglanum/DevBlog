@@ -18,7 +18,7 @@ class IndexController extends BaseController
         $getPosts = $posts->getPosts();
         $name = $request->attributes->get('name');
         $user = new User();
-        $user = $user->getUserByCookie($request);
+//        $user = $user->getUserByCookie($request);
         include __DIR__ . '/../pages/home.php';
         return new Response(ob_get_clean());
     }

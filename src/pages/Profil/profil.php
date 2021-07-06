@@ -1,8 +1,6 @@
 <?php
-//$dir = substr(strrchr(__DIR__, ":"), 5);
 $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
-
 
 require $dir . 'src/pages/partials/header.php';
 

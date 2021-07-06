@@ -1,6 +1,13 @@
-
-<h2>Connexion</h2>
-
-Vous êtes bien connectés.
-
-<a href="./home">Home</a>
+<html>
+  <head>
+    <script type="text/javascript">
+      function RedirectionJavascript(){
+        window.location.href = "./home";
+      }
+   </script>
+  </head>
+  <body onLoad="setTimeout('RedirectionJavascript()', 0000)">
+<!--     <div class="container"> <div style="color: green">Vous êtes bien connectés.-->
+<!--         vous allez être redirigé !</div></div>-->
+  </body>
+</html>

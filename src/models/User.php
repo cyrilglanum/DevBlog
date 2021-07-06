@@ -4,15 +4,19 @@
 namespace App\models;
 
 
-use App\controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 
-class User extends BaseController
+class User
 {
+    public $password;
+    public $token_expire;
+    public $token_session;
+    public $email;
 
     public function __construct($value = array())
     {
         if (!empty($value))
+
             $this->hydrate($value);
     }
 
@@ -26,37 +30,45 @@ class User extends BaseController
         }
     }
 
-    public function getUsers()
+    public function setEmail($email)
     {
-        $db = parent::connect();
-        $users = $db->query('SELECT * FROM user');
-
-        return $users;
+        $this->email = $email;
     }
 
-    public function getUserById($id)
+    public function setPassword($password)
     {
-        $db = parent::connect();
-        $user = $db->query("SELECT * FROM user WHERE id = '$id'");
-
-        return $user;
+        $this->password = $password;
     }
 
-    public function getUserByCookie(Request $request)
+    public function setTokenSession($token_session)
     {
-        $db = parent::connect();
-        if ($cookie = $request->attributes->get('_cookie')) {
-            $userinfo = $db->prepare("SELECT * from users WHERE token_session LIKE '$cookie'");
-            $userinfo->execute();
-            $user = $userinfo->fetchAll();
-
-            if($user != null){
-                return $user[0];
-            }
-
-        }
-        return '';
+        $this->token_session = $token_session;
     }
+
+    public function setTokenExpire($token_expire)
+    {
+        $this->token_expire = $token_expire;
+    }
+
+
+
+
+
+//    public function getUserByCookie(Request $request)
+//    {
+//        $db = parent::connect();
+//        if ($cookie = $request->attributes->get('_cookie')) {
+//            $userinfo = $db->prepare("SELECT * from users WHERE token_session LIKE '$cookie'");
+//            $userinfo->execute();
+//
+//
+//            if($user != null){
+//                return $user[0];
+//            }
+//
+//        }
+//        return '';
+//    }
 
 
 }

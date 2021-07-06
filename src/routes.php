@@ -26,6 +26,14 @@ $routes->add('inscription/add-user', new Route('/inscription/add-user',[
     '_controller' => 'App\Controller\ConnexionController::AddUserToBdd'
 ]));
 
+//ADMIN
+$routes->add('admin', new Route('/admin',[
+    '_controller' => 'App\Controller\AdminController::admin'
+]));
+$routes->add('deleteUserById', new Route('/deleteUser/{id}', [
+    '_controller' => 'App\Controller\AdminController::deleteUser'
+]));
+
 //USER
 $routes->add('profil', new Route('/profil',[
     '_controller' => 'App\Controller\UserController::profil'

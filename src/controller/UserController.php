@@ -13,8 +13,8 @@ class UserController extends BaseController
     {
         ob_start();
         $db = parent::connect();
-        $user = new User();
-        $user = $user->getUserByCookie($request);
+//        $user = new User();
+//        $user = $user->find($request);
         include __DIR__ . '/../pages/Profil/profil.php';
         return new Response(ob_get_clean());
     }
