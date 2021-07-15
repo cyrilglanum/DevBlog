@@ -1,13 +1,16 @@
 <html>
-  <head>
-    <script type="text/javascript">
-      function RedirectionJavascript(){
-        window.location.href = "./home";
-      }
-   </script>
-  </head>
+<head>
+        <script type="text/javascript">
+          function RedirectionJavascript(){
+            window.location.href = "./home"
+         }
+        </script>
+</head>
+<body>
   <body onLoad="setTimeout('RedirectionJavascript()', 0000)">
-<!--     <div class="container"> <div style="color: green">Vous êtes bien connectés.-->
-<!--         vous allez être redirigé !</div></div>-->
-  </body>
+<!--<div class="container">-->
+<!--    <div style="color: green">Vous êtes bien connectés.-->
+<!--        vous allez être redirigé ! <a href="./home">Home</a></div>-->
+<!--</div>-->
+</body>
 </html>

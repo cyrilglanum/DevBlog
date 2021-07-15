@@ -27,9 +27,19 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return parent::findById($columns, $table, $id);
     }
 
+
     public function saveUser(User $user)
     {
-        return parent::saveUser($user);
+        $user->actif = 1;
+        $user->role_id = 1;
+        $user->password = sha1($user->password);
+        $date = new \DateTime();
+        $date->modify('+2 hour');
+        $date = $date->format('Y-m-d H:i:s');
+        $insertmbr = $this->db->prepare("INSERT INTO users (email, password,token_session,token_expire,actif,role_id,created_at) VALUES(?,?,?,?,?,?,?)");
+        $insertmbr->execute(array($user->email, $user->password, $user->token_session, $user->token_expire, $user->actif, $user->role_id,$date));
+
+        return $user;
     }
 
     public function remove($table, $id)
@@ -52,7 +62,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function find($id)
     {
-        $req = $this->db->prepare("SELECT * FROM users WHERE id LIKE '$id' ");
+        $req = $this->db->prepare("SELECT * FROM users WHERE id LIKE '$id'");
         $req->execute();
         $user = $req->fetch();
         return $user;
@@ -71,6 +81,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+        dd($user);
         return $user;
     }
 

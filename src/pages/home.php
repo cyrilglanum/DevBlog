@@ -1,6 +1,5 @@
 <?php
 require __DIR__ .'./partials/header.php';
-//echo $_SERVER['DOCUMENT_ROOT'] ;
 ?>
 
 <!-- Masthead-->

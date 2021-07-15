@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Models;
+namespace App\models;
 
 
 use App\Controller\BaseController;
@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class User extends BaseController
 {
+
+    public $email;
+    public $password;
+    public $token_session;
+    public $token_expire;
 
     public function __construct($value = array())
     {
