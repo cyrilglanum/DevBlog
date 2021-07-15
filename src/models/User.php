@@ -1,22 +1,19 @@
 <?php
 
 
-namespace App\models;
+namespace App\Models;
 
 
+use App\Controller\BaseController;
+use PDO;
 use Symfony\Component\HttpFoundation\Request;
 
-class User
+class User extends BaseController
 {
-    public $password;
-    public $token_expire;
-    public $token_session;
-    public $email;
 
     public function __construct($value = array())
     {
         if (!empty($value))
-
             $this->hydrate($value);
     }
 
@@ -30,45 +27,37 @@ class User
         }
     }
 
-    public function setEmail($email)
+    public function getUsers()
     {
-        $this->email = $email;
+        $db = parent::connect();
+        $users = $db->query('SELECT * FROM user');
+
+        return $users;
     }
 
-    public function setPassword($password)
+    public function getUserById($id)
     {
-        $this->password = $password;
+        $db = parent::connect();
+        $user = $db->query("SELECT * FROM user WHERE id = '$id'");
+
+        return $user;
     }
 
-    public function setTokenSession($token_session)
+    public function getUserByCookie(Request $request)
     {
-        $this->token_session = $token_session;
+        $db = parent::connect();
+        if ($cookie = $request->cookies->get('PHPSESSID')) {
+            $userinfo = $db->prepare("SELECT * from users WHERE token_session LIKE '$cookie'");
+            $userinfo->execute();
+            $user = $userinfo->fetchAll();
+
+            if($user != null){
+                return $user[0];
+            }
+
+        }
+        return '';
     }
-
-    public function setTokenExpire($token_expire)
-    {
-        $this->token_expire = $token_expire;
-    }
-
-
-
-
-
-//    public function getUserByCookie(Request $request)
-//    {
-//        $db = parent::connect();
-//        if ($cookie = $request->attributes->get('_cookie')) {
-//            $userinfo = $db->prepare("SELECT * from users WHERE token_session LIKE '$cookie'");
-//            $userinfo->execute();
-//
-//
-//            if($user != null){
-//                return $user[0];
-//            }
-//
-//        }
-//        return '';
-//    }
 
 
 }
