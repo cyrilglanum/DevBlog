@@ -64,5 +64,25 @@ class User extends BaseController
         return '';
     }
 
+     public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function setTokenSession($token_session)
+    {
+        $this->token_session = $token_session;
+    }
+
+    public function setTokenExpire($token_expire)
+    {
+        $this->token_expire = $token_expire;
+    }
+
 
 }

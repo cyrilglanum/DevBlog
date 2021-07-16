@@ -60,21 +60,23 @@ class ConnexionController extends BaseRepository
     {
         $repo = new UserRepository(parent::connect());
         $email = $request->request->get('email');
+
         $password = $request->request->get('password');
         $passwordConfirmation = $request->request->get('passwordConfirmation');
         if ($email && strlen($password) >= 4 && $password === $passwordConfirmation) {
             $user = new User();
             $user->email = $email;
+            $user->password = sha1($password);
             $mailexist = $repo->searchIfMailExists($email);
             if ($mailexist == 0) {
                 // insere l utilisateur dans la table
-                $user = new User([
-                    'email' => $email,
-                    'password' => $password,
+                $userToInsert = new User([
+                    'email' => $email ,
+                    'password' => $password ,
                     'token_session' => '0',
                     'token_expire' => 0,
                 ]);
-                $repo->saveUser($user);
+                $repo->saveUser($userToInsert);
             } else {
                 header("Location: ../inscription");
                 die();
