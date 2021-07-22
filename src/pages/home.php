@@ -1,5 +1,9 @@
 <?php
+require_once '../../vendor/autoload.php';
 require __DIR__ .'./partials/header.php';
+
+//rendu du template
+
 ?>
 
 <!-- Masthead-->
@@ -23,26 +27,26 @@ require __DIR__ .'./partials/header.php';
             <?php
             dump($posts);
             ?>
-            {% for $posts in $post %}
-            {{ $post->title }}
-            {% endfor %}
-{#            @foreach($posts as $post)#}
-{#                {{ $post->title }}#}
-{#            @endforeach#}
-{#<?php#}
-{#//                //Récupération de tout les posts#}
-{#//                while($data = $getPosts->fetch()) {#}
-{#//                    print '<div class="col-md-4">#}
-{#//                                <span class="fa-stack fa-4x">#}
-{#//                                    <i class="fas fa-circle fa-stack-2x text-primary"></i>#}
-{#//                                    <i class="' . $data['icon'] . ' fa-stack-1x fa-inverse"></i>#}
-{#//                                   </span>';#}
-{#//                    print '<br><h4 class="my-3">' . $data['title'] . '</h4>'."\t";#}
-{#//                    print '<br>' . $data['content'] . "\n";#}
-{#//                    print '<br><a href="./post/' . $data['id'] . '">Voir le post</a>' . "\n";#}
-{#//                    print '<br></div>' . "\n";#}
-{#//                }#}
-{#//                ?>#}
+<!--            {% for $posts in $post %}-->
+<!--            {{ $post->title }}-->
+<!--            {% endfor %}-->
+<!--{#            @foreach($posts as $post)#}-->
+<!--{#                {{ $post->title }}#}-->
+<!--{#            @endforeach#}-->
+<!--{#--><?//php#}
+//{#//                //Récupération de tout les posts#}
+//{#//                while($data = $getPosts->fetch()) {#}
+//{#//                    print '<div class="col-md-4">#}
+//{#//                                <span class="fa-stack fa-4x">#}
+//{#//                                    <i class="fas fa-circle fa-stack-2x text-primary"></i>#}
+//{#//                                    <i class="' . $data['icon'] . ' fa-stack-1x fa-inverse"></i>#}
+//{#//                                   </span>';#}
+//{#//                    print '<br><h4 class="my-3">' . $data['title'] . '</h4>'."\t";#}
+//{#//                    print '<br>' . $data['content'] . "\n";#}
+//{#//                    print '<br><a href="./post/' . $data['id'] . '">Voir le post</a>' . "\n";#}
+//{#//                    print '<br></div>' . "\n";#}
+//{#//                }#}
+//{#//                ?><!--#}-->
 
         </div>
     </div>
