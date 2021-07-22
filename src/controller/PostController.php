@@ -43,9 +43,12 @@ class PostController extends BaseController
             'content' => $content,
         ]);
         $req = $repo->savePost($postToSave);
-        dd($req);
-        if($req){
 
+        if($req){
+            ob_start();
+            $dir = substr(__DIR__, 0,-11);
+            include  $dir.'\pages\validation\validAddPost.php';
+            return new Response(ob_get_clean());
         }
     }
 

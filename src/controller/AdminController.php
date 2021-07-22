@@ -27,7 +27,7 @@ class AdminController extends BaseRepository
         $repo = new UserRepository(parent::connect());
         $userToDelete = $repo->remove('users',$id);
         $users = $repo->selectByTable('*','users');
-        include __DIR__ . '../../pages/deleteUser.php';
+        include __DIR__ . '../../pages/validation/deleteUser.php';
         return new Response(ob_get_clean());
     }
 

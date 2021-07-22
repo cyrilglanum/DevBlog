@@ -42,8 +42,9 @@ class PostRepository extends BaseRepository implements RepositoryInterface
     {
         date_default_timezone_set('Europe/Paris');
         $date = new \DateTime();
-        $insertmbr = $this->db->prepare("INSERT INTO posts (title, icon,author,content,post_date) VALUES(?,?,?,?,?)");
-        $insertmbr->execute(array($post->title, $post->icon, $post->author, $post->content,$date));
+        $date = $date->format('Y-m-d H:i:s');
+        $insertmbr = $this->db->prepare("INSERT INTO posts (title, icon,author,content,post_date,id_statut,id_user) VALUES(?,?,?,?,?,?,?)");
+        $insertmbr->execute(array($post->title, $post->icon, $post->author, $post->content, $date, 1, 1));
 
         return $post;
     }
