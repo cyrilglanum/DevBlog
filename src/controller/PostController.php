@@ -49,6 +49,8 @@ class PostController extends BaseController
             $dir = substr(__DIR__, 0,-11);
             include  $dir.'\pages\validation\validAddPost.php';
             return new Response(ob_get_clean());
+        }else{
+            die();
         }
     }
 

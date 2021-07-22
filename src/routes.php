@@ -56,18 +56,13 @@ $routes->add('addPost', new Route('/add-post',[
 $routes->add('postForm', new Route('/postForm',[
     '_controller' => 'App\Controller\PostController::postForm'
 ]));
-
-
-$routes->add('bye', new Route('/bye',[
-    '_controller' => 'App\Controller\PostController::bye'
-]));
-$routes->add('about', new Route('/about',[
-    '_controller' => 'App\Controller\PageController::about'
+$routes->add('deletePost', new Route('/deletePost/{id}',[
+    '_controller' => 'App\Controller\AdminController::deletePost'
 ]));
 
-$routes->add('test', new Route('/test',[
-    '_controller' => 'App\Controller\PageController::test'
-]));
+//$routes->add('test', new Route('/test',[
+//    '_controller' => 'App\Controller\PageController::test'
+//]));
 
 
 

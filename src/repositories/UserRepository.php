@@ -3,11 +3,11 @@
 
 namespace App\repositories;
 
-use App\interfaces\UserRepositoryInterface;
+use App\interfaces\RepositoryInterface;
 use App\models\User;
 use PDO;
 
-class UserRepository extends BaseRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements RepositoryInterface
 {
     protected $db;
 
@@ -17,9 +17,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     #region méthodes
-    public function selectByTable($columns, $table)
+    public function selectByTable($columns, $table, $classe)
     {
-        return parent::findByTable($columns, $table);
+        return parent::findByTable($columns, $table, $classe);
     }
 
     public function selectByTableById($columns, $table, $id)

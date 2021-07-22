@@ -18,11 +18,11 @@ class BaseRepository
         return $db;
     }
 
-    public function findByTable($columns, $table)
+    public function findByTable($columns, $table, $classe)
     {
         $req = $this->db->prepare("SELECT $columns FROM $table");
         $req->execute();
-        $users = $req->fetchAll(PDO::FETCH_CLASS,User::class);
+        $users = $req->fetchAll(PDO::FETCH_CLASS, $classe);
         return $users;
     }
 
@@ -44,11 +44,11 @@ class BaseRepository
 
     public function remove($table, $dataId)
     {
-        $requser = $this->db->prepare("DELETE FROM $table WHERE id = $dataId");
-        if($requser == null){
+        $req = $this->db->prepare("DELETE FROM $table WHERE id = $dataId");
+        if($req == null){
             include __DIR__ .'/../pages/about.php';
         }else{
-            $requser->execute();
+            $req->execute();
         }
         return $table.' / '.$dataId;
     }

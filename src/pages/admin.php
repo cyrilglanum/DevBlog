@@ -22,10 +22,10 @@ foreach ($users as $user){
 <h3>Section Posts</h3>
 
 <?php
-//foreach ($posts as $post){
-//  echo $post->id.' - '.
-//      ' <a href="./deleteUser/' . $post->id . '"<button>Delete</button></a><br>';
-//}
+foreach ($posts as $post){
+  echo $post->title.' - '.
+      ' <a href="./deletePost/' . $post->id . '"<button>Delete</button></a><br>';
+}
 //?>
 </div>
 <style>

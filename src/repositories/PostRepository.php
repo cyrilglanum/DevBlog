@@ -18,6 +18,16 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         $this->db = $db;
     }
 
+    public function selectByTable($columns, $table, $classe)
+    {
+        return parent::findByTable($columns, $table, $classe);
+    }
+
+    public function selectByTableById($columns, $table, $id)
+    {
+        return parent::findById($columns, $table, $id);
+    }
+
     public function find($id){
         $req = $this->db->prepare("SELECT * FROM posts WHERE id LIKE '$id'");
         $req->execute();
@@ -35,7 +45,9 @@ class PostRepository extends BaseRepository implements RepositoryInterface
 
     }
 
-    public function remove($table,$postId){}
+    public function remove($table,$postId){
+        return parent::remove($table, $postId);
+    }
 
 #region méthodes
     public function savePost(Post $post)
@@ -49,13 +61,4 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return $post;
     }
 
-    public function selectByTable($columns, $table)
-    {
-        return parent::findByTable($columns, $table);
-    }
-
-    public function selectByTableById($columns, $table, $id)
-    {
-        return parent::findById($columns, $table, $id);
-    }
 }
