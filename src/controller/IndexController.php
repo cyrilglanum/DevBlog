@@ -20,7 +20,7 @@ class IndexController extends BaseController
         $name = $request->attributes->get('name');
         $user = new User();
 //        $user = $user->getUserByCookie($request);
-        include __DIR__ . '/../pages/home.html.twig';
+        include __DIR__ . '/../pages/home.php';
         return new Response(ob_get_clean());
     }
 
