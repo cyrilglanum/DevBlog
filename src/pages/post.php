@@ -33,10 +33,12 @@ if (isset($_SESSION['email'])) {
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../../src/assets/css/styles.css" rel="stylesheet"/>
+    <link href="../../../src/assets/css/styles.css" rel="stylesheet"/>
 </head>
 <body id="page-top">
 <!-- Navigation-->
+
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         <!--                TODO LOGO-->
