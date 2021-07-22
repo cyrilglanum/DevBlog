@@ -40,15 +40,16 @@ $routes->add('profil', new Route('/profil',[
 ]));
 
 //BlogPost
+$routes->add('postById', new Route('/post/{id}', [
+    '_controller' => 'App\Controller\PostController::postById'
+]));
 $routes->add('index', new Route('/', [
     '_controller' => 'App\Controller\IndexController::hello'
 ]));
 $routes->add('hello', new Route('/home', [
     '_controller' => 'App\Controller\IndexController::home'
 ]));
-$routes->add('postById', new Route('/post/{id}', [
-    '_controller' => 'App\Controller\PostController::postById'
-]));
+
 $routes->add('addPost', new Route('/add-post',[
     '_controller' => 'App\Controller\PostController::addPost'
 ]));

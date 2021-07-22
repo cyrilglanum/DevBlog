@@ -16,7 +16,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $this->db = $db;
     }
 
-    #region méthodes construct
+    #region méthodes
     public function selectByTable($columns, $table)
     {
         return parent::findByTable($columns, $table);
@@ -81,7 +81,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
-        dd($user);
         return $user;
     }
 

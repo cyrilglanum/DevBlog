@@ -26,6 +26,10 @@ class ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -74,6 +78,10 @@ class ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -161,8 +169,19 @@ class ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
@@ -799,6 +818,7 @@ class ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitdfc417b33ad056abd3eca8e3ccdc7881::$classMap;
 
         }, null, ClassLoader::class);

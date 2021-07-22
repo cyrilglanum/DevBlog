@@ -15,7 +15,6 @@ class AdminController extends BaseRepository
     {
         ob_start();
         $repo = new UserRepository(parent::connect());
-//        $postRepo = new PostRepository(parent::connect());
         $users = $repo->selectByTable('*','users');
         include __DIR__ . '/../pages/admin.php';
         return new Response(ob_get_clean());
