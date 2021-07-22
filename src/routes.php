@@ -53,6 +53,9 @@ $routes->add('hello', new Route('/home', [
 $routes->add('addPost', new Route('/add-post',[
     '_controller' => 'App\Controller\PostController::addPost'
 ]));
+$routes->add('postForm', new Route('/postForm',[
+    '_controller' => 'App\Controller\PostController::postForm'
+]));
 
 
 $routes->add('bye', new Route('/bye',[

@@ -39,7 +39,7 @@ if (isset($_SESSION['email'])) {
 </head>
 <body id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 50px;">
     <div class="container">
         <!--                TODO LOGO-->
         <!--                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>-->

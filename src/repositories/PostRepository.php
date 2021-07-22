@@ -3,11 +3,12 @@
 
 namespace App\repositories;
 
-use App\interfaces\UserRepositoryInterface;
+use App\interfaces\RepositoryInterface;
+use App\models\Post;
 use PDO;
 
 
-class PostRepository extends BaseRepository implements UserRepositoryInterface
+class PostRepository extends BaseRepository implements RepositoryInterface
 {
 
     protected $db;
@@ -30,10 +31,23 @@ class PostRepository extends BaseRepository implements UserRepositoryInterface
 
         return $posts;
     }
-    public function save($user){}
+    public function save(Object $post){
+
+    }
+
     public function remove($table,$postId){}
 
 #region méthodes
+    public function savePost(Post $post)
+    {
+        date_default_timezone_set('Europe/Paris');
+        $date = new \DateTime();
+        $insertmbr = $this->db->prepare("INSERT INTO posts (title, icon,author,content,post_date) VALUES(?,?,?,?,?)");
+        $insertmbr->execute(array($post->title, $post->icon, $post->author, $post->content,$date));
+
+        return $post;
+    }
+
     public function selectByTable($columns, $table)
     {
         return parent::findByTable($columns, $table);
