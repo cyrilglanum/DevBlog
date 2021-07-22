@@ -22,7 +22,7 @@ class ConnexionController extends BaseRepository
     {
         session_start();
         ob_start();
-        $repo = new UserRepository(parent::connect());
+        $repo = new UserRepository();
         $email = $request->request->get('email');
         $password = $request->request->get('password');
         if (!empty($email) and (!empty($password))) {
@@ -58,7 +58,7 @@ class ConnexionController extends BaseRepository
 
     public function AddUserToBdd(Request $request)
     {
-        $repo = new UserRepository(parent::connect());
+        $repo = new UserRepository();
         $email = $request->request->get('email');
 
         $password = $request->request->get('password');
@@ -88,7 +88,7 @@ class ConnexionController extends BaseRepository
     public function deconnexion($email,Request $request)
     {
         ob_start();
-        $repo = new UserRepository(parent::connect());
+        $repo = new UserRepository();
         $repo->deleteTokenSession($email);
         include __DIR__ . '/../pages/Auth/deconnexion.php';
         return new Response(ob_get_clean());

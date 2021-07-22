@@ -9,11 +9,9 @@ use PDO;
 
 class UserRepository extends BaseRepository implements RepositoryInterface
 {
-    protected $db;
-
-    public function __construct(PDO $db)
+    public function __construct()
     {
-        $this->db = $db;
+        return parent::__construct();
     }
 
     #region méthodes

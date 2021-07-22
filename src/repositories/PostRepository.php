@@ -13,9 +13,9 @@ class PostRepository extends BaseRepository implements RepositoryInterface
 
     protected $db;
 
-    public function __construct(PDO $db)
+    public function __construct()
     {
-        $this->db = $db;
+        return parent::__construct();
     }
 
     public function selectByTable($columns, $table, $classe)

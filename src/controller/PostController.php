@@ -3,18 +3,19 @@
 namespace App\controller;
 
 use App\models\Post;
+use App\repositories\BaseRepository;
 use App\repositories\PostRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PostController extends BaseController
+class PostController extends BaseRepository
 {
 
     public function postById(Request $request)
     {
         ob_start();
         $id = $request->attributes->get('id');
-        $repo = new PostRepository(parent::connect());
+        $repo = new PostRepository();
         //récupération des information du post en question.
         $post = $repo->find($id);
         include __DIR__ . '/../pages/post.php';
@@ -35,7 +36,7 @@ class PostController extends BaseController
         $author = $request->request->get('author');
         $content = $request->request->get('content');
 
-        $repo = new PostRepository(parent::connect());
+        $repo = new PostRepository();
         $postToSave = new Post([
             'title'=> $title,
             'icon' => $icon,
@@ -56,7 +57,6 @@ class PostController extends BaseController
 
     public function bye()
     {
-        parent::connect();
         ob_start();
         include __DIR__ . '/../pages/bye.php';
         return new Response(ob_get_clean());

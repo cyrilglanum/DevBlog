@@ -4,9 +4,9 @@
 namespace App\models;
 
 
-use App\controller\BaseController;
+use App\repositories\BaseRepository;
 
-class CommentManager extends BaseController
+class CommentManager extends BaseRepository
 {
 
     public function getComments($postId)

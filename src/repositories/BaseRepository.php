@@ -8,14 +8,20 @@ use PHPUnit\Util\Exception;
 
 class BaseRepository
 {
+    protected $db;
+
+    public function __construct()
+    {
+        $this->connect();
+    }
+
     protected function connect()
     {
         try {
-            $db = new PDO('mysql:host=localhost;dbname=devblog;charset=utf8', 'root', '');
+            $this->db = new PDO('mysql:host=localhost;dbname=devblog;charset=utf8', 'root', '');
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
-        return $db;
     }
 
     public function findByTable($columns, $table, $classe)

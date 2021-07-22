@@ -16,9 +16,9 @@ class AdminController extends BaseRepository
     public function admin(Request $request)
     {
         ob_start();
-        $repo = new UserRepository(parent::connect());
+        $repo = new UserRepository();
         $users = $repo->selectByTable('*','users',User::class);
-        $postRepo = new PostRepository(parent::connect());
+        $postRepo = new PostRepository();
         $posts  = $postRepo->selectByTable('*', 'posts',Post::class);
         include __DIR__ . '/../pages/admin.php';
         return new Response(ob_get_clean());
@@ -28,7 +28,7 @@ class AdminController extends BaseRepository
     {
         ob_start();
         //function ajax pour deleter user
-        $repo = new UserRepository(parent::connect());
+        $repo = new UserRepository();
         $userToDelete = $repo->remove('users',$id);
         $users = $repo->selectByTable('*','users',User::class);
         include __DIR__ . '../../pages/validation/deleteUser.php';
@@ -39,7 +39,7 @@ class AdminController extends BaseRepository
     {
         ob_start();
         //function ajax pour deleter user
-        $repo = new PostRepository(parent::connect());
+        $repo = new PostRepository();
         $postToDelete = $repo->remove('posts',$id);
         $post = $repo->selectByTable('*','posts',Post::class);
         include __DIR__ . '../../pages/validation/deleteUser.php';

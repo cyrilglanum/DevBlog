@@ -30,6 +30,9 @@ $routes->add('inscription/add-user', new Route('/inscription/add-user',[
 $routes->add('admin', new Route('/admin',[
     '_controller' => 'App\Controller\AdminController::admin'
 ]));
+$routes->add('admin2', new Route('/admin2',[
+    '_controller' => 'App\Controller\AdminController::admin2'
+]));
 $routes->add('deleteUserById', new Route('/deleteUser/{id}', [
     '_controller' => 'App\Controller\AdminController::deleteUser'
 ]));

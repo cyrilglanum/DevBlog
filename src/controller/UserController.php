@@ -4,10 +4,11 @@ namespace App\controller;
 
 use App\models\Post;
 use App\models\User;
+use App\repositories\BaseRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends BaseController
+class UserController extends BaseRepository
 {
     public function profil(Request $request)
     {

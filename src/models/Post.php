@@ -4,11 +4,9 @@
 namespace App\models;
 
 
-use App\controller\BaseController;
 
-class Post extends BaseController
+class Post
 {
-
     public $title;
     public $author;
     public $content;
