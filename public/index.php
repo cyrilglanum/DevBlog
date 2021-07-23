@@ -1,4 +1,7 @@
 <?php
+ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1);
+error_reporting(-1);
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
@@ -12,14 +15,15 @@ $request = Request::createFromGlobals();
 $routes = require __DIR__ . '/../src/routes.php';
 $context = new RequestContext();
 
-$urlMatcher = new UrlMatcher($routes, $context);
 
-$controllerResolver = new ControllerResolver();
-$argumentsResolver = new ArgumentResolver();
-
-$framework = new Framework\Simplex($urlMatcher,$controllerResolver,$argumentsResolver);
-
-$response = $framework->handle($request);
-
-$response->send();
+try {
+    $urlMatcher = new UrlMatcher($routes, $context);
+    $controllerResolver = new ControllerResolver();
+    $argumentsResolver = new ArgumentResolver();
+    $framework = new Framework\Simplex($urlMatcher, $controllerResolver, $argumentsResolver);
+    $response = $framework->handle($request);
+    $response->send();
+} catch (Exception $e) {
+    var_dump([$e->getMessage(),$e->getFile(),$e->getLine(),$e->getTrace()]);
+}
 

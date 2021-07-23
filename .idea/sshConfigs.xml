@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="ftp.cluster020.hosting.ovh.net" id="4e269cc3-ab42-4cda-befe-1e3519f08251" port="22" nameFormat="DESCRIPTIVE" username="ventouxiwe-cycy" />
+    </configs>
+  </component>
+</project>

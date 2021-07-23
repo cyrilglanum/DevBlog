@@ -12,9 +12,9 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 
 class Simplex
 {
-    protected UrlMatcher $urlMatcher;
-    protected ControllerResolver $controllerResolver;
-    protected ArgumentResolver $argumentResolver;
+    protected $urlMatcher;
+    protected $controllerResolver;
+    protected $argumentResolver;
 
     public function __construct(UrlMatcher $urlMatcher, ControllerResolver $controllerResolver, ArgumentResolver $argumentResolver)
     {
@@ -29,7 +29,6 @@ class Simplex
         $this->urlMatcher->getContext()->fromRequest($request);
         try {
             $request->attributes->add($this->urlMatcher->match($request->getPathInfo()));
-
             $controller = $this->controllerResolver->getController($request);
             $arguments = $this->argumentResolver->getArguments($request, $controller);
 
@@ -37,6 +36,7 @@ class Simplex
         } catch (ResourceNotFoundException $e) {
             $response = new Response("La page demandée n'existe pas", 404);
         } catch (Exception $e) {
+            var_dump([$e->getMessage(),$e->getFile(),$e->getLine(),$e->getTrace()]);
             $response = new Response("Une erreur est survenue", 500);
         }
         return $response;

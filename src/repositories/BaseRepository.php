@@ -19,6 +19,7 @@ class BaseRepository
     {
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=devblog;charset=utf8', 'root', '');
+//            $this->db = new PDO('mysql:host=ventouxiwephare.mysql.db;dbname=ventouxiwephare;charset=utf8', 'ventouxiwephare', 'Requine86');
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }

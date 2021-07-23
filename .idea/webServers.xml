@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e2993325-bad6-48d3-a6aa-e91ba8162f7c" name="prod">
+        <fileTransfer accessType="SFTP" host="ftp.cluster020.hosting.ovh.net" port="22" sshConfigId="4e269cc3-ab42-4cda-befe-1e3519f08251" sshConfig="ventouxiwe-cycy@ftp.cluster020.hosting.ovh.net:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

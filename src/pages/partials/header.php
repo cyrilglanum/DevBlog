@@ -53,8 +53,8 @@ if (isset($_SESSION['email'])) {
                 <li class="nav-item"><a class="nav-link" href="./home">Home</a></li>
                 <!--                <li class="nav-item"><a class="nav-link" href="#services">Sujets</a></li>-->
                 <!--                <li class="nav-item"><a class="nav-link" href="#portfolio">Blog</a></li>-->
-                <li class="nav-item"><a class="nav-link" href="./add-post">Ajout d'un post</a></li>
                 <?php if (isset($_SESSION['email'])) { ?>
+                    <li class="nav-item"><a class="nav-link" href="./add-post">Ajout d'un post</a></li>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
