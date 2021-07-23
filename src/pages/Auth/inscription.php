@@ -1,7 +1,7 @@
     <form method="POST" action="inscription/add-user">
                       <div class="input-group">
 
-                              <input class="input--style-3" id="email" type="email" placeholder="Email" name="email" value="<?php if(isset($pseudo)){echo $pseudo;} ?>">
+                              <input class="input--style-3" id="email" type="email" placeholder="Email" name="email" required value="<?php if(isset($pseudo)){echo $pseudo;} ?>">
 
                           </div>
 
@@ -27,13 +27,13 @@
 
                           <div class="input-group">
 
-                              <input class="input--style-3" type="password" placeholder="Mot de passe" name="password">
+                              <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" required minlength="4">
 
                           </div>
 
                           <div class="input-group">
 
-                              <input class="input--style-3" type="password" placeholder="Verif mot de passe" name="passwordConfirmation">
+                              <input class="input--style-3" type="password" placeholder="Verif mot de passe" name="passwordConfirmation" required minlength="4">
 
                           </div>
 

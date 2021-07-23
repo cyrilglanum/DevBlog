@@ -2,7 +2,14 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="e2993325-bad6-48d3-a6aa-e91ba8162f7c" name="prod">
+      <webServer id="e2993325-bad6-48d3-a6aa-e91ba8162f7c" name="prod" url="http://ftp.cluster020.hosting.ovh.net">
+        <fileTransfer rootFolder="/FestivalOnAir" host="ftp.cluster020.hosting.ovh.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="e1f05b12-e6a6-45b2-ba21-aa991423882c" name="prodSSH">
         <fileTransfer accessType="SFTP" host="ftp.cluster020.hosting.ovh.net" port="22" sshConfigId="4e269cc3-ab42-4cda-befe-1e3519f08251" sshConfig="ventouxiwe-cycy@ftp.cluster020.hosting.ovh.net:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />

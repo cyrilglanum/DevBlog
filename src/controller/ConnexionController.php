@@ -38,7 +38,9 @@ class ConnexionController extends BaseRepository
                     header("Location: ./loginError");
                 }
             }
+            header("Location: ./loginError");
         }
+        return "Vous n'êtes pas là ou vous devriez être :o !";
     }
 
     public function loginError(Request $request)
@@ -59,9 +61,8 @@ class ConnexionController extends BaseRepository
     public function AddUserToBdd(Request $request)
     {
         $repo = new UserRepository();
-        $email = $request->request->get('email');
-
-        $password = $request->request->get('password');
+        $email = htmlspecialchars($request->request->get('email'));
+        $password = htmlspecialchars($request->request->get('password'));
         $passwordConfirmation = $request->request->get('passwordConfirmation');
         if ($email && strlen($password) >= 4 && $password === $passwordConfirmation) {
             $user = new User();

@@ -61,7 +61,7 @@ if (isset($_SESSION['email'])) {
                             Mon compte
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a href="./profil"><img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/P5/P5Blog/src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
+                            <a href="./profil"><img src="../../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
 <!--                            <img src="https://devblog/src/assets/img/profil/1.jpg" alt="..." class="img-thumbnail">-->
                             <a class="dropdown-item" href="./blogSpace">Mon espace Blog</a>
                             <a class="dropdown-item" href="./profil">Profil</a>

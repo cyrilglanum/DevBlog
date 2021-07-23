@@ -31,10 +31,10 @@ class PostController extends BaseRepository
 
     public function postForm(Request $request)
     {
-        $title = $request->request->get('title');
-        $icon = $request->request->get('icon');
-        $author = $request->request->get('author');
-        $content = $request->request->get('content');
+        $title = htmlspecialchars($request->request->get('title'));
+        $icon = htmlspecialchars($request->request->get('icon'));
+        $author = htmlspecialchars($request->request->get('author'));
+        $content = htmlspecialchars($request->request->get('content'));
 
         $repo = new PostRepository();
         $postToSave = new Post([
@@ -48,7 +48,7 @@ class PostController extends BaseRepository
         if($req){
             ob_start();
             $dir = substr(__DIR__, 0,-11);
-            include  $dir.'\pages\validation\validAddPost.php';
+            include  $dir.DIRECTORY_SEPARATOR.'pages'.DIRECTORY_SEPARATOR.'validation'.DIRECTORY_SEPARATOR.'validAddPost.php';
             return new Response(ob_get_clean());
         }else{
             die();

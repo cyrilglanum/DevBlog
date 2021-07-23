@@ -50,13 +50,13 @@ require $dir . 'src/pages/partials/header.php';
 
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/P5/P5Blog/src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
+                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     ...
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/P5/P5Blog/src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
+                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
 
                 </div>
             </div>
