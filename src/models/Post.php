@@ -11,6 +11,7 @@ class Post
     public $author;
     public $content;
     public $icon;
+    public $photo;
 
     public function __construct($value = array())
     {
@@ -51,5 +52,10 @@ class Post
     public function setPost_date($date)
     {
         $this->date = $date;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
     }
 }

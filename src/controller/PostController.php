@@ -36,12 +36,23 @@ class PostController extends BaseRepository
         $author = htmlspecialchars($request->request->get('author'));
         $content = htmlspecialchars($request->request->get('content'));
 
+        $uploaddir = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'post'.DIRECTORY_SEPARATOR;
+        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+            echo 'Ok';
+        } else {
+            echo "Attaque potentielle par téléchargement de fichiers.
+          Voici plus d'informations :\n";
+        }
+
         $repo = new PostRepository();
         $postToSave = new Post([
             'title'=> $title,
             'icon' => $icon,
             'author' => $author,
             'content' => $content,
+            'photo' => basename($_FILES['file']['name']),
         ]);
         $req = $repo->savePost($postToSave);
 
