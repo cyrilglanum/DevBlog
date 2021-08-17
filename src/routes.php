@@ -41,6 +41,10 @@ $routes->add('deleteUserById', new Route('/deleteUser/{id}', [
 $routes->add('profil', new Route('/profil',[
     '_controller' => 'App\controller\UserController::profil'
 ]));
+//USER
+$routes->add('savePicture', new Route('/savePicture',[
+    '_controller' => 'App\controller\UserController::savePicture'
+]));
 
 //BlogPost
 $routes->add('postById', new Route('/post/{id}', [

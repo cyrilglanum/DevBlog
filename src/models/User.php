@@ -4,6 +4,8 @@
 namespace App\models;
 
 
+use App\repositories\UserRepository;
+
 class User
 {
     public $email;

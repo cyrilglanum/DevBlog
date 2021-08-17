@@ -3,7 +3,7 @@ $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
 
 require $dir . 'src/pages/partials/header.php';
-
+//phpinfo();
 ?>
 <!-- Masthead-->
 <header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px">
@@ -26,6 +26,7 @@ require $dir . 'src/pages/partials/header.php';
                    aria-controls="v-pills-settings" aria-selected="false">Photo</a>
             </div>
         </div>
+
         <div class="col-9">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
@@ -34,8 +35,9 @@ require $dir . 'src/pages/partials/header.php';
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
                             <input type="email" class="form-control" id="email"
-                                   aria-describedby="emailHelp" value="<?php echo $_SESSION['email']?>">
-                            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas ces données.</small>
+                                   aria-describedby="emailHelp" value="<?= $_SESSION['email'] ?>">
+                            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas ces
+                                données.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mot de passe actuel</label>
@@ -56,7 +58,17 @@ require $dir . 'src/pages/partials/header.php';
                     ...
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
+
+                    <form action="savePicture" method="POST" enctype="multipart/form-data">
+                        <label for="file">Fichier</label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+                        <input type="hidden" name="user" value="<?= $_SESSION['email'] ?>">
+                        <input type="file" name="file">
+                        <button type="submit">Enregistrer</button>
+
+                    </form>
+                    <img src="../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
+<!--                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>-->
 
                 </div>
             </div>

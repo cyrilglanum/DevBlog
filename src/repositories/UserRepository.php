@@ -100,10 +100,17 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $insertToken = $this->db->prepare("UPDATE users SET token_session =?,token_expire =? WHERE email LIKE ?");
         $insertToken->execute(array($userinfo['token_session'], $userinfo['token_expire'], $email));
     }
+
     public function deleteTokenSession($email)
     {
         $requser = $this->db->prepare("UPDATE users SET token_session = '' WHERE email = '$email'");
         $requser->execute();
+    }
+
+    public function update($property,$data,$email)
+    {
+        $updateData = $this->db->prepare("UPDATE users SET $property = '$data' WHERE email = '$email->email'");
+        $updateData->execute();
     }
 
 

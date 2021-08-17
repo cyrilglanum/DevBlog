@@ -1,11 +1,16 @@
 <?php
+
+use App\repositories\UserRepository;
+
 session_start();
 if (isset($_SESSION['email'])) {
     if ($_SESSION['email'] != null) {
-        echo 'connecté sous : ' . $_SESSION['email'];;
+        echo 'connecté sous : ' . $_SESSION['email'];
+        $userRepo = New UserRepository();
+        $user = $userRepo->searchUserByMail($_SESSION['email']);
+        $picture = $user[0]->picture;
     }
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -61,13 +66,25 @@ if (isset($_SESSION['email'])) {
                             Mon compte
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a href="./profil"><img src="../../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
-<!--                            <img src="https://devblog/src/assets/img/profil/1.jpg" alt="..." class="img-thumbnail">-->
+<!--                            <a href="./profil"><img src="../../src/assets/img/about/1.jpg" alt="..."-->
+<!--                                                    class="img-thumbnail"></a>-->
+                            <a href="./profil"><img src="<?=
+
+                                    '../../public/images'.DIRECTORY_SEPARATOR.$picture;
+
+                                ?>" alt="..."
+                                                    class="img-thumbnail"></a>
+                            <!--                            <img src="https://devblog/src/assets/img/profil/1.jpg" alt="..." class="img-thumbnail">-->
                             <a class="dropdown-item" href="./blogSpace">Mon espace Blog</a>
-                            <a class="dropdown-item" href="./profil">Profil</a>
-                            <a class="dropdown-item" href="./deconnexion/<?php echo($_SESSION['email'])?>">Deconnexion</a>
+                            <a class="dropdown-item" href="/index.php/profil">Profil</a>
+                            <a class="dropdown-item"
+                               href="./deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                         </div>
                     </div>
+                <?php } elseif (str_contains($_SERVER['PHP_SELF'], 'festival')) { ?>
+                    <li class="nav-item"><a class="nav-link" href="./index.php/login">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.php/inscription">Inscription</a></li>
+
                     <?php
                 } else { ?>
                     <li class="nav-item"><a class="nav-link" href="./login">Connexion</a></li>
