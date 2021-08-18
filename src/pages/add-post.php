@@ -43,7 +43,7 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
                 <input type="hidden" name="user" value="<?= $_SESSION['email'] ?>">
                 <input type="file" name="file">
-                <button type="submit">Enregistrer</button>
+<!--                <button type="submit">Enregistrer</button>-->
             </div>
         </div>
         <div class="text-center">

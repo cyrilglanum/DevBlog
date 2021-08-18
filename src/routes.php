@@ -41,7 +41,7 @@ $routes->add('deleteUserById', new Route('/deleteUser/{id}', [
 $routes->add('profil', new Route('/profil',[
     '_controller' => 'App\controller\UserController::profil'
 ]));
-//USER
+
 $routes->add('savePicture', new Route('/savePicture',[
     '_controller' => 'App\controller\UserController::savePicture'
 ]));
@@ -50,9 +50,15 @@ $routes->add('savePicture', new Route('/savePicture',[
 $routes->add('postById', new Route('/post/{id}', [
     '_controller' => 'App\controller\PostController::postById'
 ]));
+
+$routes->add('blogSpace', new Route('/blogSpace', [
+    '_controller' => 'App\controller\PostController::blogSpace'
+]));
+
 $routes->add('index', new Route('/', [
     '_controller' => 'App\controller\IndexController::home'
 ]));
+
 $routes->add('home', new Route('/home', [
     '_controller' => 'App\controller\IndexController::home'
 ]));
@@ -60,9 +66,11 @@ $routes->add('home', new Route('/home', [
 $routes->add('addPost', new Route('/add-post',[
     '_controller' => 'App\controller\PostController::addPost'
 ]));
+
 $routes->add('postForm', new Route('/postForm',[
     '_controller' => 'App\controller\PostController::postForm'
 ]));
+
 $routes->add('deletePost', new Route('/deletePost/{id}',[
     '_controller' => 'App\controller\AdminController::deletePost'
 ]));

@@ -40,7 +40,7 @@ class PostController extends BaseRepository
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);
 
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-            echo 'Ok';
+            echo '';
         } else {
             echo "Attaque potentielle par téléchargement de fichiers.
           Voici plus d'informations :\n";
@@ -64,6 +64,13 @@ class PostController extends BaseRepository
         }else{
             die();
         }
+    }
+
+     public function blogSpace(Request $request)
+    {
+        ob_start();
+        include __DIR__ . '/../pages/post/blogSpace.php';
+        return new Response(ob_get_clean());
     }
 
     public function bye()
