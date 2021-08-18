@@ -27,12 +27,17 @@ require __DIR__ .'/partials/header.php';
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class=" <?= $post['icon'] ?>  fa-stack-1x fa-inverse"></i></span>
-                    <br><h4 class="my-3"> <?= $post['title'] ?> </h4>
-                    <img src ="../public/images/post/<?= $post['photo'] ?>">
-                    <br><?= $post['content']?>
+                        <i class=" <?= $post->icon ?>  fa-stack-1x fa-inverse"></i></span>
+                    <br><h4 class="my-3"> <?= $post->title ?> </h4>
+                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                     <img src ="../public/images/post/<?= $post->photo ?>">
+                    <?php } else { ?>
+                     <img src ="../../public/images/post/<?= $post->photo ?>">
+                <?php } ?>
 
-                    <br><a href="./post/<?= $post['id']?>">Voir le post</a></div>
+                    <br><?= $post->content ?>
+
+                    <br><a href="./post/<?= $post->id ?>">Voir le post</a></div>
             <?php
             }
             ?>

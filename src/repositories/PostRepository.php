@@ -37,7 +37,7 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         $db = $this->db;
         $req = $db->prepare("SELECT * FROM posts");
         $req->execute();
-        $posts = $req->fetchAll();
+        $posts = $req->fetchAll(PDO::FETCH_CLASS, Post::class);
 
         return $posts;
     }

@@ -66,7 +66,11 @@ require $dir . 'src/pages/partials/header.php';
                         <button type="submit">Enregistrer</button>
 
                     </form>
+                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                     <img src="../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
+                    </li><?php } else { ?>
+                    <img src="../../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
+                <?php } ?>
 <!--                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>-->
 
                 </div>

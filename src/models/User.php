@@ -12,6 +12,7 @@ class User
     public $password;
     public $token_session;
     public $token_expire;
+    public $picture;
 
     public function __construct($value = array())
     {

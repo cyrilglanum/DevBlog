@@ -69,6 +69,9 @@ class PostController extends BaseRepository
      public function blogSpace(Request $request)
     {
         ob_start();
+        $repo = New PostRepository();
+        $posts = $repo->findAll();
+//        dd($posts);
         include __DIR__ . '/../pages/post/blogSpace.php';
         return new Response(ob_get_clean());
     }
