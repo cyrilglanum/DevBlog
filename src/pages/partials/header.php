@@ -89,7 +89,7 @@ if (isset($_SESSION['email'])) {
                                 <a class="dropdown-item"
                                href="./index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                             <?php } else { ?>
-                                <a class="dropdown-item" href="./blogSpace">Mon espace Blog</a>
+                                <a class="dropdown-item" href="./blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
                                 <a class="dropdown-item" href="./profil">Profil</a>
                                 <a class="dropdown-item"
                                href="./deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>

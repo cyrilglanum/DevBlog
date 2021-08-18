@@ -122,6 +122,20 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         }
     }
 
+    public function CheckRole($email)
+    {
+
+        $user = $this->searchUserByMail($email);
+//        dd($user[0]);
+
+
+        if ($user[0]->role_id == 10)  {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 #endregion
 
 }

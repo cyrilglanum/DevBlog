@@ -5,6 +5,7 @@ namespace App\controller;
 use App\models\Post;
 use App\repositories\BaseRepository;
 use App\repositories\PostRepository;
+use App\repositories\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,7 +23,7 @@ class PostController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-     public function addPost(Request $request)
+    public function addPost(Request $request)
     {
         ob_start();
         include __DIR__ . '/../pages/add-post.php';
@@ -36,7 +37,7 @@ class PostController extends BaseRepository
         $author = htmlspecialchars($request->request->get('author'));
         $content = htmlspecialchars($request->request->get('content'));
 
-        $uploaddir = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'post'.DIRECTORY_SEPARATOR;
+        $uploaddir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR;
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);
 
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
@@ -48,7 +49,7 @@ class PostController extends BaseRepository
 
         $repo = new PostRepository();
         $postToSave = new Post([
-            'title'=> $title,
+            'title' => $title,
             'icon' => $icon,
             'author' => $author,
             'content' => $content,
@@ -56,24 +57,35 @@ class PostController extends BaseRepository
         ]);
         $req = $repo->savePost($postToSave);
 
-        if($req){
+        if ($req) {
             ob_start();
-            $dir = substr(__DIR__, 0,-11);
-            include  $dir.DIRECTORY_SEPARATOR.'pages'.DIRECTORY_SEPARATOR.'validation'.DIRECTORY_SEPARATOR.'validAddPost.php';
+            $dir = substr(__DIR__, 0, -11);
+            include $dir . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'validation' . DIRECTORY_SEPARATOR . 'validAddPost.php';
             return new Response(ob_get_clean());
-        }else{
+        } else {
             die();
         }
     }
 
-     public function blogSpace(Request $request)
+    public function blogSpace(Request $request)
     {
         ob_start();
-        $repo = New PostRepository();
-        $posts = $repo->findAll();
-//        dd($posts);
-        include __DIR__ . '/../pages/post/blogSpace.php';
-        return new Response(ob_get_clean());
+//        dd($request->query->get('email'));
+        $user = $request->query->get('email');
+        $repo = new UserRepository();
+        $role = $repo->checkRole($user);
+        if ($role == true) {
+            $repo = new PostRepository();
+            $posts = $repo->findAll();
+            include __DIR__ . '/../pages/post/blogSpace.php';
+            return new Response(ob_get_clean());
+        } else {
+            http_response_code(404);
+            include __DIR__ . '/../pages/my404.php';
+            die();
+
+        }
+
     }
 
     public function bye()
