@@ -126,8 +126,6 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     {
 
         $user = $this->searchUserByMail($email);
-//        dd($user[0]);
-
 
         if ($user[0]->role_id == 10)  {
             return true;

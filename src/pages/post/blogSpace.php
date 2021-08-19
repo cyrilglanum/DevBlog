@@ -14,8 +14,8 @@ require $dir . 'src/pages/partials/header.php';
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Sujets</h2>
-            <h3 class="section-subheading text-muted">Dans ce blog nous vous proposons des articles sur</h3>
+            <h2 class="section-heading text-uppercase">Vos posts</h2>
+            <h3 class="section-subheading text-muted">Section administrateur</h3>
         </div>
         <div class="row text-center">
 
@@ -37,12 +37,11 @@ require $dir . 'src/pages/partials/header.php';
                     <br><?= $post->content ?>
 
                     <br><a href="./post/<?= $post->id ?>">Voir le post</a>
-                    <br><a href="./delete-post/<?= $post->id ?>">Supprimer le post</a>
-                    <br><a href="./edit-post/<?= $post->id ?>">Modifier le post</a></div>
+                    <br><a href="./delete-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer le post</a>
+                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier le post</a></div>
             <?php
             }
             ?>
-
 
         </div>
     </div>

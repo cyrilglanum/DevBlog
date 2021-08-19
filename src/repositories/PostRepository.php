@@ -28,12 +28,15 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return parent::findById($columns, $table, $id);
     }
 
-    public function find($id){
+    public function find($id)
+    {
         $req = $this->db->prepare("SELECT * FROM posts WHERE id LIKE '$id'");
         $req->execute();
         return $req->fetch();
     }
-    public function findAll(){
+
+    public function findAll()
+    {
         $db = $this->db;
         $req = $db->prepare("SELECT * FROM posts");
         $req->execute();
@@ -41,11 +44,14 @@ class PostRepository extends BaseRepository implements RepositoryInterface
 
         return $posts;
     }
-    public function save(Object $post){
+
+    public function save(object $post)
+    {
 
     }
 
-    public function remove($table,$postId){
+    public function remove($table, $postId)
+    {
         return parent::remove($table, $postId);
     }
 
@@ -56,9 +62,27 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         $date = new \DateTime();
         $date = $date->format('Y-m-d H:i:s');
         $insertmbr = $this->db->prepare("INSERT INTO posts (title, icon,author,content,post_date,photo,id_statut,id_user) VALUES(?,?,?,?,?,?,?,?)");
-        $insertmbr->execute(array($post->title, $post->icon, $post->author, $post->content, $date,$post->photo, 1, 1));
+        $insertmbr->execute(array($post->title, $post->icon, $post->author, $post->content, $date, $post->photo, 1, 1));
 
         return $post;
+    }
+
+    public function update(Post $post)
+    {
+        if ($post->photo != null) {
+            $insertToken = $this->db->prepare("UPDATE posts SET title =?,author =?,content =?, icon= ?, photo=? WHERE id LIKE ?");
+            $insertToken->execute(array($post->title, $post->author, $post->content, $post->icon, $post->photo, $post->id));
+
+            return true;
+        } elseif ($post->photo == null) {
+            $insertToken = $this->db->prepare("UPDATE posts SET title =?,author =?,content =?, icon= ? WHERE id LIKE ?");
+            $insertToken->execute(array($post->title, $post->author, $post->content, $post->icon, $post->id));
+
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

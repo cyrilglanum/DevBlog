@@ -70,7 +70,6 @@ class PostController extends BaseRepository
     public function blogSpace(Request $request)
     {
         ob_start();
-//        dd($request->query->get('email'));
         $user = $request->query->get('email');
         $repo = new UserRepository();
         $role = $repo->checkRole($user);
@@ -85,14 +84,82 @@ class PostController extends BaseRepository
             die();
 
         }
-
     }
 
-    public function bye()
+    public function deletePostById(Request $request)
     {
         ob_start();
-        include __DIR__ . '/../pages/bye.php';
-        return new Response(ob_get_clean());
+        $idPostToDelete = $request->attributes->get('id');
+        $user = $request->query->get('email');
+        $repo = new UserRepository();
+        $role = $repo->checkRole($user);
+        if ($role == true) {
+            $postRepo = new PostRepository();
+            $postToDelete = $postRepo->remove('posts',$idPostToDelete);
+            include __DIR__ . '../../pages/validation/deleteUser.php';
+            return new Response(ob_get_clean());
+        } else {
+            http_response_code(404);
+            include __DIR__ . '/../pages/my404.php';
+            die();
+        }
+    }
+
+    public function editPostById(Request $request)
+    {
+        ob_start();
+        $idPostToEdit = $request->attributes->get('id');
+        $user = $request->query->get('email');
+        $repo = new UserRepository();
+        $role = $repo->checkRole($user);
+        if ($role == true) {
+            $postRepo = new PostRepository();
+            $postToEdit = $postRepo->findById('*','posts',$idPostToEdit);
+            include __DIR__ . '../../pages/validation/editPost.php';
+            return new Response(ob_get_clean());
+        } else {
+            http_response_code(404);
+            include __DIR__ . '/../pages/my404.php';
+            die();
+        }
+    }
+
+    public function editPostValidation(Request $request)
+    {
+
+        $uploaddir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR;
+        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+            echo '';
+        } else {
+            echo "Attaque potentielle par téléchargement de fichiers.
+          Voici plus d'informations :\n";
+        }
+
+        $repo = new PostRepository();
+
+        $post = New Post([
+            'id' => $request->request->get('id'),
+            'title' => $request->request->get('title'),
+            'icon' => $request->request->get('icon'),
+            'author' => $request->request->get('author'),
+            'content' => $request->request->get('content'),
+            'photo' => basename($_FILES['file']['name']),
+            ]);
+
+        $req = $repo->update($post);
+
+        if($req == true){
+            ob_start();
+            $dir = substr(__DIR__, 0, -11);
+            include $dir . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'validation' . DIRECTORY_SEPARATOR . 'validAddPost.php';
+            return new Response(ob_get_clean());
+        }else{
+            die();
+        }
+
+
     }
 }
 

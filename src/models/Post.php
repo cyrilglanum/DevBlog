@@ -7,6 +7,7 @@ namespace App\models;
 
 class Post
 {
+    public $id;
     public $title;
     public $author;
     public $content;
@@ -27,6 +28,11 @@ class Post
                 $this->$method($value);
             }
         }
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function setTitle($title)

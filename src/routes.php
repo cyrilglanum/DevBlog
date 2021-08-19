@@ -51,6 +51,18 @@ $routes->add('postById', new Route('/post/{id}', [
     '_controller' => 'App\controller\PostController::postById'
 ]));
 
+$routes->add('deletePostById', new Route('/delete-post/{id}', [
+    '_controller' => 'App\controller\PostController::deletePostById'
+]));
+
+$routes->add('editPostById', new Route('/edit-post/{id}', [
+    '_controller' => 'App\controller\PostController::editPostById'
+]));
+
+$routes->add('editPostValidation', new Route('editPostValidation', [
+    '_controller' => 'App\controller\PostController::editPostValidation'
+]));
+
 $routes->add('blogSpace', new Route('/blogSpace', [
     '_controller' => 'App\controller\PostController::blogSpace'
 ]));
