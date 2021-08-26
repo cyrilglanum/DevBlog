@@ -1,5 +1,8 @@
 <?php
-require __DIR__ .'/partials/header.php';
+
+use App\repositories\UserRepository;
+
+require __DIR__ . '/partials/header.php';
 ?>
 
 <!-- Masthead-->
@@ -17,23 +20,24 @@ require __DIR__ .'/partials/header.php';
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Posts</h2>
-<!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
+            <!--            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
         </div>
         <div class="row">
-            <?php foreach ($posts as $post){?>
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <?php foreach ($posts as $post) { ?>
+                <div class="col-lg-4 col-sm-6 mb-4">
                 <!-- Portfolio item 1-->
                 <div class="portfolio-item" style="display: flex;flex-direction: column;justify-content: center;
                 align-items: center;background-color: white;padding-top: 2vh">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div><?php if($post->photo != null){?>
-                        <img class="img-fluid" style="width: 30vw;max-height: 60vh" <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                     src ="../public/images/post/<?= $post->photo ?>"
-                    <?php } else { ?>
-                     src ="../../public/images/post/<?= $post->photo ?>"
-                <?php } ?> alt="..."/><?php }?>
+                        </div><?php if ($post->photo != null) { ?>
+                            <img class="img-fluid"
+                                 style="width: 30vw;max-height: 60vh" <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                                src="../public/images/post/<?= $post->photo ?>"
+                            <?php } else { ?>
+                                src="../../public/images/post/<?= $post->photo ?>"
+                            <?php } ?> alt="..."/><?php } ?>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading"><?= $post->title ?></div>
@@ -41,7 +45,7 @@ require __DIR__ .'/partials/header.php';
                     </div>
                     <br><a href="./post/<?= $post->id ?>">Voir le post</a>
                 </div>
-            </div><?php } ?>
+                </div><?php } ?>
         </div>
     </div>
 </section>
@@ -258,6 +262,26 @@ require __DIR__ .'/partials/header.php';
             <div class="col-lg-4 text-lg-end">
                 <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
                 <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+
+                <?php
+                $userRepo = new UserRepository();
+                $user = $userRepo->searchUserByMail($_SESSION['email']);
+
+                if($user[0]->role_id == 10) {
+                    if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                        <li class="nav-item"><a class="nav-link" href="./index.php/admin?email=<?= $_SESSION['email'] ?>">Ajout d'un post</a></li>
+                    <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php/admin?email=<?= $_SESSION['email'] ?>">Ajout d'un post</a></li>
+                    <?php
+                    }else { ?>
+                       <a class="link-dark text-decoration-none" href="./admin?email=<?= $_SESSION['email'] ?>">Espace admin</a>
+                    <?php } ?>
+                <?php } ?>
+
+
+
+
+
             </div>
         </div>
     </div>

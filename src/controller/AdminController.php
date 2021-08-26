@@ -16,12 +16,20 @@ class AdminController extends BaseRepository
     public function admin(Request $request)
     {
         ob_start();
-        $repo = new UserRepository();
-        $users = $repo->selectByTable('*','users',User::class);
-        $postRepo = new PostRepository();
-        $posts  = $postRepo->selectByTable('*', 'posts',Post::class);
-        include __DIR__ . '/../pages/admin.php';
-        return new Response(ob_get_clean());
+        $userRepo = new UserRepository();
+        $user = $userRepo->searchUserByMail($request->query->get('email'));
+        if ($user[0]->role_id == 10) {
+            $repo = new UserRepository();
+            $users = $repo->selectByTable('*', 'users', User::class);
+            $postRepo = new PostRepository();
+            $posts = $postRepo->selectByTable('*', 'posts', Post::class);
+            include __DIR__ . '/../pages/admin.php';
+            return new Response(ob_get_clean());
+        } else {
+            ob_start();
+            include __DIR__ . '/../pages/my404.php';
+            return new Response(ob_get_clean());
+        }
     }
 
     public function deleteUser($id)
@@ -29,8 +37,8 @@ class AdminController extends BaseRepository
         ob_start();
         //function ajax pour deleter user
         $repo = new UserRepository();
-        $userToDelete = $repo->remove('users',$id);
-        $users = $repo->selectByTable('*','users',User::class);
+        $userToDelete = $repo->remove('users', $id);
+        $users = $repo->selectByTable('*', 'users', User::class);
         include __DIR__ . '../../pages/validation/deleteUser.php';
         return new Response(ob_get_clean());
     }
@@ -40,13 +48,10 @@ class AdminController extends BaseRepository
         ob_start();
         //function ajax pour deleter user
         $repo = new PostRepository();
-        $postToDelete = $repo->remove('posts',$id);
-        $post = $repo->selectByTable('*','posts',Post::class);
+        $postToDelete = $repo->remove('posts', $id);
+        $post = $repo->selectByTable('*', 'posts', Post::class);
         include __DIR__ . '../../pages/validation/deleteUser.php';
         return new Response(ob_get_clean());
     }
-
-
-
 
 }
