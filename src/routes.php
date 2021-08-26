@@ -59,6 +59,10 @@ $routes->add('editPostById', new Route('/edit-post/{id}', [
     '_controller' => 'App\controller\PostController::editPostById'
 ]));
 
+$routes->add('commentPost', new Route('/comment-post/{id}', [
+    '_controller' => 'App\controller\PostController::commentPost'
+]));
+
 $routes->add('editPostValidation', new Route('editPostValidation', [
     '_controller' => 'App\controller\PostController::editPostValidation'
 ]));

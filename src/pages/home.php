@@ -43,7 +43,17 @@ require __DIR__ . '/partials/header.php';
                         <div class="portfolio-caption-heading"><?= $post->title ?></div>
                         <div class="portfolio-caption-subheading text-muted"><?= $post->content ?></div>
                     </div>
-                    <br><a href="./post/<?= $post->id ?>">Voir le post</a>
+                    <br>
+
+                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                        <li class="nav-item"><a class="nav-link" href="./index.php/post/<?= $post->id ?>">Ajout d'un post</a></li>
+                    <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php/post/<?= $post->id ?>">Ajout d'un post</a></li>
+                    <?php
+                    }else { ?>
+                        <li class="nav-item"><a class="nav-link" href="./post/<?= $post->id ?>">Ajout d'un post</a></li>
+                    <?php } ?>
+
                 </div>
                 </div><?php } ?>
         </div>
@@ -269,9 +279,9 @@ require __DIR__ . '/partials/header.php';
 
                 if($user[0]->role_id == 10) {
                     if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                        <li class="nav-item"><a class="nav-link" href="./index.php/admin?email=<?= $_SESSION['email'] ?>">Ajout d'un post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./index.php/admin?email=<?= $_SESSION['email'] ?>">Espace admin</a></li>
                     <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php/admin?email=<?= $_SESSION['email'] ?>">Ajout d'un post</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php/admin?email=<?= $_SESSION['email'] ?>">Espace admin</a></li>
                     <?php
                     }else { ?>
                        <a class="link-dark text-decoration-none" href="./admin?email=<?= $_SESSION['email'] ?>">Espace admin</a>

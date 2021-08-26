@@ -96,7 +96,7 @@ class PostController extends BaseRepository
         if ($role == true) {
             $postRepo = new PostRepository();
             $postToDelete = $postRepo->remove('posts',$idPostToDelete);
-            include __DIR__ . '../../pages/validation/deleteUser.php';
+            include __DIR__ . '../../pages/validation/redirectHome.php';
             return new Response(ob_get_clean());
         } else {
             http_response_code(404);
@@ -122,6 +122,20 @@ class PostController extends BaseRepository
             include __DIR__ . '/../pages/my404.php';
             die();
         }
+    }
+
+    public function commentPost(Request $request)
+    {
+        ob_start();
+        $repo = new PostRepository();
+        $post = $repo->findById('*', 'posts', $request->attributes->get('id'));
+//        dd($post);
+
+//        $user = $request->query->get('email');
+//        $repo = new PostRepository();
+
+            include __DIR__ . '../../pages/commentPost.php';
+            return new Response(ob_get_clean());
     }
 
     public function editPostValidation(Request $request)
@@ -158,6 +172,7 @@ class PostController extends BaseRepository
         }else{
             die();
         }
+
 
 
     }

@@ -6,6 +6,9 @@ require __DIR__ .'/partials/header.php';
     </div>
 </header>
 <section>
+    <?php if(!$post){
+        echo "<div class ='container'>L'article que vous cherchez a été supprimé</div>";
+    }else{?>
     <div class="container">
         <h1 class="pt-5">Post <?= $post['id'] ?></h1>
        <span class="fa-stack fa-4x">
@@ -52,3 +55,4 @@ require __DIR__ .'/partials/header.php';
 <script src="../../src/assets/js/scripts.js"></script>
 </body>
 </html>
+<?php }?>
