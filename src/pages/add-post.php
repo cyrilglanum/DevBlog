@@ -14,36 +14,7 @@
     <form method="POST" action="postForm" enctype="multipart/form-data">
         <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
-                <div class="form-group">
-                    <input class="form-control" id="title" name="title" type="text" placeholder="Titre du post"
-                           required="required"/>
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="form-group"><a target="_blank"
-                                           href="https://fontawesome.com/v5.15/icons?d=gallery&p=2">Icon</a>
-                    <input class="form-control" id="icon" name="icon" type="input" placeholder="fab fa-500px"
-                           required="required"/>
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="form-group mb-md-0">
-                    <input class="form-control" id="author" name="author" type="input" placeholder="Auteur"
-                           required="required"/>
-                    <p class="help-block text-danger"></p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group form-group-textarea mb-md-0">
-                        <textarea class="form-control" id="content" name="content" placeholder="Your Message *"
-                                  required="required"></textarea>
-                    <p class="help-block text-danger"></p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label for="file">Fichier</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
                 <input type="hidden" name="user" value="<?= $_SESSION['email'] ?>">
-                <input type="file" name="file">
-<!--                <button type="submit">Enregistrer</button>-->
             </div>
         </div>
         <div class="text-center">

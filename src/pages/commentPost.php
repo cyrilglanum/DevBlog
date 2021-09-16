@@ -7,11 +7,18 @@ require __DIR__ . '/partials/header.php';
 
 </header>
 <div class="container" style="padding-top: 100px">
-    <form method="POST" action="postComment" enctype="multipart/form-data">
+    <form method="POST" action="../addComment">
         <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
                 <div class="form-group">
-                    <?= $post->id ?>
+                    <h3>
+                        <?= $post['title'] ?>
+                    </h3>
+                    <?= $post['id'] ?><br>
+                    <hr>
+                    <?= $post['content'] ?>
+                <input type="hidden" name="postId" value="<?= $post['id'] ?>">
+                <input type="hidden" name="email" value="<?= $_SESSION['email'] ?>">
                     <input class="form-control" id="content" name="content" type="text"
                            placeholder="Contenu du commentaire"
                            required="required"/>
@@ -21,7 +28,8 @@ require __DIR__ . '/partials/header.php';
         </div>
         <div class="text-center">
             <div id="success"></div>
-            <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Envoyer le commentaire
+            <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">
+                Envoyer le commentaire
             </button>
         </div>
     </form>

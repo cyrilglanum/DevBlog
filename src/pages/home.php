@@ -46,12 +46,12 @@ require __DIR__ . '/partials/header.php';
                     <br>
 
                     <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                        <li class="nav-item"><a class="nav-link" href="./index.php/post/<?= $post->id ?>">Ajout d'un post</a></li>
-                    <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php/post/<?= $post->id ?>">Ajout d'un post</a></li>
-                    <?php
-                    }else { ?>
-                        <li class="nav-item"><a class="nav-link" href="./post/<?= $post->id ?>">Ajout d'un post</a></li>
+                        <a class="nav-link" href="./index.php/post/<?= $post->id ?>">Voir le post</a>
+                    <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
+                        <a class="nav-link" href="../../index.php/post/<?= $post->id ?>">Voir le post</a>
+                        <?php
+                    } else { ?>
+                        <a class="nav-link" href="./post/<?= $post->id ?>">Voir le post</a>
                     <?php } ?>
 
                 </div>
@@ -277,19 +277,22 @@ require __DIR__ . '/partials/header.php';
                 $userRepo = new UserRepository();
                 $user = $userRepo->searchUserByMail($_SESSION['email']);
 
-                if($user[0]->role_id == 10) {
+                if ($user[0]->role_id == 10) {
                     if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                        <li class="nav-item"><a class="nav-link" href="./index.php/admin?email=<?= $_SESSION['email'] ?>">Espace admin</a></li>
-                    <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php/admin?email=<?= $_SESSION['email'] ?>">Espace admin</a></li>
-                    <?php
-                    }else { ?>
-                       <a class="link-dark text-decoration-none" href="./admin?email=<?= $_SESSION['email'] ?>">Espace admin</a>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="./index.php/admin?email=<?= $_SESSION['email'] ?>">Espace
+                                admin</a></li>
+                    <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
+                        ?>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="../../index.php/admin?email=<?= $_SESSION['email'] ?>">Espace
+                                admin</a></li>
+                        <?php
+                    } else { ?>
+                        <a class="link-dark text-decoration-none" href="./admin?email=<?= $_SESSION['email'] ?>">Espace
+                            admin</a>
                     <?php } ?>
                 <?php } ?>
-
-
-
 
 
             </div>

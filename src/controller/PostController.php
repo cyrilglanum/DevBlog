@@ -4,6 +4,7 @@ namespace App\controller;
 
 use App\models\Post;
 use App\repositories\BaseRepository;
+use App\repositories\CommentRepository;
 use App\repositories\PostRepository;
 use App\repositories\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,8 @@ class PostController extends BaseRepository
         $repo = new PostRepository();
         //récupération des information du post en question.
         $post = $repo->find($id);
+        $commentRepo = New CommentRepository();
+        $comments = $commentRepo->withComments($id);
         include __DIR__ . '/../pages/post.php';
         return new Response(ob_get_clean());
     }
@@ -95,7 +98,7 @@ class PostController extends BaseRepository
         $role = $repo->checkRole($user);
         if ($role == true) {
             $postRepo = new PostRepository();
-            $postToDelete = $postRepo->remove('posts',$idPostToDelete);
+            $postToDelete = $postRepo->remove('posts', $idPostToDelete);
             include __DIR__ . '../../pages/validation/redirectHome.php';
             return new Response(ob_get_clean());
         } else {
@@ -114,7 +117,7 @@ class PostController extends BaseRepository
         $role = $repo->checkRole($user);
         if ($role == true) {
             $postRepo = new PostRepository();
-            $postToEdit = $postRepo->findById('*','posts',$idPostToEdit);
+            $postToEdit = $postRepo->findById('*', 'posts', $idPostToEdit);
             include __DIR__ . '../../pages/validation/editPost.php';
             return new Response(ob_get_clean());
         } else {
@@ -129,18 +132,25 @@ class PostController extends BaseRepository
         ob_start();
         $repo = new PostRepository();
         $post = $repo->findById('*', 'posts', $request->attributes->get('id'));
-//        dd($post);
+        include __DIR__ . '../../pages/commentPost.php';
+        return new Response(ob_get_clean());
+    }
 
-//        $user = $request->query->get('email');
-//        $repo = new PostRepository();
+    public function addComment(Request $request)
+    {
+        ob_start();
+        $email = $request->request->get('email');
+        $commentRepo = new CommentRepository();
+        $postId = $request->request->get('postId');
+        $comment = $request->request->get('content');
+        $commentRepo->addComment($postId, $comment,$email);
+        include __DIR__ . '../../pages/validation/historyBack2x.php';
 
-            include __DIR__ . '../../pages/commentPost.php';
-            return new Response(ob_get_clean());
+        return new Response(ob_get_clean());
     }
 
     public function editPostValidation(Request $request)
     {
-
         $uploaddir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR;
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);
 
@@ -153,26 +163,25 @@ class PostController extends BaseRepository
 
         $repo = new PostRepository();
 
-        $post = New Post([
+        $post = new Post([
             'id' => $request->request->get('id'),
             'title' => $request->request->get('title'),
             'icon' => $request->request->get('icon'),
             'author' => $request->request->get('author'),
             'content' => $request->request->get('content'),
             'photo' => basename($_FILES['file']['name']),
-            ]);
+        ]);
 
         $req = $repo->update($post);
 
-        if($req == true){
+        if ($req == true) {
             ob_start();
             $dir = substr(__DIR__, 0, -11);
             include $dir . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'validation' . DIRECTORY_SEPARATOR . 'validAddPost.php';
             return new Response(ob_get_clean());
-        }else{
+        } else {
             die();
         }
-
 
 
     }

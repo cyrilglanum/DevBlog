@@ -5,6 +5,7 @@ namespace App\repositories;
 
 use App\interfaces\RepositoryInterface;
 use App\models\Comment;
+use Cassandra\Date;
 use PDO;
 
 class CommentRepository extends BaseRepository implements RepositoryInterface
@@ -78,7 +79,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     {
         $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
         $reqmail->execute(array($email));
-        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, Comment::class);
         return $user;
     }
 
@@ -86,11 +87,27 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     {
         $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
         $reqmail->execute(array($email));
-        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, Comment::class);
         return $user;
+    }
+
+    public function addComment($postId, $comment,$author)
+    {
+
+        $created_at = date("Y-m-d H:i:s");
+        $insertmbr = $this->db->prepare("INSERT INTO comments (post_id, content,author,created_at) VALUES(?,?,?,?)");
+        $insertmbr->execute(array($postId, $comment,$author,$created_at));
     }
 
 
 #endregion
+    public function withComments($id)
+    {
+        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id = ? ORDER BY id DESC");
+        $req->execute(array($id));
+        $comments = $req->fetchAll(PDO::FETCH_CLASS, Comment::class);
+
+        return $comments;
+    }
 
 }

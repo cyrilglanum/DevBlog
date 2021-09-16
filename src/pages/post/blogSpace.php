@@ -5,10 +5,10 @@ $dir = substr(__DIR__, 0, $dir);
 require $dir . 'src/pages/partials/header.php';
 ?>
 <!-- Masthead-->
-<header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px">
-    <div class="container">
-    </div>
-</header>
+<!--<header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px">-->
+<!--    <div class="container">-->
+<!--    </div>-->
+<!--</header>-->
 
 
 <section class="page-section" id="services">
@@ -46,3 +46,11 @@ require $dir . 'src/pages/partials/header.php';
         </div>
     </div>
 </section>
+
+<style>
+  #navbarResponsive{
+      background-image: url("../../src/assets/img/old-black-background-distressed-vintage-260nw-1607779117.jpg");
+      height: 120px;
+  }
+
+</style>
