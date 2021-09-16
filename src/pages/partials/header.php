@@ -14,7 +14,7 @@ if (isset($_SESSION['email'])) {
         $email = $repo->searchUserByMail($_SESSION['email']);
         $role = $repo->checkRole($email[0]->email);
         if($role == true){
-            $admin == true;
+            $admin = true;
         }
     }
 }

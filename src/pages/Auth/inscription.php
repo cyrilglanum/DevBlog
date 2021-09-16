@@ -1,67 +1,28 @@
+<?php
+
+require __DIR__ . '/../partials/header.php';
+?>
+
+<!-- Masthead-->
+<header class="masthead" id="home">
+    <div class="container">
+        <h2>Login</h2>
     <form method="POST" action="inscription/add-user">
-                      <div class="input-group">
-
                               <input class="input--style-3" id="email" type="email" placeholder="Email" name="email" required value="<?php if(isset($pseudo)){echo $pseudo;} ?>">
-
-                          </div>
-
-<!--                          <input type="button" onclick="testcarac()" value="controler" style="background-color:black; color:white;" >-->
-
-                          <div class="input-group">
-
-<!--                              <input class="input--style-3" type="email" placeholder="Retapez votre mail" name="pseudo2" value ="--><?php //if(isset($pseudo)){echo $pseudo;} ?><!--">-->
-
-                          </div>
-
-
-
-                          <!-- texte ajouté avvec la verif en js -->
-
-                          <!-- <input type="text" id="text" onkeypress="verifierCaracteres(event); return false;"> -->
-
-                            
-
-                            <!-- fin du texte ajouté -->
-
-
-
-                          <div class="input-group">
 
                               <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" required minlength="4">
 
-                          </div>
-
-                          <div class="input-group">
-
                               <input class="input--style-3" type="password" placeholder="Verif mot de passe" name="passwordConfirmation" required minlength="4">
 
-                          </div>
+                          <div class="p-t-10 pt-3">
 
-                          <div class="input-group">
-
-<!--                              <input class="input--style-3 js-datepicker" type="text" placeholder="Date de naissance" name="birthday" value ="--><?php //if(isset($birthday)){echo $birthday;} ?><!--">-->
-
-                              <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-
-                          </div>
-
-                          <div class="p-t-10">
-
-                              <button class="btn btn--pill btn--green" type="submit" name="submit">Submit</button>
+                              <button class="btn btn-warning" type="submit" name="submit">Submit</button>
 
                               <a href="./home"><button type="button" class="btn btn-light">Menu</button></a>
 
-                             
-
-                             
-
-                   
-
-
-
 <!-- envoyer une erreur si les champs ne sont pas complétés -->
 
-  <?php 
+  <?php
 
 if (isset($erreur)){
 
@@ -78,3 +39,63 @@ if (isset($erreur)){
                           </div>
 
                       </form>
+    </div>
+</header>
+
+<!-- Footer-->
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">
+                Copyright &copy; Your Website
+                <!-- This script automatically adds the current year to your website footer-->
+                <!-- (credit: https://updateyourfooter.com/)-->
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+            </div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+
+<!--                --><?php
+//                $userRepo = new UserRepository();
+//                $user = $userRepo->searchUserByMail($_SESSION['email']);
+//
+//                if ($user[0]->role_id == 10) {
+//                    if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+<!--                        <li class="nav-item"><a class="nav-link"-->
+<!--                                                href="./index.php/admin?email=--><?//= $_SESSION['email'] ?><!--">Espace-->
+<!--                                admin</a></li>-->
+<!--                    --><?php //} elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
+//                        ?>
+<!--                        <li class="nav-item"><a class="nav-link"-->
+<!--                                                href="../../index.php/admin?email=--><?//= $_SESSION['email'] ?><!--">Espace-->
+<!--                                admin</a></li>-->
+<!--                        --><?php
+//                    } else { ?>
+<!--                        <a class="link-dark text-decoration-none" href="./admin?email=--><?//= $_SESSION['email'] ?><!--">Espace-->
+<!--                            admin</a>-->
+<!--                    --><?php //} ?>
+<!--                --><?php //} ?>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../../src/assets/js/scripts.js"></script>
+</body>
+</html>
+
+
+

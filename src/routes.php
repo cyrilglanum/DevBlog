@@ -83,6 +83,10 @@ $routes->add('home', new Route('/home', [
     '_controller' => 'App\controller\IndexController::home'
 ]));
 
+$routes->add('contact', new Route('/contact',[
+    '_controller' => 'App\controller\IndexController::contact'
+]));
+
 $routes->add('addPost', new Route('/add-post',[
     '_controller' => 'App\controller\PostController::addPost'
 ]));
