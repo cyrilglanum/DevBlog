@@ -15,12 +15,21 @@ class CommentController extends BaseRepository
 
     public function showCommentsByPostId(Request $request)
     {
-//        dd($request,$request->get('id'));
-        $postId = $request->get('id');
-        $repo = new CommentRepository();
-        ob_start();
-        $comments = $repo->findByPostId($postId);
-        include __DIR__ . '/../pages/post/editComments.php';
+        $repo = new UserRepository();
+        if($request->query->get('email')){
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            $role = $user[0]->role_id;
+            if($role == 10){
+                $postId = $request->get('id');
+                $repo = new CommentRepository();
+                ob_start();
+                $comments = $repo->findByPostId($postId);
+                include __DIR__ . '/../pages/post/editComments.php';
+                return new Response(ob_get_clean());
+            }
+            }else{
+                include __DIR__ . '/../pages/my403.php';
+        }
     }
 
 

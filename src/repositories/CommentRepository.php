@@ -63,16 +63,18 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE id LIKE '$id'");
         $req->execute();
-        $user = $req->fetch();
-        return $user;
+        $comment = $req->fetch();
+
+        return $comment;
     }
 
     public function findByPostId($id)
     {
-        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id'");
+        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id' ORDER BY id DESC");
         $req->execute();
-        $user = $req->fetch();
-        return $user;
+        $comments = $req->fetchAll(PDO::FETCH_CLASS, Comment::class);
+
+        return $comments;
     }
 
     public function searchIfMailExists($email)

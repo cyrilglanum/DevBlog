@@ -15,16 +15,17 @@ require $dir . 'src/pages/partials/header.php';
 
 <!-- Body-->
 <div class="container pt-3">
-    <form method="POST" action="../editPostValidation" enctype="multipart/form-data">
         <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
                 <div class="form-group">
 
-                    <?php dd($comments); ?>
-                    <? foreach ($comments as $comment){
-                       dd($comment);
-                       $comment;
-                    }?>
+                    <?php foreach ($comments as $comment){?>
+                      <?= $comment->id?><br>
+                      <?= $comment->content?><br>
+                      <?= $comment->author?><br>
+                        <a href="deleteComm/<?= $comment->id ?>">Supprimer commentaire</a><br>
+                    <?php }
+                    ?>
 
                 </div>
             </div>
@@ -44,7 +45,6 @@ require $dir . 'src/pages/partials/header.php';
             <div id="success"></div>
             <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Modifier le Post</button>
         </div>
-    </form>
 </div>
 
 
