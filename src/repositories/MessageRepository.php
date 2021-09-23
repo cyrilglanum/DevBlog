@@ -5,10 +5,11 @@ namespace App\repositories;
 
 use App\interfaces\RepositoryInterface;
 use App\models\Comment;
+use App\models\Message;
 use Cassandra\Date;
 use PDO;
 
-class CommentRepository extends BaseRepository implements RepositoryInterface
+class MessageRepository extends BaseRepository implements RepositoryInterface
 {
     public function __construct()
     {
@@ -27,18 +28,10 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     }
 
 
-    public function saveComment(Comment $comment)
+    public function saveMessage(Message $message)
     {
-//        $user->actif = 1;
-//        $user->role_id = 1;
-//        $user->password = sha1($user->password);
-//        $date = new \DateTime();
-//        $date->modify('+2 hour');
-//        $date = $date->format('Y-m-d H:i:s');
-//        $insertmbr = $this->db->prepare("INSERT INTO users (email, password,token_session,token_expire,actif,role_id,created_at) VALUES(?,?,?,?,?,?,?)");
-//        $insertmbr->execute(array($user->email, $user->password, $user->token_session, $user->token_expire, $user->actif, $user->role_id, $date));
-
-        return $comment;
+        $insertmbr = $this->db->prepare("INSERT INTO messages (name, email,subject,message) VALUES(?,?,?,?)");
+        $insertmbr->execute(array($message->name, $message->email, $message->subject, $message->message));
     }
 
     public function remove($table, $id)
@@ -62,14 +55,6 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     public function find($id)
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE id LIKE '$id'");
-        $req->execute();
-        $user = $req->fetch();
-        return $user;
-    }
-
-    public function findByPostId($id)
-    {
-        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id'");
         $req->execute();
         $user = $req->fetch();
         return $user;

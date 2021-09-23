@@ -59,6 +59,10 @@ $routes->add('editPostById', new Route('/edit-post/{id}', [
     '_controller' => 'App\controller\PostController::editPostById'
 ]));
 
+$routes->add('showCommentsByPostId', new Route('/edit-comments/{id}', [
+    '_controller' => 'App\controller\CommentController::showCommentsByPostId'
+]));
+
 $routes->add('commentPost', new Route('/comment-post/{id}', [
     '_controller' => 'App\controller\PostController::commentPost'
 ]));
@@ -85,6 +89,10 @@ $routes->add('home', new Route('/home', [
 
 $routes->add('contact', new Route('/contact',[
     '_controller' => 'App\controller\IndexController::contact'
+]));
+
+$routes->add('contactus', new Route('/contactus',[
+    '_controller' => 'App\controller\IndexController::contactus'
 ]));
 
 $routes->add('addPost', new Route('/add-post',[

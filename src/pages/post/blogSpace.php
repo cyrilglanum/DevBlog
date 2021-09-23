@@ -35,7 +35,9 @@ require $dir . 'src/pages/partials/header.php';
 
                     <br><a href="./post/<?= $post->id ?>">Voir le post</a>
                     <br><a href="./delete-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer le post</a>
-                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier le post</a></div>
+                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier le post</a>
+                    <br><a href="./edit-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier les commentaires</a>
+                </div>
             <?php
             }
             ?>

@@ -8,8 +8,6 @@ require __DIR__ . '/partials/header.php';
 <!-- Masthead-->
 <header class="masthead" id="home">
     <div class="container">
-        <h2>Login</h2>
-
         <!--Section: Contact v.2-->
         <section class="mb-4">
 
@@ -94,7 +92,7 @@ require __DIR__ . '/partials/header.php';
                         </li>
 
                         <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                            <p>contact@blogDuDev.com</p>
+                            <a href="mailto:contact@blogDuDev.com">Ecrivez-moi</a><p>contact@blogDuDev.com</p>
                         </li>
                     </ul>
                 </div>

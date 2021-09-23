@@ -53,7 +53,6 @@ class PostController extends BaseRepository
         $repo = new PostRepository();
         $postToSave = new Post([
             'title' => $title,
-//            'icon' => $icon,
             'author' => $author,
             'content' => $content,
             'photo' => basename($_FILES['file']['name']),
