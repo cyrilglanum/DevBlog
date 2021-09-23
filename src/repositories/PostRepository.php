@@ -38,7 +38,7 @@ class PostRepository extends BaseRepository implements RepositoryInterface
     public function findAll()
     {
         $db = $this->db;
-        $req = $db->prepare("SELECT * FROM posts");
+        $req = $db->prepare("SELECT * FROM posts ORDER BY id ASC");
         $req->execute();
         $posts = $req->fetchAll(PDO::FETCH_CLASS, Post::class);
 
@@ -61,8 +61,8 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         date_default_timezone_set('Europe/Paris');
         $date = new \DateTime();
         $date = $date->format('Y-m-d H:i:s');
-        $insertmbr = $this->db->prepare("INSERT INTO posts (title, icon,author,content,post_date,photo,id_statut,id_user) VALUES(?,?,?,?,?,?,?,?)");
-        $insertmbr->execute(array($post->title, $post->icon, $post->author, $post->content, $date, $post->photo, 1, 1));
+        $insertmbr = $this->db->prepare("INSERT INTO posts (title,author,content,post_date,photo,id_statut,id_user) VALUES(?,?,?,?,?,?,?)");
+        $insertmbr->execute(array($post->title, $post->author, $post->content, $date, $post->photo, 1, 1));
 
         return $post;
     }
@@ -70,13 +70,13 @@ class PostRepository extends BaseRepository implements RepositoryInterface
     public function update(Post $post)
     {
         if ($post->photo != null) {
-            $insertToken = $this->db->prepare("UPDATE posts SET title =?,author =?,content =?, icon= ?, photo=? WHERE id LIKE ?");
-            $insertToken->execute(array($post->title, $post->author, $post->content, $post->icon, $post->photo, $post->id));
+            $insertToken = $this->db->prepare("UPDATE posts SET title =?,author =?,content =?, photo=? WHERE id LIKE ?");
+            $insertToken->execute(array($post->title, $post->author, $post->content, $post->photo, $post->id));
 
             return true;
         } elseif ($post->photo == null) {
-            $insertToken = $this->db->prepare("UPDATE posts SET title =?,author =?,content =?, icon= ? WHERE id LIKE ?");
-            $insertToken->execute(array($post->title, $post->author, $post->content, $post->icon, $post->id));
+            $insertToken = $this->db->prepare("UPDATE posts SET title =?,author =?,content =? WHERE id LIKE ?");
+            $insertToken->execute(array($post->title, $post->author, $post->content, $post->id));
 
             return true;
         } else {

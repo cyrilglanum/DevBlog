@@ -33,13 +33,8 @@ class IndexController extends BaseRepository
     public function contact(Request $request)
     {
          ob_start();
-        //retrouver les données avec postrepo
-        $repo = new PostRepository();
-        //récupération des posts
-        $posts = $repo->findAll();
         $name = $request->attributes->get('name');
-        $user = new User();
-        include __DIR__ . '/../pages/contact.php';
+        include __DIR__ . '/../pages/contactus.php';
         return new Response(ob_get_clean());
 
     }

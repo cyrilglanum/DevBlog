@@ -24,14 +24,11 @@ require $dir . 'src/pages/partials/header.php';
             foreach ($posts as $post){
                 ?>
                 <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class=" <?= $post->icon ?>  fa-stack-1x fa-inverse"></i></span>
                     <br><h4 class="my-3"> <?= $post->title ?> </h4>
                     <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                     <img src ="../public/images/post/<?= $post->photo ?>">
+                     <img width="100%" src ="../public/images/post/<?= $post->photo ?>">
                     <?php } else { ?>
-                     <img src ="../../public/images/post/<?= $post->photo ?>">
+                     <img width="100%" src ="../../public/images/post/<?= $post->photo ?>">
                 <?php } ?>
 
                     <br><?= $post->content ?>

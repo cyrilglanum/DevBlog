@@ -36,7 +36,7 @@ class PostController extends BaseRepository
     public function postForm(Request $request)
     {
         $title = htmlspecialchars($request->request->get('title'));
-        $icon = htmlspecialchars($request->request->get('icon'));
+//        $icon = htmlspecialchars($request->request->get('icon'));
         $author = htmlspecialchars($request->request->get('author'));
         $content = htmlspecialchars($request->request->get('content'));
 
@@ -53,7 +53,7 @@ class PostController extends BaseRepository
         $repo = new PostRepository();
         $postToSave = new Post([
             'title' => $title,
-            'icon' => $icon,
+//            'icon' => $icon,
             'author' => $author,
             'content' => $content,
             'photo' => basename($_FILES['file']['name']),
@@ -166,7 +166,7 @@ class PostController extends BaseRepository
         $post = new Post([
             'id' => $request->request->get('id'),
             'title' => $request->request->get('title'),
-            'icon' => $request->request->get('icon'),
+//            'icon' => $request->request->get('icon'),
             'author' => $request->request->get('author'),
             'content' => $request->request->get('content'),
             'photo' => basename($_FILES['file']['name']),

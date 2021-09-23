@@ -15,10 +15,11 @@ require __DIR__ . '/partials/header.php';
                     <br><h4 class="my-3"> <?= $post['title'] ?> </h4>
                     <img src="../../public/images/post/<?= $post['photo'] ?>">
                     <br>
-
                     <fieldset style=" max-width: 60%">
                         <?= $post['content'] ?>
                     </fieldset>
+                    <br>
+                    Posté le <?= $post['post_date'] ?>
                     <br><a href="../comment-post/<?= $post['id'] ?>">Commenter le post</a></div>
                 <div class="col-md-6">
                     <?php

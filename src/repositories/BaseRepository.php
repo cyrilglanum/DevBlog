@@ -2,7 +2,6 @@
 
 namespace App\repositories;
 
-use App\models\User;
 use PDO;
 use PHPUnit\Util\Exception;
 

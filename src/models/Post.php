@@ -11,7 +11,6 @@ class Post
     public $title;
     public $author;
     public $content;
-    public $icon;
     public $photo;
 
     public function __construct($value = array())
@@ -50,10 +49,10 @@ class Post
         $this->content = $content;
     }
 
-    public function setIcon($icon)
-    {
-        $this->icon = $icon;
-    }
+//    public function setIcon($icon)
+//    {
+//        $this->icon = $icon;
+//    }
 
     public function setPost_date($date)
     {
