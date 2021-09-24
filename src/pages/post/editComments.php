@@ -6,38 +6,38 @@ require $dir . 'src/pages/partials/header.php';
 ?>
 
 <!-- Masthead-->
-<header class="masthead" id="home">
+<header class="masthead" id="home" style="padding-bottom: 80px!important;padding-top:80px">
     <div class="container">
-        <div class="masthead-subheading">Edition DE POST</div>
-        <!--        <div class="masthead-heading text-uppercase">DevBlog, l'informatique au quotidien !</div>-->
+        Edition de commentaires
     </div>
 </header>
 
 <!-- Body-->
 <div class="container pt-3">
-        <div class="row align-items-stretch mb-5">
-            <div class="col-md-6">
-                <div class="form-group">
+    <div class="row align-items-stretch mb-5">
+        <div class="col-md-6">
+            <div class="form-group">
 
-                    <?php foreach ($comments as $comment){?>
-                      <?= $comment->id?><br>
-                      <?= $comment->content?><br>
-                      <?= $comment->author?><br>
-                        <a href="deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer commentaire</a><br>
+                <?php if(!$comments){
+                ?>
+                    <h3>Il n'y a pas de commentaires sur ce post.</h3>
+                    <a href="../blogSpace?email=<?= $_SESSION['email'] ?>">Retour au blogspace</a>
                     <?php }
-                    ?>
+                foreach ($comments as $comment) { ?>
+                    <?= $comment->id ?><br>
+                    <?= $comment->content ?><br>
+                    <?= $comment->author ?><br>
+                    <a href="deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer commentaire</a>
+                    <br>
+                <?php }
+                ?>
 
-                </div>
-            </div>
-            <div class="col-md-6">
-
-                </div>
             </div>
         </div>
-        <div class="text-center">
-            <div id="success"></div>
-            <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Modifier le Post</button>
+        <div class="col-md-6">
+
         </div>
+    </div>
 </div>
 
 

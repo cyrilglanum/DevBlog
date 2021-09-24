@@ -1,8 +1,15 @@
 <?php
-require __DIR__ . '/partials/header.php';
+$dir = strrpos(__DIR__, 'src');
+$dir = substr(__DIR__, 0, $dir);
+
+require $dir . 'src/pages/partials/header.php';
 ?>
-    <header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px"
-            xmlns="http://www.w3.org/1999/html">
+
+    <!-- Masthead-->
+    <header class="masthead" id="home" style="padding-bottom: 80px!important;padding-top:80px">
+        <div class="container">
+            Edition de commentaires
+        </div>
     </header>
     <section>
         <?php if (!$post){
@@ -20,19 +27,28 @@ require __DIR__ . '/partials/header.php';
                     </fieldset>
                     <br>
                     Posté le <?= $post['post_date'] ?>
+                    <?php
+                    if (isset($_SESSION['email'])){
+                    if ($_SESSION['email'] != null){ ?>
                     <br><a href="../comment-post/<?= $post['id'] ?>">Commenter le post</a></div>
+                <?php
+                }
+                } ?>
                 <div class="col-md-6">
                     <?php
                     foreach ($comments as $comment) {
                         ?>
                         <?= $comment->content ?><br>
                         <?php
-                        if($comment->author != null){?>
-                        <em style="font-size: smaller">Ecrit par
-                        <?= $comment->author;} ?>
-                        <?php if($comment->created_at!= null){?>
-                        le
-                        <?= $comment->created_at;}  ?><br></em>
+                        if ($comment->author != null) {
+                            ?>
+                            <em style="font-size: smaller">Ecrit par
+                            <?= $comment->author;
+                        } ?>
+                        <?php if ($comment->created_at != null) { ?>
+                            le
+                            <?= $comment->created_at;
+                        } ?><br></em>
                         <hr>
                         <?php
                     }

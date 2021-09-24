@@ -5,7 +5,7 @@ $dir = substr(__DIR__, 0, $dir);
 require $dir . 'src/pages/partials/header.php';
 ?>
 <!-- Masthead-->
-<header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px">
+<header class="masthead" id="home" style="padding-bottom: 80px!important;padding-top:80px">
     <div class="container">
     </div>
 </header>
@@ -54,7 +54,19 @@ require $dir . 'src/pages/partials/header.php';
                     <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    ...
+                    <?php
+                    foreach ($messages as $message) {
+                        ?>
+
+                       Nom du contact : <?= $message->name ?><br>
+                       Email : <?= $message->email ?><br>
+                        Objet du message : <?= $message->subject ?><br>
+                        <?= $message->message ?><br>
+                        <?= $message->statut ?><br>
+                        <hr>
+
+                    <?php }
+                    ?>
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
 
@@ -67,11 +79,11 @@ require $dir . 'src/pages/partials/header.php';
 
                     </form>
                     <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                    <img src="../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
-                    </li><?php } else { ?>
-                    <img src="../../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
-                <?php } ?>
-<!--                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>-->
+                        <img src="../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
+                        </li><?php } else { ?>
+                        <img src="../../public/images/<?= $picture ?>" alt="..." class="img-thumbnail"></a>
+                    <?php } ?>
+                    <!--                    <img src="../src/assets/img/about/1.jpg" alt="..." class="img-thumbnail"></a>-->
 
                 </div>
             </div>

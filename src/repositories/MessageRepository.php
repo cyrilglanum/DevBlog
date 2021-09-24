@@ -47,6 +47,6 @@ class MessageRepository extends BaseRepository implements RepositoryInterface
 
     public function findAll()
     {
-        // TODO: Implement findAll() method.
+
     }
 }

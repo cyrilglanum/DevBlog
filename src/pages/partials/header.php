@@ -96,12 +96,12 @@ if (isset($_SESSION['email'])) {
                                      class="img-thumbnail"></a>
                             <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                                 <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
-                                <a class="dropdown-item" href="./index.php/profil">Profil</a>
+                                <a class="dropdown-item" href="./index.php/profil<?= $_SESSION['email']?>">Profil</a>
                                 <a class="dropdown-item"
                                href="./index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                            <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
                     <a class="dropdown-item" href="../../index.php/blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
-                                <a class="dropdown-item" href="../../index.php/profil">Profil</a>
+                                <a class="dropdown-item" href="../../index.php/profil?email=<?= $_SESSION['email']?>">Profil</a>
                                 <a class="dropdown-item" href="../../index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                     <?php
                     }else { ?>
@@ -118,9 +118,13 @@ if (isset($_SESSION['email'])) {
                     <li class="nav-item"><a class="nav-link" href="./index.php/inscription">Inscription</a></li>
 
                     <?php
-                } else { ?>
-                    <li class="nav-item"><a class="nav-link" href="./login">Connexion</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./inscription">Inscription</a></li>
+                } elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php/login">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php/inscription">Inscription</a></li>
+                    <?php
+                }else { ?>
+                    <li class="nav-item"><a class="nav-link" href="./index.php/login">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.php/inscription">Inscription</a></li>
                 <?php } ?>
 
                 <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>

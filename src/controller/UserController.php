@@ -2,9 +2,11 @@
 
 namespace App\controller;
 
+use App\models\Message;
 use App\models\Post;
 use App\models\User;
 use App\repositories\BaseRepository;
+use App\repositories\MessageRepository;
 use App\repositories\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +16,13 @@ class UserController extends BaseRepository
     public function profil(Request $request)
     {
         ob_start();
-        include __DIR__ . '/../pages/Profil/profil.php';
         $userRepo = new UserRepository();
-        $user = $userRepo->searchUserByMail($_SESSION['email']);
+        $user = $userRepo->searchUserByMail($request->query->get('email'));
         //nom de l'image = id + nom de l'image pour ne pas effacer les images des autres.
         $picture = $user[0]->id. $user[0]->picture;
+        $messageRepo = new MessageRepository();
+        $messages = $messageRepo->findByTable('*', 'messages', Message::class);
+        include __DIR__ . '/../pages/Profil/profil.php';
         return new Response(ob_get_clean());
     }
 
