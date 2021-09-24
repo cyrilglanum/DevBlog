@@ -107,6 +107,10 @@ $routes->add('deletePost', new Route('/deletePost/{id}',[
     '_controller' => 'App\controller\AdminController::deletePost'
 ]));
 
+$routes->add('deleteComm', new Route('/edit-comments/deleteComm/{id}',[
+    '_controller' => 'App\controller\CommentController::deleteComm'
+]));
+
 //$routes->add('test', new Route('/test',[
 //    '_controller' => 'App\controller\PageController::test'
 //]));

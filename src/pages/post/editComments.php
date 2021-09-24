@@ -23,20 +23,13 @@ require $dir . 'src/pages/partials/header.php';
                       <?= $comment->id?><br>
                       <?= $comment->content?><br>
                       <?= $comment->author?><br>
-                        <a href="deleteComm/<?= $comment->id ?>">Supprimer commentaire</a><br>
+                        <a href="deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer commentaire</a><br>
                     <?php }
                     ?>
 
                 </div>
             </div>
             <div class="col-md-6">
-<!--            --><?php
-//            if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-<!--                     <img src ="../public/images/post/--><?//= $postToEdit['photo'] ?><!--">-->
-<!--                    --><?php //} else { ?>
-<!--                      <img src ="../../public/images/post/--><?//= $postToEdit['photo'] ?><!--">-->
-<!--                --><?php //} ?>
-
 
                 </div>
             </div>

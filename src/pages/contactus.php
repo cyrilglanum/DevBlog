@@ -126,32 +126,6 @@ require __DIR__ . '/partials/header.php';
             <div class="col-lg-4 text-lg-end">
                 <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
                 <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-
-                <!--                --><?php
-                //                $userRepo = new UserRepository();
-                //                $user = $userRepo->searchUserByMail($_SESSION['email']);
-                //
-                //                if ($user[0]->role_id == 10) {
-                //                    if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                <!--                        <li class="nav-item"><a class="nav-link"-->
-                <!--                                                href="./index.php/admin?email=-->
-                <? //= $_SESSION['email'] ?><!--">Espace-->
-                <!--                                admin</a></li>-->
-                <!--                    --><?php //} elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
-                //                        ?>
-                <!--                        <li class="nav-item"><a class="nav-link"-->
-                <!--                                                href="../../index.php/admin?email=-->
-                <? //= $_SESSION['email'] ?><!--">Espace-->
-                <!--                                admin</a></li>-->
-                <!--                        --><?php
-                //                    } else { ?>
-                <!--                        <a class="link-dark text-decoration-none" href="./admin?email=-->
-                <? //= $_SESSION['email'] ?><!--">Espace-->
-                <!--                            admin</a>-->
-                <!--                    --><?php //} ?>
-                <!--                --><?php //} ?>
-
-
             </div>
         </div>
     </div>
