@@ -38,7 +38,7 @@ class PostRepository extends BaseRepository implements RepositoryInterface
     public function findAll()
     {
         $db = $this->db;
-        $req = $db->prepare("SELECT * FROM posts ORDER BY id ASC");
+        $req = $db->prepare("SELECT * FROM posts ORDER BY id DESC");
         $req->execute();
         $posts = $req->fetchAll(PDO::FETCH_CLASS, Post::class);
 

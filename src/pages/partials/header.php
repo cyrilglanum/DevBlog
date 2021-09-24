@@ -54,7 +54,7 @@ if (isset($_SESSION['email'])) {
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 50px;">
     <div class="container">
         <!--                TODO LOGO-->
-        <!--                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>-->
+                        <img src="../../src/assets/img/logos/logo.png" alt="..."  style="width: 100px"/>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu

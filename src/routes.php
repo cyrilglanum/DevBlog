@@ -64,11 +64,11 @@ $routes->add('showCommentsByPostId', new Route('/edit-comments/{id}', [
 ]));
 
 $routes->add('commentPost', new Route('/comment-post/{id}', [
-    '_controller' => 'App\controller\PostController::commentPost'
+    '_controller' => 'App\controller\CommentController::commentPost'
 ]));
 
 $routes->add('addComment', new Route('/addComment', [
-    '_controller' => 'App\controller\PostController::addComment'
+    '_controller' => 'App\controller\CommentController::addComment'
 ]));
 
 $routes->add('editPostValidation', new Route('editPostValidation', [

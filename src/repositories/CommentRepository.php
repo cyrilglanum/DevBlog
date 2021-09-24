@@ -52,7 +52,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     public function findAll()
     {
         $db = $this->db;
-        $req = $db->prepare("SELECT * FROM comments");
+        $req = $db->prepare("SELECT * FROM comments WHERE valid = 1");
         $req->execute();
         $users = $req->fetchAll();
 
@@ -103,17 +103,16 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
 
     public function addComment($postId, $comment,$author)
     {
-
         $created_at = date("Y-m-d H:i:s");
-        $insertmbr = $this->db->prepare("INSERT INTO comments (post_id, content,author,created_at) VALUES(?,?,?,?)");
-        $insertmbr->execute(array($postId, $comment,$author,$created_at));
+        $insertmbr = $this->db->prepare("INSERT INTO comments (post_id, content,author,created_at, valid) VALUES(?,?,?,?,?)");
+        $insertmbr->execute(array($postId, $comment,$author,$created_at,'1'));
     }
 
 
 #endregion
     public function withComments($id)
     {
-        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id = ? ORDER BY id DESC");
+        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id = ? AND valid = 1 ORDER BY id DESC");
         $req->execute(array($id));
         $comments = $req->fetchAll(PDO::FETCH_CLASS, Comment::class);
 

@@ -14,6 +14,28 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends BaseRepository
 {
 
+    public function commentPost(Request $request)
+    {
+        ob_start();
+        $repo = new PostRepository();
+        $post = $repo->findById('*', 'posts', $request->attributes->get('id'));
+        include __DIR__ . '../../pages/commentPost.php';
+        return new Response(ob_get_clean());
+    }
+
+    public function addComment(Request $request)
+    {
+        ob_start();
+        $email = $request->request->get('email');
+        $commentRepo = new CommentRepository();
+        $postId = $request->request->get('postId');
+        $comment = $request->request->get('content');
+        $commentRepo->addComment($postId, $comment,$email);
+        include __DIR__ . '../../pages/validation/historyBack2x.php';
+
+        return new Response(ob_get_clean());
+    }
+
     public function showCommentsByPostId(Request $request)
     {
         $repo = new UserRepository();
