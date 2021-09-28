@@ -59,7 +59,7 @@ class IndexController extends BaseRepository
 
         $repo = new MessageRepository();
         $repo->saveMessage($messageToSave);
-
+mail('cyril@glanum.com', 'test', 'test');
         $mail = new PHPMailer(true);
         try {
             //Server settings

@@ -1,7 +1,7 @@
 <?php
 
 use App\repositories\UserRepository;
-
+echo shell_exec('pwd');
 require __DIR__ . '/partials/header.php';
 ?>
 
@@ -12,7 +12,7 @@ require __DIR__ . '/partials/header.php';
         <section class="mb-4">
 
             <!--Section heading-->
-            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+            <h2 class="h1-responsive font-weight-bold text-center my-4 col-9">Contactez nous</h2>
 
             <div class="row">
 
@@ -25,18 +25,18 @@ require __DIR__ . '/partials/header.php';
 
                             <!--Grid column-->
                             <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="name" name="name" class="form-control">
+                                <div class="md-form mb-3 pb-3">
                                     <label for="name" class="">Your name</label>
+                                    <input type="text" id="name" name="name" class="form-control">
                                 </div>
                             </div>
                             <!--Grid column-->
 
                             <!--Grid column-->
                             <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="email" name="email" class="form-control">
+                                <div class="md-form mb-3 pb-3">
                                     <label for="email" class="">Your email</label>
+                                    <input type="text" id="email" name="email" class="form-control">
                                 </div>
                             </div>
                             <!--Grid column-->
@@ -47,9 +47,9 @@ require __DIR__ . '/partials/header.php';
                         <!--Grid row-->
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="subject" name="subject" class="form-control">
+                                <div class="md-form mb-3 pb-3">
                                     <label for="subject" class="">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -62,15 +62,23 @@ require __DIR__ . '/partials/header.php';
                             <div class="col-md-12">
 
                                 <div class="md-form">
+                                    <label for="message">Your message</label>
                                     <textarea type="text" id="message" name="message" rows="2"
                                               class="form-control md-textarea"></textarea>
-                                    <label for="message">Your message</label>
                                 </div>
 
                             </div>
                         </div>
                         <!--Grid row-->
+<div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-3 pb-3">
+                                    <label for="subject" class="">Anti-bot</label>
 
+                                    <input type="text" id="antibot" name="antibot" class="form-control" placeholder="Ecrivez 'antibot'">
+                                </div>
+                            </div>
+                        </div>
                     </form>
 
                     <div class="text-center text-md-left">
