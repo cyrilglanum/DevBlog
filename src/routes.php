@@ -42,6 +42,10 @@ $routes->add('profil', new Route('/profil',[
     '_controller' => 'App\controller\UserController::profil'
 ]));
 
+$routes->add('cv', new Route('/Profil/cv',[
+    '_controller' => 'App\controller\UserController::cv'
+]));
+
 $routes->add('savePicture', new Route('/savePicture',[
     '_controller' => 'App\controller\UserController::savePicture'
 ]));

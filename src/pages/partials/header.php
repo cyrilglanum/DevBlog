@@ -28,8 +28,6 @@ if (isset($_SESSION['email'])) {
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>Le blog du dev</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -53,7 +51,6 @@ if (isset($_SESSION['email'])) {
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 50px;">
     <div class="container">
-        <!--                TODO LOGO-->
                         <img src="../../src/assets/img/logos/logo.png" alt="..."  style="width: 100px"/>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,8 +69,6 @@ if (isset($_SESSION['email'])) {
                 } else {
                     ?><li class="nav-item"><a class="nav-link" href="./home">Home</a></li><?php
                 } ?>
-                <!--                <li class="nav-item"><a class="nav-link" href="#services">Sujets</a></li>-->
-                <!--                <li class="nav-item"><a class="nav-link" href="#portfolio">Blog</a></li>-->
                 <?php if (isset($_SESSION['email'])) { ?>
                     <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                         <li class="nav-item"><a class="nav-link" href="./index.php/add-post">Ajout d'un post</a></li>
@@ -89,10 +84,8 @@ if (isset($_SESSION['email'])) {
                             Mon compte
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <!--                            <a href="./profil"><img src="../../src/assets/img/about/1.jpg" alt="..."-->
-                            <!--                                                    class="img-thumbnail"></a>-->
                             <a href="./profil">
-                                <img src="<?= '../../public/images' . DIRECTORY_SEPARATOR . $picture; ?>" alt="..."
+                                <img src="<?= '../../public/images' . DIRECTORY_SEPARATOR . $picture; ?>"
                                      class="img-thumbnail"></a>
                             <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                                 <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
@@ -106,7 +99,7 @@ if (isset($_SESSION['email'])) {
                     <?php
                     }else { ?>
                                 <a class="dropdown-item" href="./blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
-                                <a class="dropdown-item" href="./profil">Profil</a>
+                                <a class="dropdown-item" href="./profil?email=<?= $_SESSION['email']?>">Profil</a>
                                 <a class="dropdown-item"
                                href="./deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                             <?php } ?>

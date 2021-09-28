@@ -28,7 +28,7 @@ require __DIR__ . '/partials/header.php';
                 <!-- Portfolio item 1-->
                 <div class="portfolio-item" style="display: flex;flex-direction: column;justify-content: center;
                 align-items: center;background-color: white;padding-top: 2vh">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal<?= $post->id ?>">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div><?php if ($post->photo != null) { ?>
@@ -37,7 +37,7 @@ require __DIR__ . '/partials/header.php';
                                 src="../public/images/post/<?= $post->photo ?>"
                             <?php } else { ?>
                                 src="../../public/images/post/<?= $post->photo ?>"
-                            <?php } ?> alt="..."/><?php } ?>
+                            <?php } ?> /><?php } ?>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading"><?= $post->title ?></div>
@@ -71,8 +71,8 @@ require __DIR__ . '/partials/header.php';
         <ul class="timeline">
             <li>
                 <div class=""><img class="rounded-circle img-fluid"
-                                                 src="../../src/assets/img/about/sport.png"
-                                                 alt="..."/></div>
+                                   src="../../src/assets/img/about/sport.png"
+                                   alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4>2009-2019</h4>
@@ -95,9 +95,10 @@ require __DIR__ . '/partials/header.php';
                         <h4>2019</h4>
                         <h4 class="subheading">Reconversion</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">En plus des études effectuées durant mes années sportives,
-                        je me suis reconverti dans l'informatique.
-                        J'ai effectué des formations pour avoir des opportunités.</p></div>
+                    <div class="timeline-body"><p class="text-muted">En plus des études effectuées durant mes années
+                            sportives,
+                            je me suis reconverti dans l'informatique.
+                            J'ai effectué des formations pour avoir des opportunités.</p></div>
                 </div>
             </li>
             <li>
@@ -109,7 +110,8 @@ require __DIR__ . '/partials/header.php';
                         <h4>2020</h4>
                         <h4 class="subheading">Transition en apprentissage</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Et ensuite j'ai trouvé une entreprise qui a su me donner ma chance...</p></div>
+                    <div class="timeline-body"><p class="text-muted">Et ensuite j'ai trouvé une entreprise qui a su me
+                            donner ma chance...</p></div>
                 </div>
             </li>
             <li class="timeline-inverted">
@@ -121,8 +123,9 @@ require __DIR__ . '/partials/header.php';
                         <h4>July 2021</h4>
                         <h4 class="subheading">Phase de progression</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Tout mon parcours m'a permis d'avoir la force et l'envie de trouver ma voie professionnelle.
-                        Je suis heureux de vous présenter donc ce pourquoi je me lève chaque matin.</p></div>
+                    <div class="timeline-body"><p class="text-muted">Tout mon parcours m'a permis d'avoir la force et
+                            l'envie de trouver ma voie professionnelle.
+                            Je suis heureux de vous présenter donc ce pourquoi je me lève chaque matin.</p></div>
                 </div>
             </li>
             <li class="timeline-inverted">
@@ -154,24 +157,40 @@ require __DIR__ . '/partials/header.php';
                     <img class="mx-auto rounded-circle" src="../../src/assets/img/team/Profil.jpg" alt="..."/>
                     <h4>Cyril Guittet</h4>
                     <p class="text-muted">Développeur web</p>
-                    <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/?lang=fr"><i
-                                class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="./Profil/cv">CV</a>
                     <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/cyriil.guittet"><i
                                 class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="https://fr.linkedin.com/"><i
                                 class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4">
 
-            </div>
-        </div>
-        <div class="row">
             <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Développeur web au sein d'une agence
                     multimédia, j'apprends et retranscrit les technologies
                     sur ce site à base de blog posts pour partager ma connaissance .</p></div>
         </div>
+        <div class="col-lg-12">
+            <p onclick="hide()">Voir mon CV</p>
+            <div class="cv d-none">
+                <embed src=../../src/assets/cv.pdf width=1000 height=800 type='application/pdf'/>
+            </div>
+        </div>
     </div>
+    <script>
+
+        function hide() {
+            let cv = document.getElementsByClassName("cv");
+            alert("Evènement de click détecté");
+            console.log(cv.style)
+// document.getElementsByClassName('cv').
+            if (cv.style.display === "d-none") {
+                cv.style.display = "block";
+            } else {
+                cv.style.display = "d-none";
+            }
+        }
+
+    </script>
 </section>
 
 <!-- Contact-->
@@ -205,7 +224,7 @@ require __DIR__ . '/partials/header.php';
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-4 text-lg-start">
-                Copyright &copy; Your Website
+                Copyright &copy; DevBlog
                 <script>
                     document.write(new Date().getFullYear());
                 </script>
@@ -258,47 +277,98 @@ require __DIR__ . '/partials/header.php';
         </div>
     </div>
 </footer>
-<!-- Portfolio item 1 modal popup-->
-<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
-                                                                  alt="Close modal"/>
-            </div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="modal-body">
-                            <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/1.jpg"
-                                 alt="..."/>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Threads
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Illustration
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-times me-1"></i>
-                                Close Project
-                            </button>
+
+<?php
+
+foreach ($posts as $post) {
+    ?>
+    <!-- Portfolio item 1 modal popup-->
+    <div class="portfolio-modal modal fade" id="portfolioModal<?= $post->id ?>" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"
+                                                                      alt="Close modal"/>
+                </div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                <!-- Project details-->
+                                <h2 class="text-uppercase"><?= $post->title ?></h2>
+                                <p class="item-intro text-muted"><?= $post->author ?></p>
+                                <img class="img-fluid d-block mx-auto"
+                                     src="../../public/images/post/<?= $post->photo ?>"
+                                     />
+                                <p><?= $post->content ?></p>
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Category:</strong>
+                                        <!--                                    --><?//= $post->category
+                                        ?>
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                        type="button">
+                                    <i class="fas fa-times me-1"></i>
+                                    Fermer le Post
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <?php
+}
+
+
+?>
+
+
+<!--<!-- Portfolio item 1 modal popup-->-->
+<!--<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="close-modal" data-bs-dismiss="modal"><img src="../../src/assets/img/close-icon.svg"-->
+<!--                                                                  alt="Close modal"/>-->
+<!--            </div>-->
+<!--            <div class="container">-->
+<!--                <div class="row justify-content-center">-->
+<!--                    <div class="col-lg-8">-->
+<!--                        <div class="modal-body">-->
+<!--                            <!-- Project details-->-->
+<!--                            <h2 class="text-uppercase">Project Name</h2>-->
+<!--                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>-->
+<!--                            <img class="img-fluid d-block mx-auto" src="../../src/assets/img/portfolio/1.jpg"-->
+<!--                                 alt="..."/>-->
+<!--                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur-->
+<!--                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt-->
+<!--                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,-->
+<!--                                nostrum, reiciendis facere nemo!</p>-->
+<!--                            <ul class="list-inline">-->
+<!--                                <li>-->
+<!--                                    <strong>Client:</strong>-->
+<!--                                    Threads-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <strong>Category:</strong>-->
+<!--                                    Illustration-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">-->
+<!--                                <i class="fas fa-times me-1"></i>-->
+<!--                                Close Project-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

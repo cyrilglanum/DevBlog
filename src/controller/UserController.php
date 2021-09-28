@@ -26,6 +26,14 @@ class UserController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
+
+    public function cv()
+    {
+        ob_start();
+        include __DIR__ . '/../pages/Profil/cv.php';
+        return new Response(ob_get_clean());
+    }
+
     public function savePicture(Request $request)
     {
         ob_start();
