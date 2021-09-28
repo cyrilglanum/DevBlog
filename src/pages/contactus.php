@@ -1,7 +1,4 @@
 <?php
-
-use App\repositories\UserRepository;
-echo shell_exec('pwd');
 require __DIR__ . '/partials/header.php';
 ?>
 
