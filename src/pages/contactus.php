@@ -1,7 +1,4 @@
 <?php
-
-use App\repositories\UserRepository;
-
 require __DIR__ . '/partials/header.php';
 ?>
 
@@ -61,7 +58,7 @@ require __DIR__ . '/partials/header.php';
                             <!--Grid column-->
                             <div class="col-md-12">
 
-                                <div class="md-form ">
+                                <div class="md-form">
                                     <label for="message">Your message</label>
                                     <textarea type="text" id="message" name="message" rows="2"
                                               class="form-control md-textarea"></textarea>
