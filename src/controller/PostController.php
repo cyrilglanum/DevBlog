@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PostController extends BaseRepository
 {
 
-    public function postById(Request $request)
+    public function postById(Request $request):Response
     {
         ob_start();
         $id = $request->attributes->get('id');
@@ -26,7 +26,7 @@ class PostController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function addPost(Request $request)
+    public function addPost(Request $request):Response
     {
         ob_start();
         include __DIR__ . '/../pages/add-post.php';
@@ -69,7 +69,7 @@ class PostController extends BaseRepository
 
     }
 
-    public function blogSpace(Request $request)
+    public function blogSpace(Request $request):Response
     {
         ob_start();
         $user = $request->query->get('email');
@@ -88,7 +88,7 @@ class PostController extends BaseRepository
         }
     }
 
-    public function deletePostById(Request $request)
+    public function deletePostById(Request $request):Response
     {
         ob_start();
         $idPostToDelete = $request->attributes->get('id');
@@ -107,7 +107,7 @@ class PostController extends BaseRepository
         }
     }
 
-    public function editPostById(Request $request)
+    public function editPostById(Request $request):Response
     {
         ob_start();
         $idPostToEdit = $request->attributes->get('id');
@@ -126,16 +126,16 @@ class PostController extends BaseRepository
         }
     }
 
-    public function commentPost(Request $request)
+    public function commentPost(Request $request):Response
     {
         ob_start();
         $repo = new PostRepository();
-        $post = $repo->findById('*', 'posts', $request->attributes->get('id'));
+        $post = $repo->selectByTableById('*', 'posts', $request->attributes->get('id'));
         include __DIR__ . '../../pages/commentPost.php';
         return new Response(ob_get_clean());
     }
 
-    public function addComment(Request $request)
+    public function addComment(Request $request):Response
     {
         ob_start();
         $email = $request->request->get('email');
@@ -148,7 +148,7 @@ class PostController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function editPostValidation(Request $request)
+    public function editPostValidation(Request $request):Response
     {
         $uploaddir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR;
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);

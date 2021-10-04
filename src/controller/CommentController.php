@@ -2,8 +2,6 @@
 
 namespace App\controller;
 
-use App\models\Comment;
-use App\models\Post;
 use App\repositories\BaseRepository;
 use App\repositories\CommentRepository;
 use App\repositories\PostRepository;
@@ -14,16 +12,16 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends BaseRepository
 {
 
-    public function commentPost(Request $request)
+    public function commentPost(Request $request):Response
     {
         ob_start();
         $repo = new PostRepository();
-        $post = $repo->findById('*', 'posts', $request->attributes->get('id'));
+        $post = $repo->selectByTableById('*', 'posts', $request->attributes->get('id'));
         include __DIR__ . '../../pages/commentPost.php';
         return new Response(ob_get_clean());
     }
 
-    public function addComment(Request $request)
+    public function addComment(Request $request):Response
     {
         ob_start();
         $email = htmlspecialchars($request->request->get('email'));
@@ -36,7 +34,7 @@ class CommentController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function showCommentsByPostId(Request $request)
+    public function showCommentsByPostId(Request $request):Response
     {
         $repo = new UserRepository();
         if ($request->query->get('email')) {
@@ -51,7 +49,9 @@ class CommentController extends BaseRepository
                 return new Response(ob_get_clean());
             }
         } else {
+            ob_start();
             include __DIR__ . '/../pages/my403.php';
+            return new Response(ob_get_clean());
         }
     }
 
@@ -72,6 +72,7 @@ class CommentController extends BaseRepository
         } else {
             include __DIR__ . '/../pages/my403.php';
         }
+        return false;
     }
 
 
@@ -85,7 +86,7 @@ class CommentController extends BaseRepository
                 $commentId = $request->get('id');
                 $repo = new CommentRepository();
                 ob_start();
-                $comment = $repo->findById('*', 'comments', $commentId);
+                $comment = $repo->selectByTableById('*', 'comments', $commentId);
                 $repo->remove('comments', $comment['id']);
                 include __DIR__ . '/../pages/validation/redirectHome.php';
                 return new Response(ob_get_clean());
@@ -93,6 +94,7 @@ class CommentController extends BaseRepository
         } else {
             include __DIR__ . '/../pages/my403.php';
         }
+        return false;
     }
 
     public function validComm(Request $request)
@@ -105,7 +107,7 @@ class CommentController extends BaseRepository
                 $commentId = $request->get('id');
                 $repo = new CommentRepository();
                 ob_start();
-                $comment = $repo->findById('*', 'comments', $commentId);
+                $comment = $repo->selectByTableById('*', 'comments', $commentId);
                 $repo->validComm($comment['id']);
                 include __DIR__ . '/../pages/validation/redirectHome.php';
                 return new Response(ob_get_clean());
@@ -113,6 +115,7 @@ class CommentController extends BaseRepository
         } else {
             include __DIR__ . '/../pages/my403.php';
         }
+        return false;
     }
 
 }

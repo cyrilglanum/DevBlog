@@ -3,20 +3,16 @@
 namespace App\controller;
 
 use App\models\Message;
-use App\models\Post;
 use App\models\User;
 use App\repositories\BaseRepository;
 use App\repositories\MessageRepository;
 use App\repositories\PostRepository;
-use Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class IndexController extends BaseRepository
 {
-    public function home(Request $request)
+    public function home(Request $request):Response
     {
         ob_start();
         //retrouver les données avec postrepo
@@ -29,7 +25,7 @@ class IndexController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function contact(Request $request)
+    public function contact(Request $request):Response
     {
         ob_start();
         $name = htmlspecialchars($request->attributes->get('name'));

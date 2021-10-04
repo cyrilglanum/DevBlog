@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ConnexionController extends BaseRepository
 {
-    public function login(Request $request)
+    public function login(Request $request):Response
     {
         ob_start();
         include __DIR__ . '/../pages/Auth/login.php';
@@ -43,7 +43,7 @@ class ConnexionController extends BaseRepository
         return "Vous n'êtes pas là ou vous devriez être :o !";
     }
 
-    public function loginError(Request $request)
+    public function loginError(Request $request):Response
     {
         ob_start();
         include __DIR__ . '/../pages/Auth/loginError.php';
@@ -51,7 +51,7 @@ class ConnexionController extends BaseRepository
     }
 
 
-    public function inscription(Request $request)
+    public function inscription(Request $request):Response
     {
         ob_start();
         include __DIR__ . '/../pages/Auth/inscription.php';
@@ -86,7 +86,7 @@ class ConnexionController extends BaseRepository
         header("Location: ../login");
     }
 
-    public function deconnexion($email,Request $request)
+    public function deconnexion($email,Request $request):Response
     {
         ob_start();
         $repo = new UserRepository();
