@@ -8,7 +8,6 @@ require $dir . 'src/pages/partials/header.php';
     <!-- Masthead-->
     <header class="masthead" id="home" style="padding-bottom: 80px!important;padding-top:80px">
         <div class="container">
-            Edition de commentaires
         </div>
     </header>
     <section>
@@ -17,12 +16,12 @@ require $dir . 'src/pages/partials/header.php';
         }else{ ?>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h1 class="pt-5">Post <?= $post['id'] ?></h1>
                     <br><h4 class="my-3"> <?= $post['title'] ?> </h4>
-                    <img src="../../public/images/post/<?= $post['photo'] ?>">
+                    <img src="../../public/images/post/<?= $post['photo'] ?>" style="width: 60%">
                     <br>
-                    <fieldset style=" max-width: 60%">
+                    <fieldset style=" max-width: 60%" class="pt-3">
                         <?= $post['content'] ?>
                     </fieldset>
                     <br>
