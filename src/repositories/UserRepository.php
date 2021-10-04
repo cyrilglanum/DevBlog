@@ -15,16 +15,6 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     }
 
     #region méthodes
-    public function selectByTable($columns, $table, $classe)
-    {
-        return parent::findByTable($columns, $table, $classe);
-    }
-
-    public function selectByTableById($columns, $table, $id)
-    {
-        return parent::findById($columns, $table, $id);
-    }
-
 
     public function saveUser(User $user)
     {
@@ -43,7 +33,6 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     public function remove($table, $id)
     {
         return parent::remove($table, $id);
-
     }
     #endregion
 
@@ -63,6 +52,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $req = $this->db->prepare("SELECT * FROM users WHERE id LIKE '$id'");
         $req->execute();
         $user = $req->fetch();
+
         return $user;
     }
 
@@ -71,6 +61,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $reqmail->execute(array($email));
         $mailexist = $reqmail->rowCount();
+
         return $mailexist;
     }
 
@@ -79,6 +70,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+
         return $user;
     }
 
@@ -87,6 +79,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
+
         return $user;
     }
 

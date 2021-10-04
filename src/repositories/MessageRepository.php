@@ -14,16 +14,6 @@ class MessageRepository extends BaseRepository implements RepositoryInterface
     }
 
     #region méthodes
-    public function selectByTable($columns, $table, $classe)
-    {
-        return parent::findByTable($columns, $table, $classe);
-    }
-
-    public function selectByTableById($columns, $table, $id)
-    {
-        return parent::findById($columns, $table, $id);
-    }
-
 
     public function saveMessage(Message $message)
     {

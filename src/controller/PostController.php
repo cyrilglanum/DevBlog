@@ -36,7 +36,6 @@ class PostController extends BaseRepository
     public function postForm(Request $request)
     {
         $title = htmlspecialchars($request->request->get('title'));
-//        $icon = htmlspecialchars($request->request->get('icon'));
         $author = htmlspecialchars($request->request->get('author'));
         $content = htmlspecialchars($request->request->get('content'));
 
@@ -67,6 +66,7 @@ class PostController extends BaseRepository
         } else {
             die();
         }
+
     }
 
     public function blogSpace(Request $request)
