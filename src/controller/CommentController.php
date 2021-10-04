@@ -26,10 +26,10 @@ class CommentController extends BaseRepository
     public function addComment(Request $request)
     {
         ob_start();
-        $email = $request->request->get('email');
+        $email = htmlspecialchars($request->request->get('email'));
         $commentRepo = new CommentRepository();
-        $postId = $request->request->get('postId');
-        $comment = $request->request->get('content');
+        $postId = htmlspecialchars($request->request->get('postId'));
+        $comment = htmlspecialchars($request->request->get('content'));
         $commentRepo->addComment($postId, $comment,$email);
         include __DIR__ . '../../pages/validation/historyBack2x.php';
 
@@ -77,8 +77,6 @@ class CommentController extends BaseRepository
 
     public function deleteComm(Request $request)
     {
-//        dd($request->get('id'));
-
         $repo = new UserRepository();
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));

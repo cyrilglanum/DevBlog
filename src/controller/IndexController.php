@@ -29,16 +29,10 @@ class IndexController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function redirect(Request $request)
-    {
-        dd('hi');
-
-    }
-
     public function contact(Request $request)
     {
         ob_start();
-        $name = $request->attributes->get('name');
+        $name = htmlspecialchars($request->attributes->get('name'));
         include __DIR__ . '/../pages/contactus.php';
         return new Response(ob_get_clean());
     }
@@ -50,10 +44,10 @@ class IndexController extends BaseRepository
         include __DIR__ . '/../pages/my403.php';
         return new Response(ob_get_clean());
         }
-        $name = $request->get('name');
-        $email = $request->get('email');
-        $subject = $request->get('subject');
-        $messageContact = $request->get('message');
+        $name = htmlspecialchars($request->get('name'));
+        $email = htmlspecialchars($request->get('email'));
+        $subject = htmlspecialchars($request->get('subject'));
+        $messageContact = htmlspecialchars($request->get('message'));
 
         $messageToSave = new Message([
             'name' => $name,
@@ -65,7 +59,7 @@ class IndexController extends BaseRepository
         $repo = new MessageRepository();
         $repo->saveMessage($messageToSave);
 
-        mail('cyril@glanum.com', 'test', 'test');
+        mail('cyril@glanum.com', $subject, $messageContact,["From" => "$email"]);
 
         ob_start();
         include __DIR__ . '/../pages/validation/redirectHome.php';

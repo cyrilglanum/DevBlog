@@ -23,7 +23,7 @@ class ConnexionController extends BaseRepository
         session_start();
         ob_start();
         $repo = new UserRepository();
-        $email = $request->request->get('email');
+        $email = htmlspecialchars($request->request->get('email'));
         $password = $request->request->get('password');
         if (!empty($email) and (!empty($password))) {
             $userExist = $repo->searchIfMailExists($email);
