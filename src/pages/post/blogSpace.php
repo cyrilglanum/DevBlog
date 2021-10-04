@@ -16,8 +16,8 @@ require $dir . 'src/pages/partials/header.php';
 
     <div class="container pt-3">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Vos posts</h2>
             <h3 class="section-subheading text-muted">Section administrateur</h3>
+            <h2 class="section-heading text-uppercase">Vos posts</h2>
         </div>
         <div class="row text-center">
 
