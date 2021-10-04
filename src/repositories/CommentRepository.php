@@ -16,36 +16,6 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     }
 
     #region méthodes
-    public function selectByTable($columns, $table, $classe)
-    {
-        return parent::findByTable($columns, $table, $classe);
-    }
-
-    public function selectByTableById($columns, $table, $id)
-    {
-        return parent::findById($columns, $table, $id);
-    }
-
-
-    public function saveComment(Comment $comment)
-    {
-//        $user->actif = 1;
-//        $user->role_id = 1;
-//        $user->password = sha1($user->password);
-//        $date = new \DateTime();
-//        $date->modify('+2 hour');
-//        $date = $date->format('Y-m-d H:i:s');
-//        $insertmbr = $this->db->prepare("INSERT INTO users (email, password,token_session,token_expire,actif,role_id,created_at) VALUES(?,?,?,?,?,?,?)");
-//        $insertmbr->execute(array($user->email, $user->password, $user->token_session, $user->token_expire, $user->actif, $user->role_id, $date));
-
-        return $comment;
-    }
-
-    public function remove($table, $id)
-    {
-        return parent::remove($table, $id);
-
-    }
 
     public function validComm($id)
     {
@@ -53,7 +23,6 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         $req->execute(array(1, $id));
 
         return true;
-
     }
     #endregion
 
@@ -100,6 +69,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
         $reqmail->execute(array($email));
         $mailexist = $reqmail->rowCount();
+
         return $mailexist;
     }
 
@@ -108,6 +78,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, Comment::class);
+
         return $user;
     }
 
@@ -116,6 +87,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, Comment::class);
+
         return $user;
     }
 

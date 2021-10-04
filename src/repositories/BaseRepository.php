@@ -24,7 +24,7 @@ class BaseRepository
         }
     }
 
-    public function findByTable($columns, $table, $classe)
+    public function selectByTable($columns, $table, $classe)
     {
         $req = $this->db->prepare("SELECT $columns FROM $table");
         $req->execute();
@@ -33,7 +33,7 @@ class BaseRepository
         return $users;
     }
 
-    public function findById($columns, $table, $id)
+    public function selectByTableById($columns, $table, $id)
     {
         $req = $this->db->prepare("SELECT $columns FROM $table WHERE id LIKE $id");
         $req->execute();
@@ -44,10 +44,7 @@ class BaseRepository
 
     public function save(Object $data)
     {
-
     }
-
-
 
     public function remove($table, $dataId)
     {

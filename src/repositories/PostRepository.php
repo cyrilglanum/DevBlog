@@ -18,16 +18,6 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return parent::__construct();
     }
 
-    public function selectByTable($columns, $table, $classe)
-    {
-        return parent::findByTable($columns, $table, $classe);
-    }
-
-    public function selectByTableById($columns, $table, $id)
-    {
-        return parent::findById($columns, $table, $id);
-    }
-
     public function find($id)
     {
         $req = $this->db->prepare("SELECT * FROM posts WHERE id LIKE '$id'");
