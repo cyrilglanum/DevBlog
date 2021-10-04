@@ -55,6 +55,25 @@ class CommentController extends BaseRepository
         }
     }
 
+    public function validCommentsByPostId(Request $request)
+    {
+        $repo = new UserRepository();
+        if ($request->query->get('email')) {
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            $role = $user[0]->role_id;
+            if ($role == 10) {
+                $postId = $request->get('id');
+                $repo = new CommentRepository();
+                ob_start();
+                $comments = $repo->findInvalidCommentsByPostId($postId);
+                include __DIR__ . '/../pages/post/validComments.php';
+                return new Response(ob_get_clean());
+            }
+        } else {
+            include __DIR__ . '/../pages/my403.php';
+        }
+    }
+
 
     public function deleteComm(Request $request)
     {
@@ -70,6 +89,26 @@ class CommentController extends BaseRepository
                 ob_start();
                 $comment = $repo->findById('*', 'comments', $commentId);
                 $repo->remove('comments', $comment['id']);
+                include __DIR__ . '/../pages/validation/redirectHome.php';
+                return new Response(ob_get_clean());
+            }
+        } else {
+            include __DIR__ . '/../pages/my403.php';
+        }
+    }
+
+    public function validComm(Request $request)
+    {
+        $repo = new UserRepository();
+        if ($request->query->get('email')) {
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            $role = $user[0]->role_id;
+            if ($role == 10) {
+                $commentId = $request->get('id');
+                $repo = new CommentRepository();
+                ob_start();
+                $comment = $repo->findById('*', 'comments', $commentId);
+                $repo->validComm($comment['id']);
                 include __DIR__ . '/../pages/validation/redirectHome.php';
                 return new Response(ob_get_clean());
             }

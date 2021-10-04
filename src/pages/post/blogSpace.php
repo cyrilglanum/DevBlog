@@ -40,6 +40,7 @@ require $dir . 'src/pages/partials/header.php';
                     <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier le post</a>
                     <br><a href="./edit-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier les
                         commentaires</a>
+                    <br><a href="./valid-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Commentaires à valider </a>
                 </div>
                 <?php
             }

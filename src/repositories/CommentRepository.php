@@ -46,6 +46,15 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         return parent::remove($table, $id);
 
     }
+
+    public function validComm($id)
+    {
+        $req = $this->db->prepare("UPDATE comments SET valid =? WHERE id LIKE ?");
+        $req->execute(array(1, $id));
+
+        return true;
+
+    }
     #endregion
 
     #region méthodes
@@ -70,7 +79,16 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
 
     public function findByPostId($id)
     {
-        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id' ORDER BY id DESC");
+        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id' AND valid LIKE 1 ORDER BY id DESC");
+        $req->execute();
+        $comments = $req->fetchAll(PDO::FETCH_CLASS, Comment::class);
+
+        return $comments;
+    }
+
+    public function findInvalidCommentsByPostId($id)
+    {
+        $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id' AND valid LIKE 0 ORDER BY id DESC");
         $req->execute();
         $comments = $req->fetchAll(PDO::FETCH_CLASS, Comment::class);
 
@@ -101,11 +119,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         return $user;
     }
 
-    public function addComment($postId, $comment,$author)
+    public function addComment($postId, $comment, $author)
     {
         $created_at = date("Y-m-d H:i:s");
         $insertmbr = $this->db->prepare("INSERT INTO comments (post_id, content,author,created_at, valid) VALUES(?,?,?,?,?)");
-        $insertmbr->execute(array($postId, $comment,$author,$created_at,'1'));
+        $insertmbr->execute(array($postId, $comment, $author, $created_at, '0'));
     }
 
 

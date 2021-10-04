@@ -67,6 +67,10 @@ $routes->add('showCommentsByPostId', new Route('/edit-comments/{id}', [
     '_controller' => 'App\controller\CommentController::showCommentsByPostId'
 ]));
 
+$routes->add('validCommentsByPostId', new Route('/valid-comments/{id}', [
+    '_controller' => 'App\controller\CommentController::validCommentsByPostId'
+]));
+
 $routes->add('commentPost', new Route('/comment-post/{id}', [
     '_controller' => 'App\controller\CommentController::commentPost'
 ]));
@@ -113,6 +117,10 @@ $routes->add('deletePost', new Route('/deletePost/{id}',[
 
 $routes->add('deleteComm', new Route('/edit-comments/deleteComm/{id}',[
     '_controller' => 'App\controller\CommentController::deleteComm'
+]));
+
+$routes->add('validComm', new Route('/valid-comments/validate/{id}',[
+    '_controller' => 'App\controller\CommentController::validComm'
 ]));
 
 //$routes->add('test', new Route('/test',[
