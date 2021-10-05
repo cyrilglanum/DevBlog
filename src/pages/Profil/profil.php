@@ -1,14 +1,14 @@
 <?php
 $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
+
+require $dir . 'src/pages/partials/header.php';
 if(!isset($_SESSION['email']) || $_SESSION['email'] == null ){
-    ?> <p>Vous n'avez pas accès à cette page si vous n'êtes pas connectés.</p><br>
-    <p>Veuillez vous connecter ici
+    ?> <p>Vous n'avez pas accès à cette page si vous n'êtes pas connectés.</p><br><br><br>
+    <p style="padding-top: 100px">Veuillez vous connecter ici
         <a href="./login">Connexion</a></p>
     <?php
     }else{
-require $dir . 'src/pages/partials/header.php';
-
 
 
 ?>
