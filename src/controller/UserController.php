@@ -26,7 +26,6 @@ class UserController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-
     public function cv()
     {
         ob_start();
@@ -46,9 +45,6 @@ class UserController extends BaseRepository
         $repo->update("picture", $userToModify[0]->id. basename($_FILES['file']['name']), $userToModify[0]);
         $uploadfile = $uploaddir . $userToModify[0]->id . basename($_FILES['file']['name']);
 
-//            if ($uploaddir . $check != null) {
-//                unlink($uploaddir . $check );
-//            }
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
             echo "Le fichier est valide, et a été téléchargé
            avec succès.\n";
