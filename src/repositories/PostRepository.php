@@ -58,7 +58,7 @@ class PostRepository extends BaseRepository implements RepositoryInterface
     /**
      * Récupérer tous les commentaires valides d'un post.
      *
-     * @return void
+     * @return string
      */
     public function remove($table, $postId)
     {
