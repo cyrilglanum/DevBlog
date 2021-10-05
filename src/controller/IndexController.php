@@ -7,6 +7,7 @@ use App\models\User;
 use App\repositories\BaseRepository;
 use App\repositories\MessageRepository;
 use App\repositories\PostRepository;
+use App\repositories\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -60,6 +61,26 @@ class IndexController extends BaseRepository
         ob_start();
         include __DIR__ . '/../pages/validation/redirectHome.php';
         return new Response(ob_get_clean());
+    }
 
+    public function deleteMessage(Request $request)
+    {
+        $repo = new UserRepository();
+        if ($request->query->get('email')) {
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            $role = $user[0]->role_id;
+            if ($role == 10) {
+                $messageId = $request->get('id');
+                $repo = new MessageRepository();
+                ob_start();
+                $message = $repo->selectByTableById('*', 'messages', $messageId);
+                $repo->remove('messages', $message['id']);
+                include __DIR__ . '/../pages/validation/redirectHome.php';
+                return new Response(ob_get_clean());
+            }
+        } else {
+            include __DIR__ . '/../pages/my403.php';
+        }
+        return false;
     }
 }

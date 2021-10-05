@@ -119,6 +119,10 @@ $routes->add('deleteComm', new Route('/edit-comments/deleteComm/{id}',[
     '_controller' => 'App\controller\CommentController::deleteComm'
 ]));
 
+$routes->add('deleteMessage', new Route('/deleteMessage/{id}',[
+    '_controller' => 'App\controller\IndexController::deleteMessage'
+]));
+
 $routes->add('validComm', new Route('/valid-comments/validate/{id}',[
     '_controller' => 'App\controller\CommentController::validComm'
 ]));
