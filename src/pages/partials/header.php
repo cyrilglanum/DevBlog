@@ -28,6 +28,8 @@ if (isset($_SESSION['email'])) {
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>Le blog du dev</title>
+    <link rel="shortcut icon" href="../../assets/img/logos/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="../../assets/img/logos/favicon-32x32.png"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
