@@ -21,7 +21,7 @@ class UserController extends BaseRepository
         //nom de l'image = id + nom de l'image pour ne pas effacer les images des autres.
         $picture = $user[0]->id. $user[0]->picture;
         $messageRepo = new MessageRepository();
-        $messages = $messageRepo->findByTable('*', 'messages', Message::class);
+        $messages = $messageRepo->selectByTable('*', 'messages', Message::class);
         include __DIR__ . '/../pages/Profil/profil.php';
         return new Response(ob_get_clean());
     }

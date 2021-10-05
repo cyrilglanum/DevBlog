@@ -57,14 +57,12 @@ require $dir . 'src/pages/partials/header.php';
                     <?php
                     foreach ($messages as $message) {
                         ?>
-
                        Nom du contact : <?= $message->name ?><br>
                        Email : <?= $message->email ?><br>
                         Objet du message : <?= $message->subject ?><br>
                         <?= $message->message ?><br>
-                        <?= $message->statut ?><br>
+                        <a href="deleteMessage/<?= $message->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer le message</a>
                         <hr>
-
                     <?php }
                     ?>
                 </div>

@@ -1,13 +1,13 @@
 <?php
 
-require __DIR__ . './partials/header.php';
+//require __DIR__ . './partials/header.php';
 //en ligne
-//require __DIR__ . '/partials/header.php';
+require __DIR__ . '/partials/header.php';
 ?>
 
 
 <!-- Masthead-->
-<header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px">
+<header class="masthead" id="home" style="padding-bottom: 0px">
     <div class="container">
     </div>
 </header>
@@ -35,7 +35,7 @@ require __DIR__ . './partials/header.php';
                 <div class="col-md-3">
                 <a href="./deletePost/' . $post->id . '"<button>Supprimer </button></a></div>
                 <div class="col-md-3">
-                <a href="./voirPost/' . $post->id . '"<button> Voir</button></a>
+                <a href="./Post/' . $post->id . '"<button> Voir</button></a>
                 
                 <br></div>';
         }
