@@ -1,8 +1,16 @@
 <?php
 $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
-
+if(!isset($_SESSION['email']) || $_SESSION['email'] == null ){
+    ?> <p>Vous n'avez pas accès à cette page si vous n'êtes pas connectés.</p><br>
+    <p>Veuillez vous connecter ici
+        <a href="./login">Connexion</a></p>
+    <?php
+    }else{
 require $dir . 'src/pages/partials/header.php';
+
+
+
 ?>
 <!-- Masthead-->
 <header class="masthead" id="home" style="padding-bottom: 80px!important;padding-top:80px">
@@ -94,3 +102,4 @@ require $dir . 'src/pages/partials/header.php';
     }
 
 </style>
+<?php } ?>
