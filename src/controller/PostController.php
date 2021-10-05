@@ -116,7 +116,7 @@ class PostController extends BaseRepository
         $role = $repo->checkRole($user);
         if ($role == true) {
             $postRepo = new PostRepository();
-            $postToEdit = $postRepo->findById('*', 'posts', $idPostToEdit);
+            $postToEdit = $postRepo->selectByTableById('*', 'posts', $idPostToEdit);
             include __DIR__ . '../../pages/validation/editPost.php';
             return new Response(ob_get_clean());
         } else {

@@ -21,12 +21,26 @@ class PostRepository extends BaseRepository implements RepositoryInterface
     /**
      * Récupérer un post par id.
      *
-     * @return void
+     * @return Post
+     */
+    public function findById($id)
+    {
+        $req = $this->db->prepare("SELECT * FROM posts WHERE id LIKE '$id'");
+        $req->execute();
+
+        return $req->fetch();
+    }
+
+    /**
+     * Récupérer un post par id.
+     *
+     * @return Post
      */
     public function find($id)
     {
         $req = $this->db->prepare("SELECT * FROM posts WHERE id LIKE '$id'");
         $req->execute();
+
         return $req->fetch();
     }
 

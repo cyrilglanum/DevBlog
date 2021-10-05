@@ -20,7 +20,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     /**
      * Validation d'un commentaire
      *
-     * @return void
+     * @return boolean
      */
     public function validComm($id)
     {
@@ -42,15 +42,15 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         $db = $this->db;
         $req = $db->prepare("SELECT * FROM comments WHERE valid = 1");
         $req->execute();
-        $users = $req->fetchAll();
+        $comments = $req->fetchAll();
 
-        return $users;
+        return $comments;
     }
 
     /**
      * Trouver un commentaire par id
      *
-     * @return void
+     * @return Comment
      */
     public function find($id)
     {
@@ -64,7 +64,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     /**
      * Trouver tous les commentaires qui appartiennent à un Post
      *
-     * @return void
+     * @return Comment
      */
     public function findByPostId($id)
     {
@@ -78,7 +78,7 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     /**
      * Trouver tous les commentaires qui appartiennent à un Post qui ne sont pas encore validés.
      *
-     * @return void
+     * @return Comment
      */
     public function findInvalidCommentsByPostId($id)
     {
