@@ -4,7 +4,6 @@
 namespace App\models;
 
 
-
 class Comment
 {
     public $id;
@@ -17,6 +16,11 @@ class Comment
             $this->hydrate($value);
     }
 
+    /**
+     * Hydratation de l'instance.
+     *
+     * @return void
+     */
     public function hydrate($data)
     {
         foreach ($data as $attribut => $value) {
@@ -27,16 +31,31 @@ class Comment
         }
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setAuthor($author)
     {
         $this->author = $author;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setContent($content)
     {
         $this->content = $content;

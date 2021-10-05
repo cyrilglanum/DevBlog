@@ -32,30 +32,30 @@
                 </div>
             </div>
             <div class="col-md-6">
-            <?php
-            if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                     <img src ="../public/images/post/<?= $postToEdit['photo'] ?>">
-                    <?php } else { ?>
-                      <img src ="../../public/images/post/<?= $postToEdit['photo'] ?>">
+                <?php
+                if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                    <img src="../public/images/post/<?= $postToEdit['photo'] ?>">
+                <?php } else { ?>
+                    <img src="../../public/images/post/<?= $postToEdit['photo'] ?>">
                 <?php } ?>
 
 
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label for="file">Fichier</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
-                <input type="hidden" name="user" value="<?= $_SESSION['email'] ?>">
-                <input type="hidden" name="id" value="<?= $postToEdit['id'] ?>">
-                <input type="file" name="file">
-<!--                <button type="submit">Enregistrer</button>-->
             </div>
         </div>
-        <div class="text-center">
-            <div id="success"></div>
-            <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Modifier le Post</button>
+        <div class="col-md-6">
+            <label for="file">Fichier</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+            <input type="hidden" name="user" value="<?= $_SESSION['email'] ?>">
+            <input type="hidden" name="id" value="<?= $postToEdit['id'] ?>">
+            <input type="file" name="file">
+            <!--                <button type="submit">Enregistrer</button>-->
         </div>
-    </form>
+</div>
+<div class="text-center">
+    <div id="success"></div>
+    <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Modifier le Post</button>
+</div>
+</form>
 </div>
 
 
@@ -70,9 +70,12 @@
                 </script>
             </div>
             <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!">
+                    <i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!">
+                    <i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!">
+                    <i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="col-lg-4 text-lg-end">
                 <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>

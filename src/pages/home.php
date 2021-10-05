@@ -30,7 +30,9 @@ require __DIR__ . '/partials/header.php';
                 align-items: center;background-color: white;padding-top: 2vh">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal<?= $post->id ?>">
                         <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
                         </div><?php if ($post->photo != null) { ?>
                             <img class="img-fluid"
                                  style="width: 30vw;max-height: 60vh" <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
@@ -41,7 +43,9 @@ require __DIR__ . '/partials/header.php';
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading"><?= $post->title ?></div>
-                        <div class="portfolio-caption-subheading text-muted"><?= $post->content ?></div>
+                        <div class="portfolio-caption-subheading text-muted">
+                            <?= $post->content ?>
+                        </div>
                     </div>
                     <br>
 
@@ -299,7 +303,7 @@ foreach ($posts as $post) {
                                 <p class="item-intro text-muted"><?= $post->author ?></p>
                                 <img class="img-fluid d-block mx-auto"
                                      src="../../public/images/post/<?= $post->photo ?>"
-                                     />
+                                />
                                 <p><?= $post->content ?></p>
                                 <ul class="list-inline">
                                     <li>

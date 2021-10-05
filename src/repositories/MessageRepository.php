@@ -15,26 +15,35 @@ class MessageRepository extends BaseRepository implements RepositoryInterface
 
     #region méthodes
 
+    /**
+     * Sauvegarder un message.
+     *
+     * @return void
+     */
     public function saveMessage(Message $message)
     {
         $insertmbr = $this->db->prepare("INSERT INTO messages (name, email,subject,message) VALUES(?,?,?,?)");
         $insertmbr->execute(array($message->name, $message->email, $message->subject, $message->message));
     }
 
-    public function remove($table, $id)
-    {
-        return parent::remove($table, $id);
-
-    }
     #endregion
 
     #region méthodes
-
+    /**
+     * .
+     *
+     * @return void
+     */
     public function find($id)
     {
         // TODO: Implement find() method.
     }
 
+    /**
+     * .
+     *
+     * @return void
+     */
     public function findAll()
     {
 

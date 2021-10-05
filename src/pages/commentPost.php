@@ -19,7 +19,8 @@ require __DIR__ . '/partials/header.php';
                     <?= $post['content'] ?>
                 <input type="hidden" name="postId" value="<?= $post['id'] ?>">
                 <input type="hidden" name="email" value="<?= $_SESSION['email'] ?>">
-                    <input class="form-control" id="content" name="content" type="text"
+                    <input class="form-control" id="content"
+                           name="content" type="text"
                            placeholder="Contenu du commentaire"
                            required="required"/>
                     <p class="help-block text-danger"></p>

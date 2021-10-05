@@ -27,7 +27,8 @@ require $dir . 'src/pages/partials/header.php';
                 ?>
                 <div class="col-md-4">
                     <br><h4 class="my-3"> <?= $post->title ?> </h4>
-                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true
+                        && $_SERVER['REQUEST_URI'] == '/') { ?>
                         <img width="100%" src="../public/images/post/<?= $post->photo ?>">
                     <?php } else { ?>
                         <img width="100%" src="../../public/images/post/<?= $post->photo ?>">
@@ -36,11 +37,16 @@ require $dir . 'src/pages/partials/header.php';
                     <br><?= $post->content ?>
 
                     <br><a href="./post/<?= $post->id ?>">Voir le post</a>
-                    <br><a href="./delete-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer le post</a>
-                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier le post</a>
-                    <br><a href="./edit-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Modifier les
-                        commentaires</a>
-                    <br><a href="./valid-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">Commentaires à valider </a>
+                    <br><a href="./delete-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">
+                        Supprimer le post
+                    </a>
+                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">
+                        Modifier le post
+                    </a>
+                    <br><a href="./edit-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">
+                        Modifier les commentaires</a>
+                    <br><a href="./valid-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">
+                        Commentaires à valider </a>
                 </div>
                 <?php
             }

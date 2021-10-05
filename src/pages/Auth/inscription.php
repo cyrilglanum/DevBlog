@@ -8,11 +8,14 @@ require __DIR__ . '/../partials/header.php';
     <div class="container">
         <h2>Login</h2>
     <form method="POST" action="inscription/add-user">
-                              <input class="input--style-3" id="email" type="email" placeholder="Email" name="email" required value="<?php if(isset($pseudo)){echo $pseudo;} ?>">
+                              <input class="input--style-3" id="email" type="email"
+                                     placeholder="Email" name="email" required value="<?php if(isset($pseudo)){echo $pseudo;} ?>">
 
-                              <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" required minlength="4">
+                              <input class="input--style-3" type="password"
+                                     placeholder="Mot de passe" name="password" required minlength="4">
 
-                              <input class="input--style-3" type="password" placeholder="Verif mot de passe" name="passwordConfirmation" required minlength="4">
+                              <input class="input--style-3" type="password"
+                                     placeholder="Verif mot de passe" name="passwordConfirmation" required minlength="4">
 
                           <div class="p-t-10 pt-3">
 
@@ -55,9 +58,12 @@ if (isset($erreur)){
                 </script>
             </div>
             <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!">
+                    <i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!">
+                    <i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!">
+                    <i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="col-lg-4 text-lg-end">
                 <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>

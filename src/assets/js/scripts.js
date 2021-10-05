@@ -7,7 +7,7 @@
 // Scripts
 // 
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
 
     // Navbar shrink function
     var navbarShrink = function () {
@@ -16,9 +16,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+            navbarCollapsible.classList.remove("navbar-shrink")
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.classList.add("navbar-shrink")
         }
 
     };
@@ -27,13 +27,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     navbarShrink();
 
     // Shrink the navbar when page is scrolled
-    document.addEventListener('scroll', navbarShrink);
+    document.addEventListener("scroll", navbarShrink);
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
         new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
+            target: "#mainNav",
             offset: 74,
         });
     }
@@ -44,8 +44,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         document.querySelectorAll('#navbarResponsive .nav-link')
     );
     responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
+        responsiveNavItem.addEventListener("click", () => {
+            if (window.getComputedStyle(navbarToggler).display !== "none") {
                 navbarToggler.click();
             }
         });

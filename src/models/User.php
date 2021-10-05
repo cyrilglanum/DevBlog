@@ -3,9 +3,6 @@
 
 namespace App\models;
 
-
-use App\repositories\UserRepository;
-
 class User
 {
     public $email;
@@ -20,6 +17,11 @@ class User
             $this->hydrate($value);
     }
 
+    /**
+     * hydratation de l'instance .
+     *
+     * @return void
+     */
     public function hydrate($data)
     {
         foreach ($data as $attribut => $value) {
@@ -30,21 +32,41 @@ class User
         }
     }
 
-     public function setEmail($email)
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
+    public function setEmail($email)
     {
         $this->email = $email;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setPassword($password)
     {
         $this->password = $password;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setTokenSession($token_session)
     {
         $this->token_session = $token_session;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setTokenExpire($token_expire)
     {
         $this->token_expire = $token_expire;

@@ -16,6 +16,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
     #region méthodes
 
+    /**
+     * Sauvegarder un utilisateur.
+     *
+     * @return User
+     */
     public function saveUser(User $user)
     {
         $user->actif = 1;
@@ -30,6 +35,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         return $user;
     }
 
+    /**
+     * supprimer un utilisateur.
+     *
+     * @return void
+     */
     public function remove($table, $id)
     {
         return parent::remove($table, $id);
@@ -37,6 +47,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     #endregion
 
     #region méthodes
+    /**
+     * Trouver tous les utilisateurs.
+     *
+     * @return User
+     */
     public function findAll()
     {
         $db = $this->db;
@@ -47,6 +62,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         return $users;
     }
 
+    /**
+     * Trouver un utilisateur par id.
+     *
+     * @return User
+     */
     public function find($id)
     {
         $req = $this->db->prepare("SELECT * FROM users WHERE id LIKE '$id'");
@@ -56,6 +76,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         return $user;
     }
 
+    /**
+     * Regarder si un utilisateur existe.
+     *
+     * @return string
+     */
     public function searchIfMailExists($email)
     {
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
@@ -65,15 +90,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         return $mailexist;
     }
 
-    public function connectUser($email)
-    {
-        $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
-        $reqmail->execute(array($email));
-        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
-
-        return $user;
-    }
-
+    /**
+     * Rechercher un utilisateur par mail.
+     *
+     * @return string
+     */
     public function searchUserByMail($email)
     {
         $reqmail = $this->db->prepare("SELECT * FROM users WHERE email = ?");
@@ -83,6 +104,11 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         return $user;
     }
 
+    /**
+     * Rafraichir les cookies.
+     *
+     * @return void
+     */
     public function updateCookies($email)
     {
         date_default_timezone_set('Europe/Paris');
@@ -94,18 +120,33 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $insertToken->execute(array($userinfo['token_session'], $userinfo['token_expire'], $email));
     }
 
+    /**
+     * Regarder si un utilisateur existe.
+     *
+     * @return void
+     */
     public function deleteTokenSession($email)
     {
         $requser = $this->db->prepare("UPDATE users SET token_session = '' WHERE email = '$email'");
         $requser->execute();
     }
 
+    /**
+     * Regarder si un utilisateur existe.
+     *
+     * @return void
+     */
     public function update($property, $data, $email)
     {
         $updateData = $this->db->prepare("UPDATE users SET $property = '$data' WHERE email = '$email->email'");
         $updateData->execute();
     }
 
+    /**
+     * Regarder si un utilisateur existe.
+     *
+     * @return boolean
+     */
     public function CheckPicture(User $user)
     {
         if ($user->picture) {
@@ -115,12 +156,17 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         }
     }
 
+    /**
+     * Regarder si un utilisateur existe.
+     *
+     * @return boolean
+     */
     public function CheckRole($email)
     {
 
         $user = $this->searchUserByMail($email);
 
-        if ($user[0]->role_id == 10)  {
+        if ($user[0]->role_id == 10) {
             return true;
         } else {
             return false;

@@ -13,7 +13,7 @@ if (isset($_SESSION['email'])) {
         $repo = new UserRepository();
         $email = $repo->searchUserByMail($_SESSION['email']);
         $role = $repo->checkRole($email[0]->email);
-        if($role == true){
+        if ($role == true) {
             $admin = true;
         }
     }
@@ -51,7 +51,7 @@ if (isset($_SESSION['email'])) {
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 50px;">
     <div class="container">
-                        <img src="../../src/assets/img/logos/logo.png" alt="..."  style="width: 100px"/>
+        <img src="../../src/assets/img/logos/logo.png" alt="..." style="width: 100px"/>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -63,19 +63,23 @@ if (isset($_SESSION['email'])) {
                 if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') {
                     ?>
                     <li class="nav-item"><a class="nav-link" href="./index.php/home">Home</a></li>
-                <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
+                <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
+                    ?>
                     <li class="nav-item"><a class="nav-link" href="../../index.php/home">Home</a></li>
                     <?php
                 } else {
-                    ?><li class="nav-item"><a class="nav-link" href="./home">Home</a></li><?php
+                    ?>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="./home">Home</a></li><?php
                 } ?>
                 <?php if (isset($_SESSION['email'])) { ?>
                     <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                         <li class="nav-item"><a class="nav-link" href="./index.php/add-post">Ajout d'un post</a></li>
-                    <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php/add-post">Ajout d'un post</a></li>
-                    <?php
-                    }else { ?>
+                    <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
+                        <li class="nav-item"><a class="nav-link" href="../../index.php/add-post">Ajout d'un post</a>
+                        </li>
+                        <?php
+                    } else { ?>
                         <li class="nav-item"><a class="nav-link" href="./add-post">Ajout d'un post</a></li>
                     <?php } ?>
                     <div class="dropdown">
@@ -88,20 +92,24 @@ if (isset($_SESSION['email'])) {
                                 <img src="<?= '../../public/images' . DIRECTORY_SEPARATOR . $picture; ?>"
                                      class="img-thumbnail"></a>
                             <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                                <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
-                                <a class="dropdown-item" href="./index.php/profil<?= $_SESSION['email']?>">Profil</a>
+                                <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon
+                                    espace Blog</a>
+                                <a class="dropdown-item" href="./index.php/profil<?= $_SESSION['email'] ?>">Profil</a>
                                 <a class="dropdown-item"
-                               href="./index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
-                           <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
-                    <a class="dropdown-item" href="../../index.php/blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
-                                <a class="dropdown-item" href="../../index.php/profil?email=<?= $_SESSION['email']?>">Profil</a>
-                                <a class="dropdown-item" href="../../index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
-                    <?php
-                    }else { ?>
-                                <a class="dropdown-item" href="./blogSpace?email=<?= $_SESSION['email']?>">Mon espace Blog</a>
-                                <a class="dropdown-item" href="./profil?email=<?= $_SESSION['email']?>">Profil</a>
+                                   href="./index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
+                            <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
                                 <a class="dropdown-item"
-                               href="./deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
+                                   href="../../index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon espace Blog</a>
+                                <a class="dropdown-item" href="../../index.php/profil?email=<?= $_SESSION['email'] ?>">Profil</a>
+                                <a class="dropdown-item"
+                                   href="../../index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
+                                <?php
+                            } else { ?>
+                                <a class="dropdown-item" href="./blogSpace?email=<?= $_SESSION['email'] ?>">Mon espace
+                                    Blog</a>
+                                <a class="dropdown-item" href="./profil?email=<?= $_SESSION['email'] ?>">Profil</a>
+                                <a class="dropdown-item"
+                                   href="./deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                             <?php } ?>
 
                         </div>
@@ -111,21 +119,21 @@ if (isset($_SESSION['email'])) {
                     <li class="nav-item"><a class="nav-link" href="./index.php/inscription">Inscription</a></li>
 
                     <?php
-                } elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
+                } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
                     <li class="nav-item"><a class="nav-link" href="../../index.php/login">Connexion</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../index.php/inscription">Inscription</a></li>
                     <?php
-                }else { ?>
+                } else { ?>
                     <li class="nav-item"><a class="nav-link" href="./index.php/login">Connexion</a></li>
                     <li class="nav-item"><a class="nav-link" href="./index.php/inscription">Inscription</a></li>
                 <?php } ?>
 
                 <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                     <li class="nav-item"><a class="nav-link" href="./index.php/contact">Contact</a>
-                    <?php }elseif(str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/'){?>
+                <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
                     <li class="nav-item"><a class="nav-link" href="../../index.php/contact">Contact</a></li>
                     <?php
-                    }else { ?>
+                } else { ?>
                     <li class="nav-item"><a class="nav-link" href="./contact">Contact</a></li>
                 <?php } ?>
 

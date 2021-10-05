@@ -4,7 +4,6 @@
 namespace App\models;
 
 
-
 class Message
 {
     public $name;
@@ -18,6 +17,11 @@ class Message
             $this->hydrate($value);
     }
 
+    /**
+     * Hydratation de l'instance.
+     *
+     * @return void
+     */
     public function hydrate($data)
     {
         foreach ($data as $attribut => $value) {
@@ -28,21 +32,41 @@ class Message
         }
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setEmail($email)
     {
         $this->email = $email;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setSubject($subject)
     {
         $this->subject = $subject;
     }
 
+    /**
+     * Setter / hydrate.
+     *
+     * @return void
+     */
     public function setMessage($message)
     {
         $this->message = $message;

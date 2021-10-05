@@ -17,6 +17,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
 
     #region méthodes
 
+    /**
+     * Validation d'un commentaire
+     *
+     * @return void
+     */
     public function validComm($id)
     {
         $req = $this->db->prepare("UPDATE comments SET valid =? WHERE id LIKE ?");
@@ -27,6 +32,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
     #endregion
 
     #region méthodes
+    /**
+     * Trouver tous les commentaires validés
+     *
+     * @return void
+     */
     public function findAll()
     {
         $db = $this->db;
@@ -37,6 +47,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         return $users;
     }
 
+    /**
+     * Trouver un commentaire par id
+     *
+     * @return void
+     */
     public function find($id)
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE id LIKE '$id'");
@@ -46,6 +61,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         return $comment;
     }
 
+    /**
+     * Trouver tous les commentaires qui appartiennent à un Post
+     *
+     * @return void
+     */
     public function findByPostId($id)
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id' AND valid LIKE 1 ORDER BY id DESC");
@@ -55,6 +75,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         return $comments;
     }
 
+    /**
+     * Trouver tous les commentaires qui appartiennent à un Post qui ne sont pas encore validés.
+     *
+     * @return void
+     */
     public function findInvalidCommentsByPostId($id)
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE post_id LIKE '$id' AND valid LIKE 0 ORDER BY id DESC");
@@ -64,33 +89,11 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
         return $comments;
     }
 
-    public function searchIfMailExists($email)
-    {
-        $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
-        $reqmail->execute(array($email));
-        $mailexist = $reqmail->rowCount();
-
-        return $mailexist;
-    }
-
-    public function connectUser($email)
-    {
-        $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
-        $reqmail->execute(array($email));
-        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, Comment::class);
-
-        return $user;
-    }
-
-    public function searchUserByMail($email)
-    {
-        $reqmail = $this->db->prepare("SELECT * FROM comments WHERE email = ?");
-        $reqmail->execute(array($email));
-        $user = $reqmail->fetchAll(PDO::FETCH_CLASS, Comment::class);
-
-        return $user;
-    }
-
+    /**
+     * Ajouter un commentaire à faire valider.
+     *
+     * @return void
+     */
     public function addComment($postId, $comment, $author)
     {
         $created_at = date("Y-m-d H:i:s");
@@ -100,6 +103,12 @@ class CommentRepository extends BaseRepository implements RepositoryInterface
 
 
 #endregion
+
+    /**
+     * Récupérer tous les commentaires valides d'un post.
+     *
+     * @return void
+     */
     public function withComments($id)
     {
         $req = $this->db->prepare("SELECT * FROM comments WHERE post_id = ? AND valid = 1 ORDER BY id DESC");

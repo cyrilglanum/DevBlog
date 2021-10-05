@@ -165,7 +165,6 @@ class PostController extends BaseRepository
         $post = new Post([
             'id' => $request->request->get('id'),
             'title' => $request->request->get('title'),
-//            'icon' => $request->request->get('icon'),
             'author' => $request->request->get('author'),
             'content' => $request->request->get('content'),
             'photo' => basename($_FILES['file']['name']),

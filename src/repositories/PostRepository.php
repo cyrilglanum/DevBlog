@@ -18,6 +18,11 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return parent::__construct();
     }
 
+    /**
+     * Récupérer un post par id.
+     *
+     * @return void
+     */
     public function find($id)
     {
         $req = $this->db->prepare("SELECT * FROM posts WHERE id LIKE '$id'");
@@ -25,6 +30,11 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return $req->fetch();
     }
 
+    /**
+     * Récupérer tous les posts.
+     *
+     * @return Post
+     */
     public function findAll()
     {
         $db = $this->db;
@@ -35,17 +45,33 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return $posts;
     }
 
+    /**
+     * .
+     *
+     * @return void
+     */
     public function save(object $post)
     {
 
     }
 
+    /**
+     * Récupérer tous les commentaires valides d'un post.
+     *
+     * @return void
+     */
     public function remove($table, $postId)
     {
         return parent::remove($table, $postId);
     }
 
 #region méthodes
+
+    /**
+     * Sauvegarder un post.
+     *
+     * @return
+     */
     public function savePost(Post $post)
     {
         date_default_timezone_set('Europe/Paris');
@@ -57,6 +83,11 @@ class PostRepository extends BaseRepository implements RepositoryInterface
         return $post;
     }
 
+    /**
+     * Récupérer tous les commentaires valides d'un post.
+     *
+     * @return
+     */
     public function update(Post $post)
     {
         if ($post->photo != null) {
