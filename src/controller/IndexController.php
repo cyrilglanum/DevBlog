@@ -68,7 +68,7 @@ class IndexController extends BaseRepository
         $repo = new UserRepository();
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user[0]->role_id;
+            $role = $user->role_id;
             if ($role == 10) {
                 $messageId = $request->get('id');
                 $repo = new MessageRepository();

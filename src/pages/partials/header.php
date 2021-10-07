@@ -8,11 +8,11 @@ if (isset($_SESSION['email'])) {
         echo 'connecté sous : ' . $_SESSION['email'];
         $userRepo = new UserRepository();
         $user = $userRepo->searchUserByMail($_SESSION['email']);
-        $picture = $user[0]->picture;
+        $picture = $user->picture;
 
         $repo = new UserRepository();
         $email = $repo->searchUserByMail($_SESSION['email']);
-        $role = $repo->checkRole($email[0]->email);
+        $role = $repo->checkRole($email->email);
         if ($role == true) {
             $admin = true;
         }

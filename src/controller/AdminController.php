@@ -18,7 +18,7 @@ class AdminController extends BaseRepository
         ob_start();
         $userRepo = new UserRepository();
         $user = $userRepo->searchUserByMail($request->query->get('email'));
-        if ($user[0]->role_id == 10) {
+        if ($user->role_id == 10) {
             $repo = new UserRepository();
             $users = $repo->selectByTable('*', 'users', User::class);
             $postRepo = new PostRepository();

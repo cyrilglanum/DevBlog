@@ -17,9 +17,22 @@ class UserController extends BaseRepository
     {
         ob_start();
         $userRepo = new UserRepository();
-        $user = $userRepo->searchUserByMail($request->query->get('email'));
+
+        if (gettype($request->query->get('email')) != "string") {
+            ob_start();
+            include __DIR__ . '/../pages/my404.php';
+            return new Response(ob_get_clean());
+        }
+        if ($request->query->get('email')) {
+            $user = $userRepo->searchUserByMail($request->query->get('email'));
+            if (!$user || $user == []) {
+                ob_start();
+                include __DIR__ . '/../pages/my404.php';
+                return new Response(ob_get_clean());
+            }
+        }
         //nom de l'image = id + nom de l'image pour ne pas effacer les images des autres.
-        $picture = $user[0]->id. $user[0]->picture;
+        $picture = $user->id . $user->picture;
         $messageRepo = new MessageRepository();
         $messages = $messageRepo->selectByTable('*', 'messages', Message::class);
         include __DIR__ . '/../pages/Profil/profil.php';
@@ -39,11 +52,12 @@ class UserController extends BaseRepository
 
         $uploaddir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
         $repo = new UserRepository();
+
         $userToModify = $repo->searchUserByMail($request->request->get('user'));
 
-        $check = $repo->CheckPicture($userToModify[0]);
-        $repo->update("picture", $userToModify[0]->id. basename($_FILES['file']['name']), $userToModify[0]);
-        $uploadfile = $uploaddir . $userToModify[0]->id . basename($_FILES['file']['name']);
+        $check = $repo->CheckPicture($userToModify);
+        $repo->update("picture", $userToModify->id . basename($_FILES['file']['name']), $userToModify);
+        $uploadfile = $uploaddir . $userToModify->id . basename($_FILES['file']['name']);
 
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
             echo "Le fichier est valide, et a été téléchargé

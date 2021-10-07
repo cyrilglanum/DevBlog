@@ -101,7 +101,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
         $reqmail->execute(array($email));
         $user = $reqmail->fetchAll(PDO::FETCH_CLASS, User::class);
 
-        return $user;
+        return $user[0];
     }
 
     /**
@@ -166,7 +166,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
 
         $user = $this->searchUserByMail($email);
 
-        if ($user[0]->role_id == 10) {
+        if ($user->role_id == 10) {
             return true;
         } else {
             return false;
