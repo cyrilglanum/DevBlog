@@ -37,23 +37,23 @@ if(!isset($_SESSION['email']) || $_SESSION['email'] == null ){
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                      aria-labelledby="v-pills-home-tab">
-                    <form>
+                    <form action="savePassword" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="email"
+                            <input type="email" class="form-control" id="email" name="email"
                                    aria-describedby="emailHelp" value="<?= $_SESSION['email'] ?>">
                             <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas ces
                                 données.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mot de passe actuel</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" name="oldpassword" class="form-control" id="password">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nouveau mot de passe</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" name="password" class="form-control" id="password">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name class="btn btn-primary">Soumettre</button>
                     </form>
 
                 </div>
