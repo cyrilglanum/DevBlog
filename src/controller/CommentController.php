@@ -39,7 +39,7 @@ class CommentController extends BaseRepository
         $repo = new UserRepository();
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user[0]->role_id;
+            $role = $user->role_id;
             if ($role == 10) {
                 $postId = $request->get('id');
                 $repo = new CommentRepository();
@@ -60,7 +60,7 @@ class CommentController extends BaseRepository
         $repo = new UserRepository();
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user[0]->role_id;
+            $role = $user->role_id;
             if ($role == 10) {
                 $postId = $request->get('id');
                 $repo = new CommentRepository();
@@ -81,7 +81,7 @@ class CommentController extends BaseRepository
         $repo = new UserRepository();
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user[0]->role_id;
+            $role = $user->role_id;
             if ($role == 10) {
                 $commentId = $request->get('id');
                 $repo = new CommentRepository();
@@ -102,7 +102,7 @@ class CommentController extends BaseRepository
         $repo = new UserRepository();
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user[0]->role_id;
+            $role = $user->role_id;
             if ($role == 10) {
                 $commentId = $request->get('id');
                 $repo = new CommentRepository();

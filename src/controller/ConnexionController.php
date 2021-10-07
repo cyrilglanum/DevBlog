@@ -29,7 +29,7 @@ class ConnexionController extends BaseRepository
             $userExist = $repo->searchIfMailExists($email);
             if ($userExist != 0) {
                 $userinfo = $repo->searchUserByMail($email);
-                if ($userinfo[0]->password == sha1($password)) {
+                if ($userinfo->password == sha1($password)) {
                     $_SESSION['email'] = $email;
                     $repo->updateCookies($email);
                     include __DIR__ . '/../pages/Auth/connexion.php';

@@ -255,7 +255,7 @@ require __DIR__ . '/partials/header.php';
 
                 if (isset($userEmail) != null) {
                     if ($userEmail != []) {
-                        if ($userEmail[0]->role_id == 10) {
+                        if ($userEmail->role_id == 10) {
                             if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
                                 <a class="nav-link" style="color: black"
                                    href="./index.php/admin?email=<?= $_SESSION['email'] ?>">Espace
