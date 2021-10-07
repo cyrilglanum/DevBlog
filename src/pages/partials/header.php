@@ -93,15 +93,19 @@ if (isset($_SESSION['email'])) {
                             <a href="./profil">
                                 <img src="<?= '../../public/images' . DIRECTORY_SEPARATOR . $picture; ?>"
                                      class="img-thumbnail"></a>
-                            <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
-                                <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon
-                                    espace Blog</a>
+                            <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') {
+                                if ($_SESSION['email'] == 'test@test.fr'){ ?>
+                                    <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon
+                                    espace Blog</a> <?php
+                                }?>
+
                                 <a class="dropdown-item" href="./index.php/profil<?= $_SESSION['email'] ?>">Profil</a>
                                 <a class="dropdown-item"
                                    href="./index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
-                            <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
+                            <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
+                                if ($_SESSION['email'] == 'test@test.fr'){ ?>
                                 <a class="dropdown-item"
-                                   href="../../index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon espace Blog</a>
+                                   href="../../index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon espace Blog</a><?php } ?>
                                 <a class="dropdown-item" href="../../index.php/profil?email=<?= $_SESSION['email'] ?>">Profil</a>
                                 <a class="dropdown-item"
                                    href="../../index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>

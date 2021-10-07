@@ -6,7 +6,7 @@ require __DIR__ . '/../partials/header.php';
 <!-- Masthead-->
 <header class="masthead" id="home">
     <div class="container">
-        <h2>Login</h2>
+        <h2>Inscription</h2>
     <form method="POST" action="inscription/add-user">
                               <input class="input--style-3" id="email" type="email"
                                      placeholder="Email" name="email" required value="<?php if(isset($pseudo)){echo $pseudo;} ?>">

@@ -31,6 +31,12 @@ class UserController extends BaseRepository
                 return new Response(ob_get_clean());
             }
         }
+
+        if($user->role_id =! 10){
+            ob_start();
+                include __DIR__ . '/../pages/my403.php';
+                return new Response(ob_get_clean());
+        }
         //nom de l'image = id + nom de l'image pour ne pas effacer les images des autres.
         $picture = $user->id . $user->picture;
         $messageRepo = new MessageRepository();

@@ -66,6 +66,21 @@ class IndexController extends BaseRepository
     public function deleteMessage(Request $request)
     {
         $repo = new UserRepository();
+
+        if (gettype($request->query->get('email')) != "string") {
+            ob_start();
+            include __DIR__ . '/../pages/my404.php';
+            return new Response(ob_get_clean());
+        }
+        if ($request->query->get('email')) {
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            if (!$user || $user == []) {
+                ob_start();
+                include __DIR__ . '/../pages/my404.php';
+                return new Response(ob_get_clean());
+            }
+        }
+
         if ($request->query->get('email')) {
             $user = $repo->searchUserByMail($request->query->get('email'));
             $role = $user->role_id;
