@@ -50,6 +50,10 @@ $routes->add('savePicture', new Route('/savePicture',[
     '_controller' => 'App\controller\UserController::savePicture'
 ]));
 
+$routes->add('savePassword', new Route('/savePassword',[
+    '_controller' => 'App\controller\UserController::savePassword'
+]));
+
 //BlogPost
 $routes->add('postById', new Route('/post/{id}', [
     '_controller' => 'App\controller\PostController::postById'

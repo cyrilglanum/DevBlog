@@ -32,10 +32,10 @@ class UserController extends BaseRepository
             }
         }
 
-        if($user->role_id =! 10){
+        if ($user->role_id = !10) {
             ob_start();
-                include __DIR__ . '/../pages/my403.php';
-                return new Response(ob_get_clean());
+            include __DIR__ . '/../pages/my403.php';
+            return new Response(ob_get_clean());
         }
         //nom de l'image = id + nom de l'image pour ne pas effacer les images des autres.
         $picture = $user->id . $user->picture;
@@ -73,6 +73,25 @@ class UserController extends BaseRepository
           Voici plus d'informations :\n";
         }
 
+        include __DIR__ . '/../pages/Profil/profil.php';
+        return new Response(ob_get_clean());
+    }
+
+    public function savePassword(Request $request)
+    {
+        $repo = new UserRepository();
+        if ($request->request->get('email') != null) {
+            $user = $repo->searchUserByMail($request->request->get('email'));
+            if ($user->password == htmlspecialchars(sha1($request->request->get('oldpassword')))) {
+                $user->password = sha1($request->request->get('oldpassword'));
+            } else {
+                ob_start();
+                echo "Votre mot de passe n'est pas correct";
+                include __DIR__ . '/../pages/my404.php';
+                return new Response(ob_get_clean());
+            }
+        }
+        ob_start();
         include __DIR__ . '/../pages/Profil/profil.php';
         return new Response(ob_get_clean());
     }
