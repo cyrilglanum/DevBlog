@@ -13,20 +13,20 @@ use Symfony\Component\HttpFoundation\Response;
 class PostController extends BaseRepository
 {
 
-    public function postById(Request $request):Response
+    public function postById(Request $request): Response
     {
         ob_start();
         $id = $request->attributes->get('id');
         $repo = new PostRepository();
         //récupération des information du post en question.
         $post = $repo->find($id);
-        $commentRepo = New CommentRepository();
+        $commentRepo = new CommentRepository();
         $comments = $commentRepo->withComments($id);
         include __DIR__ . '/../pages/post.php';
         return new Response(ob_get_clean());
     }
 
-    public function addPost(Request $request):Response
+    public function addPost(Request $request): Response
     {
         ob_start();
         include __DIR__ . '/../pages/add-post.php';
@@ -66,10 +66,9 @@ class PostController extends BaseRepository
         } else {
             die();
         }
-
     }
 
-    public function blogSpace(Request $request):Response
+    public function blogSpace(Request $request): Response
     {
         ob_start();
         $user = $request->query->get('email');
@@ -88,45 +87,55 @@ class PostController extends BaseRepository
         }
     }
 
-    public function deletePostById(Request $request):Response
+    public function deletePostById(Request $request): Response
     {
         ob_start();
-        $idPostToDelete = $request->attributes->get('id');
-        $user = $request->query->get('email');
-        $repo = new UserRepository();
-        $role = $repo->checkRole($user);
-        if ($role == true) {
-            $postRepo = new PostRepository();
-            $postToDelete = $postRepo->remove('posts', $idPostToDelete);
-            include __DIR__ . '../../pages/validation/redirectHome.php';
-            return new Response(ob_get_clean());
-        } else {
-            http_response_code(404);
-            include __DIR__ . '/../pages/my404.php';
-            die();
+        if ($request->attributes->get('id') && $request->query->get('jeton')) {
+            $idPostToDelete = $request->attributes->get('id');
+            $mail = $request->query->get('email');
+            $repo = new UserRepository();
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            if ($request->query->get('jeton') == $user->token_session) {
+                $role = $repo->checkRole($mail);
+                if ($role == true) {
+                    $postRepo = new PostRepository();
+                    $postToDelete = $postRepo->remove('posts', $idPostToDelete);
+                    include __DIR__ . '../../pages/validation/redirectHome.php';
+                    return new Response(ob_get_clean());
+                } else {
+                    http_response_code(404);
+                    include __DIR__ . '/../pages/my404.php';
+                    die();
+                }
+            }
         }
     }
 
-    public function editPostById(Request $request):Response
+    public function editPostById(Request $request): Response
     {
         ob_start();
-        $idPostToEdit = $request->attributes->get('id');
-        $user = $request->query->get('email');
-        $repo = new UserRepository();
-        $role = $repo->checkRole($user);
-        if ($role == true) {
-            $postRepo = new PostRepository();
-            $postToEdit = $postRepo->selectByTableById('*', 'posts', $idPostToEdit);
-            include __DIR__ . '../../pages/validation/editPost.php';
-            return new Response(ob_get_clean());
-        } else {
-            http_response_code(404);
-            include __DIR__ . '/../pages/my404.php';
-            die();
+        if ($request->attributes->get('id') && $request->query->get('jeton')) {
+            $idPostToEdit = $request->attributes->get('id');
+            $mail = $request->query->get('email');
+            $repo = new UserRepository();
+            $user = $repo->searchUserByMail($request->query->get('email'));
+            if ($request->query->get('jeton') == $user->token_session) {
+                $role = $repo->checkRole($mail);
+                if ($role == true) {
+                    $postRepo = new PostRepository();
+                    $postToEdit = $postRepo->selectByTableById('*', 'posts', $idPostToEdit);
+                    include __DIR__ . '../../pages/validation/editPost.php';
+                    return new Response(ob_get_clean());
+                } else {
+                    http_response_code(404);
+                    include __DIR__ . '/../pages/my404.php';
+                    die();
+                }
+            }
         }
     }
 
-    public function commentPost(Request $request):Response
+    public function commentPost(Request $request): Response
     {
         ob_start();
         $repo = new PostRepository();
@@ -135,20 +144,20 @@ class PostController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function addComment(Request $request):Response
+    public function addComment(Request $request): Response
     {
         ob_start();
         $email = $request->request->get('email');
         $commentRepo = new CommentRepository();
         $postId = $request->request->get('postId');
         $comment = $request->request->get('content');
-        $commentRepo->addComment($postId, $comment,$email);
+        $commentRepo->addComment($postId, $comment, $email);
         include __DIR__ . '../../pages/validation/historyBack2x.php';
 
         return new Response(ob_get_clean());
     }
 
-    public function editPostValidation(Request $request):Response
+    public function editPostValidation(Request $request): Response
     {
         $uploaddir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR;
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);

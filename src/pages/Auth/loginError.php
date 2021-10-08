@@ -1,4 +1,9 @@
 <?php
+$dir = strrpos(__DIR__, 'src');
+$dir = substr(__DIR__, 0, $dir);
+
+require $dir . 'src/pages/partials/header.php';
+include $dir . 'src/pages/validation/token.php';
 ?>
 
 <h2>Login</h2>

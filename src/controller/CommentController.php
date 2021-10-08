@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends BaseRepository
 {
 
-    public function commentPost(Request $request):Response
+    public function commentPost(Request $request): Response
     {
         ob_start();
         $repo = new PostRepository();
@@ -21,20 +21,20 @@ class CommentController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function addComment(Request $request):Response
+    public function addComment(Request $request): Response
     {
         ob_start();
         $email = htmlspecialchars($request->request->get('email'));
         $commentRepo = new CommentRepository();
         $postId = htmlspecialchars($request->request->get('postId'));
         $comment = htmlspecialchars($request->request->get('content'));
-        $commentRepo->addComment($postId, $comment,$email);
+        $commentRepo->addComment($postId, $comment, $email);
         include __DIR__ . '../../pages/validation/historyBack2x.php';
 
         return new Response(ob_get_clean());
     }
 
-    public function showCommentsByPostId(Request $request):Response
+    public function showCommentsByPostId(Request $request): Response
     {
         $repo = new UserRepository();
         if ($request->query->get('email')) {
@@ -78,42 +78,50 @@ class CommentController extends BaseRepository
 
     public function deleteComm(Request $request)
     {
-        $repo = new UserRepository();
-        if ($request->query->get('email')) {
-            $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user->role_id;
-            if ($role == 10) {
-                $commentId = $request->get('id');
-                $repo = new CommentRepository();
-                ob_start();
-                $comment = $repo->selectByTableById('*', 'comments', $commentId);
-                $repo->remove('comments', $comment['id']);
-                include __DIR__ . '/../pages/validation/redirectHome.php';
-                return new Response(ob_get_clean());
+        if ($request->attributes->get('id') && $request->query->get('jeton')) {
+            $repo = new UserRepository();
+            if ($request->query->get('email')) {
+                $user = $repo->searchUserByMail($request->query->get('email'));
+                if ($request->query->get('jeton') == $user->token_session) {
+                    $role = $user->role_id;
+                    if ($role == 10) {
+                        $commentId = $request->get('id');
+                        $repo = new CommentRepository();
+                        ob_start();
+                        $comment = $repo->selectByTableById('*', 'comments', $commentId);
+                        $repo->remove('comments', $comment['id']);
+                        include __DIR__ . '/../pages/validation/redirectHome.php';
+                        return new Response(ob_get_clean());
+                    }
+                } else {
+                    include __DIR__ . '/../pages/my403.php';
+                }
             }
-        } else {
-            include __DIR__ . '/../pages/my403.php';
         }
         return false;
     }
 
     public function validComm(Request $request)
     {
-        $repo = new UserRepository();
-        if ($request->query->get('email')) {
-            $user = $repo->searchUserByMail($request->query->get('email'));
-            $role = $user->role_id;
-            if ($role == 10) {
-                $commentId = $request->get('id');
-                $repo = new CommentRepository();
-                ob_start();
-                $comment = $repo->selectByTableById('*', 'comments', $commentId);
-                $repo->validComm($comment['id']);
-                include __DIR__ . '/../pages/validation/redirectHome.php';
-                return new Response(ob_get_clean());
+        if ($request->attributes->get('id') && $request->query->get('jeton')) {
+            $repo = new UserRepository();
+            if ($request->query->get('email')) {
+                $user = $repo->searchUserByMail($request->query->get('email'));
+                if ($request->query->get('jeton') == $user->token_session) {
+                    $role = $user->role_id;
+                    if ($role == 10) {
+                        $commentId = $request->get('id');
+                        $repo = new CommentRepository();
+                        ob_start();
+                        $comment = $repo->selectByTableById('*', 'comments', $commentId);
+                        $repo->validComm($comment['id']);
+                        include __DIR__ . '/../pages/validation/redirectHome.php';
+                        return new Response(ob_get_clean());
+                    }
+                } else {
+                    include __DIR__ . '/../pages/my403.php';
+                }
             }
-        } else {
-            include __DIR__ . '/../pages/my403.php';
         }
         return false;
     }
