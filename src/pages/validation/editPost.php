@@ -33,7 +33,7 @@ include $dir . 'src/pages/validation/token.php';
             <div class="col-md-6">
                 <div class="form-group form-group-textarea mb-md-0">
                         <textarea class="form-control" id="content" name="content" placeholder="Contenu"
-                                  required="required" value="<?= $postToEdit['content'] ?>"></textarea>
+                                  required="required"><?= $postToEdit['content'] ?></textarea>
                     <p class="help-block text-danger"></p>
                 </div>
             </div>
