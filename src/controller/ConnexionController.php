@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ConnexionController extends BaseRepository
 {
-    public function login(Request $request):Response
+    public function login(Request $request): Response
     {
         ob_start();
         include __DIR__ . '/../pages/Auth/login.php';
@@ -31,8 +31,14 @@ class ConnexionController extends BaseRepository
                 $userinfo = $repo->searchUserByMail($email);
                 if ($userinfo->password == sha1($password)) {
                     $_SESSION['email'] = $email;
-                    $repo->updateCookies($email);
+//                    dump($_SESSION['jeton']);
+                    unset($_SESSION['jeton']);
+                    if (!isset($_SESSION['jeton'])) {
+                        $_SESSION['jeton'] = bin2hex(openssl_random_pseudo_bytes(6));
+                    }
                     include __DIR__ . '/../pages/Auth/connexion.php';
+
+//                    $repo->updateCookies($email, $_SESSION['jeton']);
                     return new Response(ob_get_clean());
                 } else {
                     header("Location: ./loginError");
@@ -43,7 +49,7 @@ class ConnexionController extends BaseRepository
         return "Vous n'êtes pas là ou vous devriez être :o !";
     }
 
-    public function loginError(Request $request):Response
+    public function loginError(Request $request): Response
     {
         ob_start();
         include __DIR__ . '/../pages/Auth/loginError.php';
@@ -51,7 +57,7 @@ class ConnexionController extends BaseRepository
     }
 
 
-    public function inscription(Request $request):Response
+    public function inscription(Request $request): Response
     {
         ob_start();
         include __DIR__ . '/../pages/Auth/inscription.php';
@@ -72,8 +78,8 @@ class ConnexionController extends BaseRepository
             if ($mailexist == 0) {
                 // insere l utilisateur dans la table
                 $userToInsert = new User([
-                    'email' => $email ,
-                    'password' => $password ,
+                    'email' => $email,
+                    'password' => $password,
                     'token_session' => '0',
                     'token_expire' => 0,
                 ]);
@@ -86,7 +92,7 @@ class ConnexionController extends BaseRepository
         header("Location: ../login");
     }
 
-    public function deconnexion($email,Request $request):Response
+    public function deconnexion($email, Request $request): Response
     {
         ob_start();
         $repo = new UserRepository();

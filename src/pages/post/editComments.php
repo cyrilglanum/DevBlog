@@ -3,6 +3,7 @@ $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
 
 require $dir . 'src/pages/partials/header.php';
+include $dir . 'src/pages/validation/token.php';
 ?>
 
 <!-- Masthead-->
@@ -27,7 +28,7 @@ require $dir . 'src/pages/partials/header.php';
                     <?= $comment->id ?><br>
                     <?= $comment->content ?><br>
                     <?= $comment->author ?><br>
-                    <a href="deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer commentaire</a>
+                    <a href="deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>&<?php $_SESSION['jeton'] ?>">Supprimer commentaire</a>
                     <br>
                 <?php }
                 ?>

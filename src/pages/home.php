@@ -3,6 +3,8 @@
 use App\repositories\UserRepository;
 
 require __DIR__ . '/partials/header.php';
+include 'validation/token.php';
+//dump($_SESSION['jeton'],$_SESSION['email']);
 ?>
 
 <!-- Masthead-->

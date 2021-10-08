@@ -3,6 +3,7 @@ $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
 
 require $dir . 'src/pages/partials/header.php';
+include $dir . 'src/pages/validation/token.php';
 ?>
 
 <!-- Masthead-->
@@ -18,7 +19,7 @@ require $dir . 'src/pages/partials/header.php';
         <div class="col-md-6">
             <div class="form-group">
 
-                <?php if(!$comments){
+                <?php if(!$comments){dd($_SESSION['jeton']);
                 ?>
                     <h3>Il n'y a pas de commentaires à valider sur ce post.</h3>
                     <a href="../blogSpace?email=<?= $_SESSION['email'] ?>">Retour au blogspace</a>
@@ -27,8 +28,8 @@ require $dir . 'src/pages/partials/header.php';
                     <?= $comment->id ?><br>
                     <?= $comment->content ?><br>
                     <?= $comment->author ?><br>
-                    <a href="../edit-comments/deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>">Supprimer commentaire</a>
-                    <a href="validate/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>">Valider commentaire</a>
+                    <a href="../edit-comments/deleteComm/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>&jeton=<?= $_SESSION['jeton']; ?>">Supprimer commentaire</a>
+                    <a href="validate/<?= $comment->id ?>?email=<?= $_SESSION['email'] ?>&jeton=<?= $_SESSION['jeton']; ?>">Valider commentaire</a>
                     <br>
                 <?php }
                 ?>

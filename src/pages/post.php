@@ -1,4 +1,7 @@
 <?php
+include_once 'validation/token.php';
+
+
 $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
 

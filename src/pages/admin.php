@@ -1,4 +1,5 @@
 <?php
+include_once 'validation/token.php';
 
 //require __DIR__ . './partials/header.php';
 //en ligne

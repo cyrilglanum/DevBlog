@@ -3,6 +3,7 @@ $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
 
 require $dir . 'src/pages/partials/header.php';
+include $dir . 'src/pages/validation/token.php';
 ?>
 
 <!-- Masthead-->
@@ -37,10 +38,10 @@ require $dir . 'src/pages/partials/header.php';
                     <br><?= $post->content ?>
 
                     <br><a href="./post/<?= $post->id ?>">Voir le post</a>
-                    <br><a href="./delete-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">
+                    <br><a href="./delete-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>&jeton=<?= $_SESSION['jeton']; ?>">
                         Supprimer le post
                     </a>
-                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">
+                    <br><a href="./edit-post/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>&jeton=<?= $_SESSION['jeton']; ?>">
                         Modifier le post
                     </a>
                     <br><a href="./edit-comments/<?= $post->id ?>?email=<?= $_SESSION['email'] ?>">

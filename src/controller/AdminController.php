@@ -43,15 +43,6 @@ class AdminController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
-    public function deletePost($id)
-    {
-        ob_start();
-        //function ajax pour deleter user
-        $repo = new PostRepository();
-        $postToDelete = $repo->remove('posts', $id);
-        $post = $repo->selectByTable('*', 'posts', Post::class);
-        include __DIR__ . '../../pages/validation/deleteUser.php';
-        return new Response(ob_get_clean());
-    }
+
 
 }

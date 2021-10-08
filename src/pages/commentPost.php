@@ -1,6 +1,7 @@
 <?php
-require __DIR__ . '/partials/header.php';
+include_once 'validation/token.php';
 
+require __DIR__ . '/partials/header.php';
 
 ?>
 <header class="masthead" id="home" style="padding-bottom: 40px!important;padding-top:40px">

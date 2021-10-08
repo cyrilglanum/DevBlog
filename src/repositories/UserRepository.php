@@ -38,7 +38,7 @@ class UserRepository extends BaseRepository implements RepositoryInterface
     /**
      * supprimer un utilisateur.
      *
-     * @return void
+     * @return string
      */
     public function remove($table, $id)
     {
@@ -109,15 +109,14 @@ class UserRepository extends BaseRepository implements RepositoryInterface
      *
      * @return void
      */
-    public function updateCookies($email)
+    public function updateCookies($email,$jeton)
     {
         date_default_timezone_set('Europe/Paris');
         $date = new \DateTime();
-        $userinfo['token_session'] = $date->getTimestamp() . $email;
         $date->modify('+1 hour');
         $userinfo['token_expire'] = $date->getTimestamp();
         $insertToken = $this->db->prepare("UPDATE users SET token_session =?,token_expire =? WHERE email LIKE ?");
-        $insertToken->execute(array($userinfo['token_session'], $userinfo['token_expire'], $email));
+        $insertToken->execute(array($jeton, $userinfo['token_expire'], $email));
     }
 
     /**

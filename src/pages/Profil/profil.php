@@ -2,7 +2,9 @@
 $dir = strrpos(__DIR__, 'src');
 $dir = substr(__DIR__, 0, $dir);
 
+require $dir . 'src/pages/validation/token.php';
 require $dir . 'src/pages/partials/header.php';
+
 if(!isset($_SESSION['email']) || $_SESSION['email'] == null ){
     ?> <p>Vous n'avez pas accès à cette page si vous n'êtes pas connectés.</p><br><br><br>
     <p style="padding-top: 100px">Veuillez vous connecter ici

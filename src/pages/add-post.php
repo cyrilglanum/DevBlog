@@ -1,4 +1,7 @@
-<?php require __DIR__ . '/partials/header.php';
+<?php
+include_once 'validation/token.php';
+
+require __DIR__ . '/partials/header.php';
 ?>
 
 <!-- Masthead-->
