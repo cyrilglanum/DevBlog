@@ -83,6 +83,7 @@ class ConnexionController extends BaseRepository
                     'token_session' => '0',
                     'token_expire' => 0,
                 ]);
+                mail($email, 'Inscription Validation', "Bonjour, veuillez valider votre inscription",["From" => "NoReply@DevBlog.com"]);
                 $repo->saveUser($userToInsert);
             } else {
                 header("Location: ../inscription");
