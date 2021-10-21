@@ -163,7 +163,7 @@ include 'validation/token.php';
                     <img class="mx-auto rounded-circle" src="../../src/assets/img/team/Profil.jpg" alt="..."/>
                     <h4>Cyril Guittet</h4>
                     <p class="text-muted">Développeur web</p>
-                    <a class="btn btn-dark btn-social mx-2" href="./Profil/cv">CV</a>
+                    <a class="btn btn-dark btn-social mx-2" href="./index.php/cv">CV</a>
                     <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/cyriil.guittet"><i
                                 class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="https://fr.linkedin.com/"><i
@@ -176,28 +176,10 @@ include 'validation/token.php';
                     sur ce site à base de blog posts pour partager ma connaissance .</p></div>
         </div>
         <div class="col-lg-12">
-<!--            <p onclick="hide()">Voir mon CV</p>-->
-            <div class="cv" style="padding-left: 15%">
-                <embed src=../../src/assets/cv.pdf width=1000 height=800 type='application/pdf'/>
-            </div>
+            <a href="./index.php/cv" target="_blank">Voir mon CV</a>
+
         </div>
     </div>
-    <script>
-
-//         function hide() {
-//             let cv = document.getElementsByClassName("cv");
-//             alert("Evènement de click détecté");
-//             console.log(cv)
-//             cv.style.addClass() = 'd-none';
-// // document.getElementsByClassName('cv').
-// //             if (cv.style.display === "d-none") {
-// //                 cv.style.display = "block";
-// //             } else {
-// //                 cv.style.display = "d-none";
-// //             }
-//         }
-
-    </script>
 </section>
 
 <!-- Contact-->

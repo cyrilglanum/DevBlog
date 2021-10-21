@@ -18,7 +18,6 @@ if (isset($_SESSION['email'])) {
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,10 +63,14 @@ if (isset($_SESSION['email'])) {
                 <?php
                 if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') {
                     ?>
-                    <li class="nav-item"><a class="nav-link" href="./index.php/home">Home</a></li>
-                <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
+                    <li class="nav-item"><a class="nav-link" href="./index.php">Home</a></li>
+                <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/INDEX.PHP') {
                     ?>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <?php
+                } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
+                    ?>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php">Home</a></li>
                     <?php
                 } else {
                     ?>
@@ -90,22 +93,24 @@ if (isset($_SESSION['email'])) {
                             Mon compte
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a href="./profil">
+                            <a href="./index.php/profil?email=<?= $_SESSION['email'] ?>">
                                 <img src="<?= '../../public/images' . DIRECTORY_SEPARATOR . $picture; ?>"
                                      class="img-thumbnail"></a>
                             <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') {
-                                if ($_SESSION['email'] == 'test@test.fr'){ ?>
-                                    <a class="dropdown-item" href="./index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon
-                                    espace Blog</a> <?php
-                                }?>
+                                if ($_SESSION['email'] == 'test@test.fr') { ?>
+                                    <a class="dropdown-item"
+                                       href="./index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon
+                                        espace Blog</a> <?php
+                                } ?>
 
                                 <a class="dropdown-item" href="./index.php/profil<?= $_SESSION['email'] ?>">Profil</a>
                                 <a class="dropdown-item"
                                    href="./index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>
                             <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') {
-                                if ($_SESSION['email'] == 'test@test.fr'){ ?>
+                                if ($_SESSION['email'] == 'test@test.fr') { ?>
                                 <a class="dropdown-item"
-                                   href="../../index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon espace Blog</a><?php } ?>
+                                   href="../../index.php/blogSpace?email=<?= $_SESSION['email'] ?>">Mon espace
+                                        Blog</a><?php } ?>
                                 <a class="dropdown-item" href="../../index.php/profil?email=<?= $_SESSION['email'] ?>">Profil</a>
                                 <a class="dropdown-item"
                                    href="../../index.php/deconnexion/<?php echo($_SESSION['email']) ?>">Deconnexion</a>

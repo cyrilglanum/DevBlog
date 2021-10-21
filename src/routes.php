@@ -95,8 +95,12 @@ $routes->add('index', new Route('/', [
     '_controller' => 'App\controller\IndexController::home'
 ]));
 
-$routes->add('home', new Route('/home', [
-    '_controller' => 'App\controller\IndexController::home'
+$routes->add('home', new Route('/index.php/home', [
+    '_controller' => 'App\controller\IndexController::index'
+]));
+
+$routes->add('cv', new Route('/cv', [
+    '_controller' => 'App\controller\IndexController::cv'
 ]));
 
 $routes->add('contact', new Route('/contact',[

@@ -26,6 +26,19 @@ class IndexController extends BaseRepository
         return new Response(ob_get_clean());
     }
 
+    public function index(Request $request):Response
+    {
+        ob_start();
+        //retrouver les données avec postrepo
+        $repo = new PostRepository();
+        //récupération des posts
+        $posts = $repo->findAll();
+        $name = $request->attributes->get('name');
+        $user = new User();
+        include __DIR__ . '/../pages/home.php';
+        return new Response(ob_get_clean());
+    }
+
     public function contact(Request $request):Response
     {
         ob_start();
@@ -97,5 +110,12 @@ class IndexController extends BaseRepository
             include __DIR__ . '/../pages/my403.php';
         }
         return false;
+    }
+
+    public function cv(Request $request):Response
+    {
+        ob_start();
+        include __DIR__ . '/../pages/cv.php';
+        return new Response(ob_get_clean());
     }
 }
