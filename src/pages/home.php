@@ -176,25 +176,26 @@ include 'validation/token.php';
                     sur ce site à base de blog posts pour partager ma connaissance .</p></div>
         </div>
         <div class="col-lg-12">
-            <p onclick="hide()">Voir mon CV</p>
-            <div class="cv d-none">
+<!--            <p onclick="hide()">Voir mon CV</p>-->
+            <div class="cv" style="padding-left: 15%">
                 <embed src=../../src/assets/cv.pdf width=1000 height=800 type='application/pdf'/>
             </div>
         </div>
     </div>
     <script>
 
-        function hide() {
-            let cv = document.getElementsByClassName("cv");
-            alert("Evènement de click détecté");
-            console.log(cv.style)
-// document.getElementsByClassName('cv').
-            if (cv.style.display === "d-none") {
-                cv.style.display = "block";
-            } else {
-                cv.style.display = "d-none";
-            }
-        }
+//         function hide() {
+//             let cv = document.getElementsByClassName("cv");
+//             alert("Evènement de click détecté");
+//             console.log(cv)
+//             cv.style.addClass() = 'd-none';
+// // document.getElementsByClassName('cv').
+// //             if (cv.style.display === "d-none") {
+// //                 cv.style.display = "block";
+// //             } else {
+// //                 cv.style.display = "d-none";
+// //             }
+//         }
 
     </script>
 </section>
