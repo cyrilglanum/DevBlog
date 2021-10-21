@@ -12,7 +12,7 @@ http://www.festivalonair.com
 
 ## Installation
 
-Link Github : https://github.com/cyrilglanum/DevBlog.git
+Github'Link : https://github.com/cyrilglanum/DevBlog.git
 
 ```bash
 git clone https://github.com/cyrilglanum/DevBlog.git
@@ -29,8 +29,8 @@ composer install
 
 Next we will care about the database.
 
+db_name=devblog
 username=root
-
 password=
 
 Take file bdddevblog.sql and deploy into SQL on phpmyAdmin with a database named devblog.
@@ -38,7 +38,7 @@ Take file bdddevblog.sql and deploy into SQL on phpmyAdmin with a database named
 Dans BaseRepository, adaptez la ligne en fonction des identifiants.
 
 ```bash
-$this->db = new PDO('mysql:host=APP_HOST;dbname=DB_HOST;charset=utf8', 'DB_USERNAME', '');
+$this->db = new PDO('mysql:host=localhost;dbname=db_name;charset=utf8', 'username', 'password');
 ```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
