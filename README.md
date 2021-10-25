@@ -33,7 +33,7 @@ db_name=devblog
 username=root
 password=
 
-Take file bdddevblog.sql and deploy into SQL on phpmyAdmin with a database named devblog.
+Take file Livrables/bdddevblog.sql and deploy into SQL on phpmyAdmin with a database named devblog.
 
 Dans BaseRepository, adaptez la ligne en fonction des identifiants.
 
