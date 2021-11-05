@@ -14,7 +14,7 @@ include $dir . 'src/pages/validation/token.php';
         <p style="color: red">Vos identifiants n'ont pas été reconnus !</p>
 
 
-        <input class="input--style-3" type="email" placeholder="Email" name="email" value="test@test.fr" required style="border-radius: 5px">
+        <input class="input--style-3" type="email" placeholder="Email" name="email" value="" required style="border-radius: 5px">
 
         <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" onerror="class ='danger'" required  style="border-radius: 5px">
 
@@ -22,7 +22,7 @@ include $dir . 'src/pages/validation/token.php';
 
         <button class="btn btn-warning" type="submit" name="formconnexion">Se connecter</button>
 
-        <a href="./home">
+        <a href="../index.php">
             <button type="button" class="btn btn-light" >Menu</button>
         </a>
 
@@ -89,43 +89,3 @@ include $dir . 'src/pages/validation/token.php';
 <script src="../../src/assets/js/scripts.js"></script>
 </body>
 </html>
-
-
-
-<?php
-$dir = strrpos(__DIR__, 'src');
-$dir = substr(__DIR__, 0, $dir);
-
-require $dir . 'src/pages/partials/header.php';
-include $dir . 'src/pages/validation/token.php';
-?>
-
-<h2>Login</h2>
-<form method="POST" action="./connexion">
-
-
-    <div class="input-group">
-
-        <input class="input--style-3" type="email" placeholder="Email" name="email" value="test@test.fr" required>
-
-    </div>
-
-    <div class="input-group">
-
-        <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" onerror="class ='danger'" required>
-
-    </div>
-
-    <div class="p-t-10">
-
-        <button class="btn btn--pill btn--green" type="submit" name="formconnexion">Se connecter</button>
-
-        <a href="./home">
-            <button type="button" class="btn btn-light">Menu</button>
-        </a>
-
-    </div>
-
-
-</form>
-

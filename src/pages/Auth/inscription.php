@@ -22,9 +22,9 @@ include $dir . 'src/pages/validation/token.php';
 
                           <div class="p-t-10 pt-3">
 
-                              <button class="btn btn-warning" type="submit" name="submit">Submit</button>
+                              <button class="btn btn-warning" type="submit" name="submit">S'inscrire</button>
 
-                              <a href="./home"><button type="button" class="btn btn-light">Menu</button></a>
+                              <a href="../index.php"><button type="button" class="btn btn-light">Menu</button></a>
 
 <!-- envoyer une erreur si les champs ne sont pas complétés -->
 

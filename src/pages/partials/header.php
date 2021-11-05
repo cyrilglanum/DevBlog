@@ -78,15 +78,16 @@ if (isset($_SESSION['email'])) {
                                             href="./home">Home</a></li><?php
                 } ?>
                 <?php if (isset($_SESSION['email'])) { ?>
-                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/') { ?>
+                    <?php if (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] == '/' && $_SESSION['email'] == 'test@test.fr') { ?>
                         <li class="nav-item"><a class="nav-link" href="./index.php/add-post">Ajout d'un post</a></li>
-                    <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/') { ?>
+                    <?php } elseif (str_contains($_SERVER['HTTP_HOST'], 'festival') === true && $_SERVER['REQUEST_URI'] != '/' &&$_SESSION['email'] == 'test@test.fr') { ?>
                         <li class="nav-item"><a class="nav-link" href="../../index.php/add-post">Ajout d'un post</a>
                         </li>
                         <?php
                     } else { ?>
+                            <?php if ($_SESSION['email'] == 'test@test.fr') { ?>
                         <li class="nav-item"><a class="nav-link" href="./add-post">Ajout d'un post</a></li>
-                    <?php } ?>
+                    <?php }} ?>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

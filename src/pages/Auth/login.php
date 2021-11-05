@@ -12,7 +12,7 @@ include $dir . 'src/pages/validation/token.php';
         <h2>Login</h2>
 <form method="POST" action="./connexion">
 
-        <input class="input--style-3" type="email" placeholder="Email" name="email" value="test@test.fr" required style="border-radius: 5px">
+        <input class="input--style-3" type="email" placeholder="Email" name="email" value="" required style="border-radius: 5px">
 
         <input class="input--style-3" type="password" placeholder="Mot de passe" name="password" onerror="class ='danger'" required  style="border-radius: 5px">
 
@@ -20,7 +20,7 @@ include $dir . 'src/pages/validation/token.php';
 
         <button class="btn btn-warning" type="submit" name="formconnexion">Se connecter</button>
 
-        <a href="./home">
+        <a href="../index.php">
             <button type="button" class="btn btn-light" >Menu</button>
         </a>
 
